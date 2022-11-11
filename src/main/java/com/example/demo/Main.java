@@ -2,8 +2,10 @@ package com.example.demo;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.ButtonType;
@@ -13,13 +15,21 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
+import javafx.geometry.Rectangle2D;
 
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main extends Application {
     static final int WIDTH = 900;
-    static final int HEIGHT = 900;
+    static final int HEIGHT = 800;
+    /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+    double height = screenBounds.getHeight();
+    double width = screenBounds.getWidth()/2;*/
+
+
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
     private static Scanner input= new Scanner(System.in);
@@ -66,8 +76,15 @@ public class Main extends Application {
         primaryStage.setScene(gameScene);
         GameScene game = new GameScene();
         game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot);
-
+        primaryStage.setTitle("ZK 2048");
         primaryStage.show();
+
+
+        //Below are fxml files
+        /*Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("ZK 2048");
+        primaryStage.setScene(new Scene(root, 900, 800));
+        primaryStage.show();*/
     }
 
     public static void main(String[] args) {

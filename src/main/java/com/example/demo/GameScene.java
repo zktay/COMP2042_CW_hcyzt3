@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 class GameScene {
-    private static int HEIGHT = 700;
+    private static int HEIGHT = 600;
     private static int n = 4;
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -202,7 +202,9 @@ class GameScene {
 
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
+            GameScene.this.sumCellNumbersToScore();
             cells[i][j].adder(cells[i][des + sign]);
+
             cells[i][des].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
@@ -220,7 +222,9 @@ class GameScene {
 
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
+            GameScene.this.sumCellNumbersToScore();
             cells[i][j].adder(cells[des + sign][j]);
+
             cells[des][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
@@ -280,31 +284,35 @@ class GameScene {
         randomFillNumber(1);
         randomFillNumber(1);
 
-        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
-                Platform.runLater(() -> {
-                    int haveEmptyCell;
-                    if (key.getCode() == KeyCode.DOWN) {
-                        GameScene.this.moveDown();
-                    } else if (key.getCode() == KeyCode.UP) {
-                        GameScene.this.moveUp();
-                    } else if (key.getCode() == KeyCode.LEFT) {
-                        GameScene.this.moveLeft();
-                    } else if (key.getCode() == KeyCode.RIGHT) {
-                        GameScene.this.moveRight();
-                    }
-                    GameScene.this.sumCellNumbersToScore();
-                    scoreText.setText(score + "");
-                    haveEmptyCell = GameScene.this.haveEmptyCell();
-                    if (haveEmptyCell == -1) {
-                        if (GameScene.this.canNotMove()) {
-                            primaryStage.setScene(endGameScene);
+        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, key ->{ //changed to key_released to avoid key holding
 
-                            EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
-                            root.getChildren().clear();
-                            score = 0;
+                Platform.runLater(() -> {
+                    //Check keypress
+                    if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT){
+                        int haveEmptyCell;
+                        if (key.getCode() == KeyCode.DOWN) {
+                            GameScene.this.moveDown();
+                        } else if (key.getCode() == KeyCode.UP) {
+                            GameScene.this.moveUp();
+                        } else if (key.getCode() == KeyCode.LEFT) {
+                            GameScene.this.moveLeft();
+                        } else {
+                            GameScene.this.moveRight();
                         }
-                    } else if(haveEmptyCell == 1)
-                        GameScene.this.randomFillNumber(2);
+                        /*GameScene.this.sumCellNumbersToScore();*/
+                        scoreText.setText(score + "");
+                        haveEmptyCell = GameScene.this.haveEmptyCell();
+                        if (haveEmptyCell == -1) {
+                            if (GameScene.this.canNotMove()) {
+                                primaryStage.setScene(endGameScene);
+
+                                EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                                root.getChildren().clear();
+                                score = 0;
+                            }
+                        } else if(haveEmptyCell == 1)
+                            GameScene.this.randomFillNumber(2);
+                    }
                 });
             });
     }
