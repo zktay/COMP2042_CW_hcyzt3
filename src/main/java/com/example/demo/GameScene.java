@@ -202,12 +202,26 @@ class GameScene {
 
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
-            GameScene.this.sumCellNumbersToScore();
+            //GameScene.this.sumCellNumbersToScore();
             cells[i][j].adder(cells[i][des + sign]);
-
+            // update score by getting score from cell's class
+            score += cells[i][j].getScore();
             cells[i][des].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
+        }
+    }
+
+    private void moveVertically(int i, int j, int des, int sign) {
+        if (isValidDesV(i, j, des, sign)) {
+            //GameScene.this.sumCellNumbersToScore();
+            cells[i][j].adder(cells[des + sign][j]);
+            // update score by getting score from cell's class
+
+            score += cells[i][j].getScore();
+            cells[des][j].setModify(true);
+        } else if (des != i) {
+            cells[i][j].changeCell(cells[des][j]);
         }
     }
 
@@ -220,16 +234,7 @@ class GameScene {
         return false;
     }
 
-    private void moveVertically(int i, int j, int des, int sign) {
-        if (isValidDesV(i, j, des, sign)) {
-            GameScene.this.sumCellNumbersToScore();
-            cells[i][j].adder(cells[des + sign][j]);
 
-            cells[des][j].setModify(true);
-        } else if (des != i) {
-            cells[i][j].changeCell(cells[des][j]);
-        }
-    }
 
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {

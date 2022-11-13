@@ -11,6 +11,7 @@ public class Cell {
     private Group root;
     private Text textClass;
     private boolean modify = false;
+    public long score = 0;
 
     void setModify(boolean modify) {
         this.modify = modify;
@@ -56,6 +57,10 @@ public class Cell {
         textClass.setText("0");
         root.getChildren().remove(textClass);
         cell.setColorByNumber(cell.getNumber());
+        //add up cell to score
+        score += cell.getNumber();
+
+        System.out.println(cell.getNumber());
         setColorByNumber(getNumber());
     }
 
@@ -112,6 +117,11 @@ public class Cell {
 
     int getNumber() {
         return Integer.parseInt(textClass.getText());
+    }
+
+    long getScore(){
+        //return score added up from the cells
+        return score;
     }
 
     private Text getTextClass() {
