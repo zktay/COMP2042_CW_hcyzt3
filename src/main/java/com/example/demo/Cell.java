@@ -57,10 +57,8 @@ public class Cell {
         textClass.setText("0");
         root.getChildren().remove(textClass);
         cell.setColorByNumber(cell.getNumber());
-        //add up cell to score
-        score += cell.getNumber();
-
-        System.out.println(cell.getNumber());
+        GameScene gs = new GameScene();
+        gs.generate = true;
         setColorByNumber(getNumber());
     }
 
@@ -119,10 +117,10 @@ public class Cell {
         return Integer.parseInt(textClass.getText());
     }
 
-    long getScore(){
+    /*long getScore(){
         //return score added up from the cells
         return score;
-    }
+    }*/
 
     private Text getTextClass() {
         return textClass;
