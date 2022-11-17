@@ -21,7 +21,6 @@ class GameScene {
     private Cell[][] cells = new Cell[n][n];
     private Group root;
     private long score = 0;
-    public boolean generate = true;
 
     static void setN(int number) {
         n = number;
@@ -33,53 +32,51 @@ class GameScene {
     }
 
     private void randomFillNumber(int turn) {
-        if (generate) {
-            Cell[][] emptyCells = new Cell[n][n];
-            int a = 0;
-            int b = 0;
-            int aForBound = 0, bForBound = 0;
-            outer:
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (cells[i][j].getNumber() == 0) {
-                        emptyCells[a][b] = cells[i][j];
-                        if (b < n - 1) {
-                            bForBound = b;
-                            b++;
+        Cell[][] emptyCells = new Cell[n][n];
+        int a = 0;
+        int b = 0;
+        int aForBound = 0, bForBound = 0;
+        outer:
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (cells[i][j].getNumber() == 0) {
+                    emptyCells[a][b] = cells[i][j];
+                    if (b < n - 1) {
+                        bForBound = b;
+                        b++;
 
-                        } else {
-                            aForBound = a;
-                            a++;
-                            b = 0;
-                            if (a == n)
-                                break outer;
-                        }
+                    } else {
+                        aForBound = a;
+                        a++;
+                        b = 0;
+                        if (a == n)
+                            break outer;
                     }
                 }
             }
-
-
-            Text text;
-            Random random = new Random();
-            boolean putTwo = true;
-            if (random.nextInt() % 2 == 0)
-                putTwo = false;
-            int xCell, yCell;
-            xCell = random.nextInt(aForBound + 1);
-            yCell = random.nextInt(bForBound + 1);
-            if (putTwo) {
-                text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-                emptyCells[xCell][yCell].setTextClass(text);
-                root.getChildren().add(text);
-                emptyCells[xCell][yCell].setColorByNumber(2);
-            } else {
-                text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-                emptyCells[xCell][yCell].setTextClass(text);
-                root.getChildren().add(text);
-                emptyCells[xCell][yCell].setColorByNumber(4);
-            }
-
         }
+
+
+        Text text;
+        Random random = new Random();
+        boolean putTwo = true;
+        if (random.nextInt() % 2 == 0)
+            putTwo = false;
+        int xCell, yCell;
+        xCell = random.nextInt(aForBound + 1);
+        yCell = random.nextInt(bForBound + 1);
+        if (putTwo) {
+            text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+            emptyCells[xCell][yCell].setTextClass(text);
+            root.getChildren().add(text);
+            emptyCells[xCell][yCell].setColorByNumber(2);
+        } else {
+            text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+            emptyCells[xCell][yCell].setTextClass(text);
+            root.getChildren().add(text);
+            emptyCells[xCell][yCell].setColorByNumber(4);
+        }
+
     }
 
     private int  haveEmptyCell() {
@@ -205,13 +202,10 @@ class GameScene {
 
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
-            //GameScene.this.sumCellNumbersToScore();
             cells[i][j].adder(cells[i][des + sign]);
 
-            // update score by getting score from cell's class
-            //this is my old score += cells[i][j].getScore();
+            // update score by getting score from new cell
             score += cells[i][des + sign].getNumber();
-            //System.out.print(score);
             cells[i][des].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
@@ -220,10 +214,8 @@ class GameScene {
 
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
-            //GameScene.this.sumCellNumbersToScore();
             cells[i][j].adder(cells[des + sign][j]);
-            // update score by getting score from cell's class
-            //System.out.print(score);
+            // update score by getting score from new cell
             score += cells[des + sign][j].getNumber();
             cells[des][j].setModify(true);
         } else if (des != i) {
@@ -245,18 +237,15 @@ class GameScene {
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
             if (cells[i + 1][j].getNumber() == cells[i][j].getNumber()){
-                generate = true;
                 return true;
             }
 
 
             if (cells[i][j + 1].getNumber() == cells[i][j].getNumber()){
-                generate = true;
                 return true;
             }
 
         }
-        generate = false;
         return false;
     }
 
@@ -270,7 +259,6 @@ class GameScene {
                 }
             }
         }
-        generate = false;
         return true;
     }
 
@@ -322,7 +310,6 @@ class GameScene {
                             GameScene.this.moveRight();
 
                         }
-                        /*GameScene.this.sumCellNumbersToScore();*/
                         scoreText.setText(score + "");
                         haveEmptyCell = GameScene.this.haveEmptyCell();
                         if (haveEmptyCell == -1) {
