@@ -15,19 +15,20 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 
-public class EndGame {
-    private static EndGame singleInstance = null;
-    private EndGame(){
+public class WinGame {
+    private static WinGame singleInstance = null;
+    private WinGame(){
 
     }
-    public static EndGame getInstance(){
+
+    public static WinGame getInstance(){
         if(singleInstance == null)
-            singleInstance= new EndGame();
+            singleInstance= new WinGame();
         return singleInstance;
     }
 
-    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
-        Text text = new Text("GAME OVER");
+    public void winGameShow(Scene winGameScene, Group root, Stage primaryStage,long score){
+        Text text = new Text("YOU WON!");
         text.relocate(200,250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
@@ -51,12 +52,6 @@ public class EndGame {
         quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
         quitButton.relocate(100,700);
-
-        Button retryButton = new Button("RETRY");
-        retryButton.setPrefSize(100,30);
-        retryButton.setTextFill(Color.BLACK);
-        root.getChildren().add(retryButton);
-        retryButton.relocate(250,700);
 
         Button homeButton = new Button("BACK TO HOME");
         homeButton.setPrefSize(200,30);

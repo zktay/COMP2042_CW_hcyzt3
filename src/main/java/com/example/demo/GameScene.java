@@ -21,6 +21,8 @@ class GameScene {
     private Cell[][] cells = new Cell[n][n];
     private Group root;
     private long score = 0;
+    private boolean win = false;
+    int winValue;
 
     static void setN(int number) {
         n = number;
@@ -262,15 +264,19 @@ class GameScene {
         return true;
     }
 
-    private void sumCellNumbersToScore() {
+    private void CellToWin() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                score += cells[i][j].getNumber();
+                winValue = cells[i][j].getNumber();
+                if (winValue >= 2048){
+                    win = true;
+                    break;
+                }
             }
         }
     }
 
-    void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
         this.root = root;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -313,10 +319,16 @@ class GameScene {
                         scoreText.setText(score + "");
                         haveEmptyCell = GameScene.this.haveEmptyCell();
                         if (haveEmptyCell == -1) {
+                            CellToWin();
                             if (GameScene.this.canNotMove()) {
-                                primaryStage.setScene(endGameScene);
 
-                                EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                                if (win){
+                                    primaryStage.setScene(winGameScene);
+                                    WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);
+                                }else {
+                                    primaryStage.setScene(endGameScene);
+                                    EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                                }
                                 root.getChildren().clear();
                                 score = 0;
                             }
