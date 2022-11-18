@@ -319,9 +319,9 @@ class GameScene {
                         scoreText.setText(score + "");
                         haveEmptyCell = GameScene.this.haveEmptyCell();
                         if (haveEmptyCell == -1) {
-                            CellToWin();
-                            if (GameScene.this.canNotMove()) {
 
+                            if (GameScene.this.canNotMove()) {
+                                CellToWin();
                                 if (win){
                                     primaryStage.setScene(winGameScene);
                                     WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);

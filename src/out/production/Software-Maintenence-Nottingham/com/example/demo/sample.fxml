@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Main">
    <top>
       <VBox prefHeight="128.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,9 +44,9 @@
    <center>
       <Pane prefHeight="278.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="269.0" layoutY="80.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="START" />
-            <Button layoutX="270.0" layoutY="109.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="SCORE" />
-            <Button layoutX="270.0" layoutY="138.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="EXIT" />
+            <Button fx:id="startButton" layoutX="269.0" layoutY="80.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="60.0" text="START" />
+            <Button fx:id="scoreButton" layoutX="270.0" layoutY="109.0" mnemonicParsing="false" onAction="#viewScore" prefHeight="25.0" prefWidth="60.0" text="SCORE" />
+            <Button fx:id="exitButton" layoutX="270.0" layoutY="138.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="25.0" prefWidth="60.0" text="EXIT" />
          </children>
       </Pane>
    </center>

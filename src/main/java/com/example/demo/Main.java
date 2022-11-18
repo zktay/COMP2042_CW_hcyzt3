@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
@@ -18,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
@@ -28,11 +31,16 @@ public class Main extends Application {
     /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
     double height = screenBounds.getHeight();
     double width = screenBounds.getWidth()/2;*/
-
-
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
     private static Scanner input= new Scanner(System.in);
+    @FXML
+    private Button exitButton;
+    @FXML
+    private Button scoreButton;
+    @FXML
+    private Button startButton;
+    public static Stage STAGE;
 
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
@@ -42,9 +50,42 @@ public class Main extends Application {
         this.gameRoot = gameRoot;
     }
 
+    public void setStage(Stage primaryStage){
+        STAGE = primaryStage;
+    }
+
+    public Stage getSTAGE() {
+        return STAGE;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        setStage(primaryStage);
+        //Below are fxml files
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml")));
+        primaryStage.setTitle("ZK 2048");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
 
+
+    @FXML
+    void exitGame(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit");
+        alert.setHeaderText("Quit Game");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            //root.getChildren().clear();
+            System.exit(0);
+        }
+    }
+
+    @FXML
+    void startGame(ActionEvent event) {
+        Stage stage = getSTAGE();
         Group menuRoot = new Group();
         Scene menuScene = new Scene(menuRoot, WIDTH, HEIGHT);
         Group accountRoot = new Group();
@@ -75,18 +116,16 @@ public class Main extends Application {
         setGameRoot(gameRoot);
         Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         setGameScene(gameScene);
-        primaryStage.setScene(gameScene);
+        stage.setScene(gameScene);
         GameScene game = new GameScene();
-        game.game(gameScene, gameRoot, primaryStage, endGameScene, endgameRoot, winGameScene, wingameRoot);
-        primaryStage.setTitle("ZK 2048");
-        primaryStage.show();
+        game.game(gameScene, gameRoot, stage, endGameScene, endgameRoot, winGameScene, wingameRoot);
+        stage.setTitle("ZK 2048");
+        stage.show();
+    }
 
+    @FXML
+    void viewScore(ActionEvent event) {
 
-        //Below are fxml files
-        /*Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("ZK 2048");
-        primaryStage.setScene(new Scene(root, 900, 800));
-        primaryStage.show();*/
     }
 
     public static void main(String[] args) {
