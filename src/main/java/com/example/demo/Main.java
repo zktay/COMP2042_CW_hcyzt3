@@ -5,8 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,16 +16,16 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.Set;
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
 
 public class Main extends Application {
     static final int WIDTH = 900;
@@ -31,6 +33,9 @@ public class Main extends Application {
     /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
     double height = screenBounds.getHeight();
     double width = screenBounds.getWidth()/2;*/
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
     private static Scanner input= new Scanner(System.in);
@@ -40,6 +45,10 @@ public class Main extends Application {
     private Button scoreButton;
     @FXML
     private Button startButton;
+    @FXML
+    private Button settingButton;
+
+
     public static Stage STAGE;
 
     public void setGameScene(Scene gameScene) {
@@ -58,11 +67,12 @@ public class Main extends Application {
         return STAGE;
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         setStage(primaryStage);
         //Below are fxml files
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("sample.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
         primaryStage.setTitle("ZK 2048");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -127,6 +137,20 @@ public class Main extends Application {
     void viewScore(ActionEvent event) {
 
     }
+    @FXML
+    void setting(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("setting.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("Setting");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        //inSetting = true;
+    }
+
+
+
+
 
     public static void main(String[] args) {
         launch(args);

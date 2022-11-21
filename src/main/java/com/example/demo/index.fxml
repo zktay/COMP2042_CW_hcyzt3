@@ -33,7 +33,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <TextField alignment="CENTER" prefHeight="102.0" prefWidth="600.0" text="ZK 2048">
+            <TextField alignment="CENTER" editable="false" prefHeight="102.0" prefWidth="600.0" text="ZK 2048">
                <font>
                   <Font name="Berlin Sans FB" size="30.0" />
                </font>
@@ -44,9 +44,10 @@
    <center>
       <Pane prefHeight="278.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="startButton" layoutX="269.0" layoutY="80.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="60.0" text="START" />
-            <Button fx:id="scoreButton" layoutX="270.0" layoutY="109.0" mnemonicParsing="false" onAction="#viewScore" prefHeight="25.0" prefWidth="60.0" text="SCORE" />
-            <Button fx:id="exitButton" layoutX="270.0" layoutY="138.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="25.0" prefWidth="60.0" text="EXIT" />
+            <Button fx:id="startButton" layoutX="263.0" layoutY="74.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="72.0" text="START" />
+            <Button fx:id="scoreButton" layoutX="263.0" layoutY="104.0" mnemonicParsing="false" onAction="#viewScore" prefHeight="25.0" prefWidth="72.0" text="SCORE" />
+            <Button fx:id="exitButton" layoutX="263.0" layoutY="164.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="25.0" prefWidth="72.0" text="EXIT" />
+            <Button fx:id="settingButton" layoutX="263.0" layoutY="134.0" mnemonicParsing="false" onAction="#setting" prefHeight="25.0" prefWidth="72.0" text="SETTING" />
          </children>
       </Pane>
    </center>
