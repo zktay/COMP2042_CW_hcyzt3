@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.security.Key;
 import java.util.Optional;
 import java.util.Random;
+import java.util.jar.Manifest;
 
 class GameScene {
     private static int HEIGHT = 600;
@@ -211,24 +212,11 @@ class GameScene {
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
-
             // update score by getting score from new cell
             score += cells[i][des + sign].getNumber();
+            continueOrNot();
             cells[i][des].setModify(true);
-            if(win && !doNotPrompt){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Congrats!");
-                alert.setHeaderText("You have finished the game.\nDo you want to continue?");
-                alert.setContentText("Good Luck Have Fun!");
 
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    notContinuing = true;
-                }else{
-                    doNotPrompt = true;
-                }
-
-            }
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
         }
@@ -239,21 +227,8 @@ class GameScene {
             cells[i][j].adder(cells[des + sign][j]);
             // update score by getting score from new cell
             score += cells[des + sign][j].getNumber();
+            continueOrNot();
             cells[des][j].setModify(true);
-            if(win && !doNotPrompt){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Congrats!");
-                alert.setHeaderText("You have finished the game.\nDo you want to continue?");
-                alert.setContentText("Good Luck Have Fun!");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK) {
-                    notContinuing = true;
-                }else{
-                    doNotPrompt = true;
-                }
-
-            }
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
@@ -302,14 +277,35 @@ class GameScene {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 winValue = cells[i][j].getNumber();
-                if (winValue >= 32){
+                if (winValue >= 2048){
                     win = true;
                     break;
                 }
             }
         }
     }
+    private void continueOrNot(){
+        CellToWin();
+        if(win && !doNotPrompt){
+            ButtonType okButton = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+            ButtonType noButton = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "",okButton, noButton);
+            alert.setTitle("Congrats!");
+            alert.setHeaderText("You have finished the game.\nDo you want to continue?");
+            alert.setContentText("Good Luck Have Fun!");
 
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == okButton) {
+                doNotPrompt = true;
+            }else if(result.get() == noButton){
+                doNotPrompt = true;
+                notContinuing = true;
+            }
+
+
+        }
+
+    }
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
         this.root = root;
         for (int i = 0; i < n; i++) {
@@ -334,18 +330,21 @@ class GameScene {
         randomFillNumber(1);
         randomFillNumber(1);
 
-        gameScene.addEventHandler(KeyEvent.KEY_RELEASED, key ->{ //changed to key_released to avoid key holding
-
+        gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{ //changed to key_released to avoid key holding
                 Platform.runLater(() -> {
+                    if (notContinuing){
+                        Main main = new Main();
+                        //Group wingameRoot = main.getWinRoot();
+                        //Stage primaryStage = main.getSTAGE();
+                        //Scene winGameScene = main.getWinScene();
+                        primaryStage.setScene(winGameScene);
+                        WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);
+                        root.getChildren().clear();
+                        score = 0;
+                    }
                     //Check keypress
                     if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT){
-                        CellToWin();
-                        if (notContinuing){
-                            primaryStage.setScene(winGameScene);
-                            WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);
-                            root.getChildren().clear();
-                            score = 0;
-                        }
+
                         int haveEmptyCell;
                         if (key.getCode() == KeyCode.DOWN) {
                             GameScene.this.moveDown();

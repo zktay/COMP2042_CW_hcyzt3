@@ -35,6 +35,8 @@ public class Main extends Application {
     double width = screenBounds.getWidth()/2;*/
     private Stage stage;
     private Scene scene;
+    private Scene winScene;
+    private Group winRoot;
     private Parent root;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
@@ -54,18 +56,29 @@ public class Main extends Application {
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
     }
-
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
     }
-
     public void setStage(Stage primaryStage){
         STAGE = primaryStage;
     }
-
     public Stage getSTAGE() {
         return STAGE;
     }
+    public void setWinScene(Scene winSceneParam){
+        winScene = winSceneParam;
+    }
+    public Scene getWinScene(){
+        return winScene;
+    }
+    public void setWinRoot(Group winRootParam){
+        winRoot = winRootParam;
+
+    }
+    public Group getWinRoot(){
+        return winRoot;
+    }
+
 
 
     @Override
@@ -127,6 +140,8 @@ public class Main extends Application {
         Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         setGameScene(gameScene);
         stage.setScene(gameScene);
+        setWinScene(winGameScene);
+        setWinRoot(winRoot);
         GameScene game = new GameScene();
         game.game(gameScene, gameRoot, stage, endGameScene, endgameRoot, winGameScene, wingameRoot);
         stage.setTitle("ZK 2048");
