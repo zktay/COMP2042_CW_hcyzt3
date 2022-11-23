@@ -35,7 +35,7 @@
                   </Menu>
                </menus>
             </MenuBar>
-            <TextField alignment="CENTER" prefHeight="102.0" prefWidth="600.0" text="ZK 2048">
+            <TextField alignment="CENTER" editable="false" prefHeight="102.0" prefWidth="600.0" text="ZK 2048">
                <font>
                   <Font name="Berlin Sans FB" size="30.0" />
                </font>
@@ -48,8 +48,8 @@
          <children>
             <Button fx:id="backButton" layoutX="263.0" layoutY="164.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="72.0" text="BACK" />
             <Button fx:id="helpButton" layoutX="263.0" layoutY="134.0" mnemonicParsing="false" onAction="#help" prefHeight="25.0" prefWidth="72.0" text="HELP" />
-            <TextField layoutX="193.0" layoutY="74.0" prefHeight="25.0" prefWidth="64.0" text="LEVEL:" />
-            <TextField layoutX="193.0" layoutY="104.0" prefHeight="25.0" prefWidth="64.0" text="COLOR" />
+            <TextField editable="false" layoutX="193.0" layoutY="74.0" prefHeight="25.0" prefWidth="64.0" text="LEVEL:" />
+            <TextField editable="false" layoutX="193.0" layoutY="104.0" prefHeight="25.0" prefWidth="64.0" text="COLOR" />
             <ChoiceBox fx:id="colorButton" layoutX="263.0" layoutY="104.0" onDragDetected="#colorSelect" prefHeight="25.0" prefWidth="72.0" />
             <ChoiceBox fx:id="levelButton" layoutX="263.0" layoutY="74.0" onDragDetected="#levelSelect" prefHeight="25.0" prefWidth="72.0" value="Normal" />
             <ColorPicker layoutX="343.0" layoutY="104.0" prefHeight="25.0" prefWidth="81.0" />

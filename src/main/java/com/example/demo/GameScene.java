@@ -3,6 +3,9 @@ package com.example.demo;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
@@ -10,6 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.security.Key;
+import java.util.Optional;
 import java.util.Random;
 
 class GameScene {
@@ -23,6 +27,8 @@ class GameScene {
     private long score = 0;
     private boolean win = false;
     int winValue;
+    boolean notContinuing = false;
+    boolean doNotPrompt = false;
 
     static void setN(int number) {
         n = number;
@@ -209,6 +215,20 @@ class GameScene {
             // update score by getting score from new cell
             score += cells[i][des + sign].getNumber();
             cells[i][des].setModify(true);
+            if(win && !doNotPrompt){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Congrats!");
+                alert.setHeaderText("You have finished the game.\nDo you want to continue?");
+                alert.setContentText("Good Luck Have Fun!");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    notContinuing = true;
+                }else{
+                    doNotPrompt = true;
+                }
+
+            }
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
         }
@@ -220,6 +240,20 @@ class GameScene {
             // update score by getting score from new cell
             score += cells[des + sign][j].getNumber();
             cells[des][j].setModify(true);
+            if(win && !doNotPrompt){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Congrats!");
+                alert.setHeaderText("You have finished the game.\nDo you want to continue?");
+                alert.setContentText("Good Luck Have Fun!");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    notContinuing = true;
+                }else{
+                    doNotPrompt = true;
+                }
+
+            }
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
@@ -268,7 +302,7 @@ class GameScene {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 winValue = cells[i][j].getNumber();
-                if (winValue >= 2048){
+                if (winValue >= 32){
                     win = true;
                     break;
                 }
@@ -305,6 +339,13 @@ class GameScene {
                 Platform.runLater(() -> {
                     //Check keypress
                     if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT){
+                        CellToWin();
+                        if (notContinuing){
+                            primaryStage.setScene(winGameScene);
+                            WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);
+                            root.getChildren().clear();
+                            score = 0;
+                        }
                         int haveEmptyCell;
                         if (key.getCode() == KeyCode.DOWN) {
                             GameScene.this.moveDown();
@@ -321,7 +362,7 @@ class GameScene {
                         if (haveEmptyCell == -1) {
 
                             if (GameScene.this.canNotMove()) {
-                                CellToWin();
+
                                 if (win){
                                     primaryStage.setScene(winGameScene);
                                     WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);
