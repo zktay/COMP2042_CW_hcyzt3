@@ -18,17 +18,13 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem fx:id="exitGameTab" mnemonicParsing="false" onAction="#exitGame" text="Quit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="helpTab" mnemonicParsing="false" onAction="#help" text="About" />
+                        <MenuItem fx:id="howToPlay" mnemonicParsing="false" onAction="#howToPlay" text="How To Play?" />
                   </items>
                 </Menu>
               </menus>
@@ -41,7 +37,7 @@
          </children>
       </VBox>
    </top>
-   <center>
+   <bottom>
       <Pane prefHeight="278.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="startButton" layoutX="263.0" layoutY="74.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="72.0" text="START" />
@@ -50,5 +46,5 @@
             <Button fx:id="settingButton" layoutX="263.0" layoutY="134.0" mnemonicParsing="false" onAction="#setting" prefHeight="25.0" prefWidth="72.0" text="SETTING" />
          </children>
       </Pane>
-   </center>
+   </bottom>
 </BorderPane>

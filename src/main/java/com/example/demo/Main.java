@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -49,6 +50,13 @@ public class Main extends Application {
     private Button startButton;
     @FXML
     private Button settingButton;
+    @FXML
+    private MenuItem tutorial;
+    @FXML
+    private MenuItem exitGameTab;
+    @FXML
+    private MenuItem helpTab;
+
 
 
     public static Stage STAGE;
@@ -83,27 +91,28 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        setStage(primaryStage);
-        //Below are fxml files
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
-        primaryStage.setTitle("ZK 2048");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        try{
+            setStage(primaryStage);
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Icon.png")));
+            primaryStage.getIcons().add(image);
+            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+
+            //Below are fxml files
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
+            primaryStage.setTitle("ZK 2048");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
 
     @FXML
     void exitGame(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Quit");
-        alert.setHeaderText("Quit Game");
-        alert.setContentText("Are you sure?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            //root.getChildren().clear();
-            System.exit(0);
-        }
+        Controller con = new Controller();
+        con.exitGame(event);
     }
 
     @FXML
@@ -152,20 +161,44 @@ public class Main extends Application {
     void viewScore(ActionEvent event) {
 
     }
+
+    @FXML
+    public void howToPlay(ActionEvent event) {
+        ButtonType okButton = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+        ButtonType noButton = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Alert alert = new Alert(Alert.AlertType.WARNING, "", okButton, noButton);
+
+        alert.setTitle("Redirect");
+        alert.setHeaderText("You are about to redirect to third-party website.");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == okButton){
+            getHostServices().showDocument("https://www.youtube.com/watch?v=-rqRWzSP2iM");
+        }
+
+    }
     @FXML
     void setting(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("setting.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Setting");
+        stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.show();
 
         //inSetting = true;
     }
 
+    /*@FXML
+    void TutorialButton(ActionEvent event) {
+        getHostServices().showDocument("https://www.youtube.com/watch?v=-rqRWzSP2iM");
+    }*/
 
-
-
+    @FXML
+    public void help(ActionEvent event) {
+        Controller con = new Controller();
+        con.help(event);
+    }
 
     public static void main(String[] args) {
         launch(args);

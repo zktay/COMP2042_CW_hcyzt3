@@ -1,3 +1,4 @@
+/*
 package com.example.demo;
 
 import javafx.event.ActionEvent;
@@ -77,3 +78,4 @@ public class setttingPage implements Initializable {
         colorButton.getItems().addAll(colorChoice);
     }
 }
+*/
