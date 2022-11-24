@@ -1,11 +1,13 @@
 package com.example.demo;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
@@ -30,7 +32,6 @@ class GameScene {
     int winValue;
     boolean notContinuing = false;
     boolean doNotPrompt = false;
-
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -315,16 +316,28 @@ class GameScene {
             }
 
         }
+        Text username = new Text();
+        root.getChildren().add(username);
+        username.setText("Name:");
+        username.setFont(Font.font(30));
+        username.relocate(600, 50);
+
+        Text usernameText = new Text();
+        root.getChildren().add(usernameText);
+        usernameText.setText(Main.usernameEnter);
+        usernameText.setFont(Font.font(30));
+        usernameText.relocate(690, 50);
 
         Text text = new Text();
         root.getChildren().add(text);
-        text.setText("SCORE :");
+        text.setText("Score:");
         text.setFont(Font.font(30));
-        text.relocate(750, 100);
+        text.relocate(605, 100);
+
         Text scoreText = new Text();
         root.getChildren().add(scoreText);
-        scoreText.relocate(750, 150);
-        scoreText.setFont(Font.font(20));
+        scoreText.setFont(Font.font(30));
+        scoreText.relocate(690, 100);
         scoreText.setText("0");
 
         randomFillNumber(1);
@@ -333,7 +346,6 @@ class GameScene {
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{ //changed to key_released to avoid key holding
                 Platform.runLater(() -> {
                     if (notContinuing){
-                        Main main = new Main();
                         //Group wingameRoot = main.getWinRoot();
                         //Stage primaryStage = main.getSTAGE();
                         //Scene winGameScene = main.getWinScene();

@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.control.Alert;
@@ -12,6 +14,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -86,10 +91,16 @@ public class WinGame {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    Main start = new Main();
-                    /*start.start(Stage primaryStage);*/
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    primaryStage.setTitle("ZK 2048");
+                    primaryStage.setScene(new Scene(root));
+                    primaryStage.show();
 
-                    //root.getChildren().();
 
                 }
             }
