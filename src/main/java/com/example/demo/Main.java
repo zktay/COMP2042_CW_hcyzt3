@@ -96,6 +96,10 @@ public class Main extends Application {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Icon.png")));
             primaryStage.getIcons().add(image);
             Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+            //WIDTH = screenBounds.getMaxX();
+            //HEIGHT = screenBounds.getMaxY();
+            //System.out.println(WIDTH);
+            //System.out.println(HEIGHT);
 
             //Below are fxml files
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
