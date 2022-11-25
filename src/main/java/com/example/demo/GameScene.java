@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.security.Key;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import java.util.jar.Manifest;
@@ -32,6 +34,9 @@ class GameScene {
     int winValue;
     boolean notContinuing = false;
     boolean doNotPrompt = false;
+    private boolean Spawn = true;
+    private int[][] oldCells = new int[n][n];
+    private int[][] newCells = new int[n][n];
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -86,6 +91,7 @@ class GameScene {
             root.getChildren().add(text);
             emptyCells[xCell][yCell].setColorByNumber(4);
         }
+
 
     }
 
@@ -154,6 +160,31 @@ class GameScene {
         return -1;
     }
 
+    private void spawnOrNot(String determine){
+        if (Objects.equals(determine, "old")){
+            for(int i = 0; i < n; i++){
+                for (int j = 0; j < n; j++){
+                    oldCells[i][j] = cells[i][j].getNumber();
+
+                }
+            }
+        }else if(Objects.equals(determine, "new")){
+            for(int i = 0; i < n; i++){
+                for (int j = 0; j < n; j++){
+                    newCells[i][j] = cells[i][j].getNumber();
+
+                }
+            }
+        }
+        boolean checkArray = Arrays.deepEquals(oldCells, newCells);
+        if (checkArray){
+            Spawn = false;
+        }else {
+            Spawn = true;
+        }
+
+    }
+
     private void moveLeft() {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < n; j++) {
@@ -178,8 +209,8 @@ class GameScene {
 
     private void moveUp() {
         for (int j = 0; j < n; j++) {
-            for (int i = n - 1; i >= 0; i--) {
-
+            //for (int i = n - 1; i >= 0; i--) {
+            for (int i = 1; i < n; i++) {
                 moveVertically(i, j, passDestination(i, j, 'u'), -1);
             }
             for (int i = 0; i < n; i++) {
@@ -218,7 +249,6 @@ class GameScene {
             score += cells[i][des + sign].getNumber();
             continueOrNot();
             cells[i][des].setModify(true);
-
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
         }
@@ -343,7 +373,7 @@ class GameScene {
 
         randomFillNumber(1);
         randomFillNumber(1);
-
+        spawnOrNot("old");
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{ //changed to key_released to avoid key holding
                 Platform.runLater(() -> {
                     if (notContinuing){
@@ -361,13 +391,16 @@ class GameScene {
                         int haveEmptyCell;
                         if (key.getCode() == KeyCode.DOWN) {
                             GameScene.this.moveDown();
+                            spawnOrNot("new");
                         } else if (key.getCode() == KeyCode.UP) {
                             GameScene.this.moveUp();
+                            spawnOrNot("new");
                         } else if (key.getCode() == KeyCode.LEFT) {
                             GameScene.this.moveLeft();
+                            spawnOrNot("new");
                         } else if (key.getCode() == KeyCode.RIGHT){
                             GameScene.this.moveRight();
-
+                            spawnOrNot("new");
                         }
                         scoreText.setText(score + "");
                         haveEmptyCell = GameScene.this.haveEmptyCell();
@@ -386,7 +419,11 @@ class GameScene {
                                 score = 0;
                             }
                         } else if(haveEmptyCell == 1)
-                            GameScene.this.randomFillNumber(2);
+                            if (Spawn){
+                                GameScene.this.randomFillNumber(2);
+                                spawnOrNot("old");
+                            }
+
                     }
                 });
             });
