@@ -95,7 +95,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         try{
             setStage(primaryStage);
-            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("Icon.png")));
+            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("pics/Icon.png")));
             primaryStage.getIcons().add(image);
             Rectangle2D screenBounds = Screen.getPrimary().getBounds();
             //WIDTH = screenBounds.getMaxX();

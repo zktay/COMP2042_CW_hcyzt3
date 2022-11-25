@@ -178,7 +178,8 @@ class GameScene {
 
     private void moveUp() {
         for (int j = 0; j < n; j++) {
-            for (int i = 1; i < n; i++) {
+            for (int i = n - 1; i >= 0; i--) {
+
                 moveVertically(i, j, passDestination(i, j, 'u'), -1);
             }
             for (int i = 0; i < n; i++) {

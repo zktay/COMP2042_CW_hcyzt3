@@ -40,7 +40,7 @@
          <children>
             <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="279.0" layoutY="147.0" preserveRatio="true">
                <image>
-                  <Image url="@Index.png" />
+                  <Image url="@pics/Index.png" />
                </image>
             </ImageView>
             <Text layoutX="397.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ZK 2048" wrappingWidth="316.0">
