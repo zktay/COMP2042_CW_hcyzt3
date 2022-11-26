@@ -339,6 +339,9 @@ class GameScene {
 
     }
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
+
+
+
         this.root = root;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -347,28 +350,36 @@ class GameScene {
             }
 
         }
+
+        Text title = new Text();
+        root.getChildren().add(title);
+        title.setText("2048");
+        title.setFont(Font.font(110));
+        title.relocate(600, 10);
+
+
         Text username = new Text();
         root.getChildren().add(username);
         username.setText("Name:");
         username.setFont(Font.font(30));
-        username.relocate(600, 50);
+        username.relocate(600, 150);
 
         Text usernameText = new Text();
         root.getChildren().add(usernameText);
         usernameText.setText(Main.usernameEnter);
         usernameText.setFont(Font.font(30));
-        usernameText.relocate(690, 50);
+        usernameText.relocate(690, 150);
 
         Text text = new Text();
         root.getChildren().add(text);
         text.setText("Score:");
         text.setFont(Font.font(30));
-        text.relocate(605, 100);
+        text.relocate(605, 200);
 
         Text scoreText = new Text();
         root.getChildren().add(scoreText);
         scoreText.setFont(Font.font(30));
-        scoreText.relocate(690, 100);
+        scoreText.relocate(690, 200);
         scoreText.setText("0");
 
         randomFillNumber(1);

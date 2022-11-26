@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -64,7 +65,7 @@ public class EndGame {
         root.getChildren().add(quitButton);
         quitButton.relocate(100,700);
 
-        Button retryButton = new Button("RETRY");
+        Button retryButton = new Button("RESTART");
         retryButton.setPrefSize(100,30);
         retryButton.setTextFill(Color.BLACK);
         root.getChildren().add(retryButton);
@@ -92,6 +93,19 @@ public class EndGame {
                 }
             }
         });
+
+        retryButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Main main = new Main();
+                Stage stage = main.getSTAGE();
+                try {
+                    main.startGame(actionEvent);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+          });
 
 
         homeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
