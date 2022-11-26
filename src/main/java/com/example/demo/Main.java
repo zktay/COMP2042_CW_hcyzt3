@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class Main extends Application {
+public class Main extends Application implements Initializable {
     static final int WIDTH = 900;
     static final int HEIGHT = 800;
     /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -44,6 +44,10 @@ public class Main extends Application {
     private static Scanner input= new Scanner(System.in);
     @FXML
     private Button exitButton;
+    public static Color colorSelected = Color.rgb(189,177,92);
+    @FXML
+    private BorderPane indexPanel;
+
     @FXML
     private Button scoreButton;
     @FXML
@@ -88,7 +92,6 @@ public class Main extends Application {
     public Group getWinRoot(){
         return winRoot;
     }
-
 
 
     @Override
@@ -160,7 +163,7 @@ public class Main extends Application {
 
             Group gameRoot = new Group();
             setGameRoot(gameRoot);
-            Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
+            Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, colorSelected);
             setGameScene(gameScene);
             stage.setScene(gameScene);
             setWinScene(winGameScene);
@@ -229,5 +232,15 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Controller c = new Controller();
+        if (c.getColorSelected() != null){
+            colorSelected = c.getColorSelected();
+        }
+        indexPanel.setBackground(new Background(new BackgroundFill(colorSelected, null, null)));
+
     }
 }

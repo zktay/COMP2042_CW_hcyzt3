@@ -10,10 +10,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.MissingFormatArgumentException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -21,12 +27,14 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     private Stage stage;
     private Scene scene;
+    public static Color colorSelected = Color.rgb(189,177,92);
+    @FXML
+    private BorderPane Pane;
     private Parent root;
     @FXML
     private Button backButton;
     @FXML
-    private ChoiceBox<String> colorButton;
-    private String[] colorChoice = {"Default","Blue","Pink"};
+    private ColorPicker colorButton;
     @FXML
     private Button helpButton;
     @FXML
@@ -65,10 +73,16 @@ public class Controller implements Initializable {
     }
     @FXML
     void colorSelect(ActionEvent event) {
-        String colorSelected = colorButton.getValue();
-        System.out.println(colorSelected);
-        colorButton.getItems().addAll(colorChoice);
+        colorSelected = colorButton.getValue();
+        Pane.setBackground(new Background(new BackgroundFill(colorSelected, null, null)));
+        setColorSelected(colorSelected);
+    }
 
+    void setColorSelected(Color color){
+        colorSelected = color;
+    }
+    public Color getColorSelected(){
+        return colorSelected;
     }
 
     @FXML
@@ -92,16 +106,24 @@ public class Controller implements Initializable {
     @FXML
     void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.show();
+        //Main main = new Main();
+        //main.setPanelColor(colorSelected);
+        //main.indexPanel.setBackground(new Background(new BackgroundFill(colorSelected, null, null)));
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         levelButton.getItems().addAll(levelChoice);
-        colorButton.getItems().addAll(colorChoice);
+        Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
+        //colorButton.setValue(Color.rgb(189,177,92));
+        colorButton.setValue(colorSelected);
+        //colorButton.getItems().addAll(colorChoice);
+
     }
 }
