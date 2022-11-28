@@ -1,12 +1,1 @@
-ddfgs, 172, 3x3, WIN;
-ddfgs, 184, 3x3, WIN;
-fdas, 128, 4x4, WIN;
-fdas, 172, 5x5, WIN;
-fdas, 0, 5x5, WIN;
-fdsa, 140, 6x6, WIN;
-dsfg, 100, 3x3, WIN;
-sdf, 128, 4x4, WIN;
-fdsa, 200, 3x3, LOSE;
-fads, 344, 3x3, LOSE;
-fdsa, 100, 3x3, LOSE;
-fdsa, 412, 3x3, WIN;
+fdsa, 2384, 4x4, Normal, LOSE;

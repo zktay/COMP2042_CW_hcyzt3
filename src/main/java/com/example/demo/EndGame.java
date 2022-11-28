@@ -56,7 +56,7 @@ public class EndGame {
         }
         File file = new File("data/score.txt");
         BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-        bw.write(username + ", " + score + ", " + varient +", LOSE" +";" + "\n");
+        bw.write(username + ", " + score + ", " + varient + ", " + Controller.levelSelected +", LOSE" +";" + "\n");
         bw.close();
 
         Text text = new Text("GAME OVER");

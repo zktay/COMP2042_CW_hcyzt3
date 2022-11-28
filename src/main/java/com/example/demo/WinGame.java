@@ -56,7 +56,7 @@ public class WinGame {
         }
         File file = new File("data/score.txt");
         BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-        bw.write(username + ", " + score + ", " + varient +", WIN" +";" + "\n");
+        bw.write(username + ", " + score + ", " + varient + ", " + Controller.levelSelected +", WIN" +";" + "\n");
         bw.close();
 
         Text text = new Text("YOU WON!");

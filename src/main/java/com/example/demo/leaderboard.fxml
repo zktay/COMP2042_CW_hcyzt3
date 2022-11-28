@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -50,6 +52,16 @@
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Button>
+            <TableView fx:id="leaderboard" layoutX="113.0" layoutY="341.0" prefHeight="378.0" prefWidth="675.0">
+              <columns>
+                  <TableColumn fx:id="index" editable="false" prefWidth="75.0" sortable="false" text="Index" />
+                <TableColumn fx:id="username" editable="false" prefWidth="226.0" sortable="false" text="Username" />
+                <TableColumn fx:id="score" editable="false" prefWidth="114.0" sortable="false" text="Score" />
+                  <TableColumn fx:id="varient" editable="false" prefWidth="81.0" sortable="false" text="Varient" />
+                  <TableColumn fx:id="difficulty" editable="false" prefWidth="77.0" sortable="false" text="Difficulty" />
+                  <TableColumn fx:id="result" editable="false" prefWidth="101.0" sortable="false" text="Win/Lost" />
+              </columns>
+            </TableView>
          </children>
       </Pane>
    </center>

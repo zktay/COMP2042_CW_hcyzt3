@@ -64,6 +64,7 @@ public class Cell {
         switch (number) {
             case 0:
                 rectangle.setFill(Color.rgb(224, 226, 226, 0.5));
+
                 break;
             case 2:
                 rectangle.setFill(Color.rgb(232, 255, 100, 0.5));
@@ -97,7 +98,10 @@ public class Cell {
                 break;
             case 2048:
                 rectangle.setFill(Color.rgb(250,0,0,1));
-
+                break;
+            default:
+                rectangle.setFill(Color.rgb(64, 60, 52));
+                break;
 
         }
 
