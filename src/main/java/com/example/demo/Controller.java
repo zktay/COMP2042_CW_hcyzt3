@@ -49,7 +49,7 @@ public class Controller implements Initializable {
     private MenuItem aboutButton;
     @FXML
     private ChoiceBox<String> tilesButton;
-    private String[] tilesChoice = {"3x3", "4x4", "5x5"};
+    private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
 
 
     @FXML
@@ -127,13 +127,16 @@ public class Controller implements Initializable {
         String determine = tilesButton.getValue();
         if (Objects.equals(determine, "3x3")){
             GameScene.n = 3;
-            System.out.println(GameScene.n);
+            GameScene.LENGTH = (600 - ((4)* 10)) / (double) 3;
         }else if (Objects.equals(determine, "4x4")){
             GameScene.n = 4;
-            System.out.println(GameScene.n);
+            GameScene.LENGTH = (600 - ((5)* 10)) / (double) 4;
         }else if (Objects.equals(determine, "5x5")){
             GameScene.n = 5;
-            System.out.println(GameScene.n);
+            GameScene.LENGTH = (600 - ((6)* 10)) / (double) 5;
+        }else if (Objects.equals(determine, "6x6")) {
+            GameScene.n = 6;
+            GameScene.LENGTH = (600 - ((7) * 10)) / (double) 6;
         }
     }
 

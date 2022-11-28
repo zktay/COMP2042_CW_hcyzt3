@@ -26,7 +26,7 @@ class GameScene {
     public static int n = 4;
     //public static int n = 5;
     private final static int distanceBetweenCells = 10;
-    private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
+    public static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     private TextMaker textMaker = TextMaker.getSingleInstance();
     private Cell[][] cells = new Cell[n][n];
     private Group root;
