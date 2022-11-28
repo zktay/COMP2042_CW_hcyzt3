@@ -29,6 +29,7 @@ public class Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     public static Color colorSelected = Color.rgb(189,177,92);
+
     @FXML
     private BorderPane Pane;
     private Parent root;
@@ -40,7 +41,8 @@ public class Controller implements Initializable {
     private Button helpButton;
     @FXML
     private ChoiceBox<String> levelButton;
-    private String[] levelChoice = {"Easy","Normal","Hard"};
+    private String[] levelChoice = {"Easy","Normal","Hard", "Extreme"};
+    public static String levelSelected = "Normal";
     @FXML
     private MenuItem tutorial;
     @FXML
@@ -49,7 +51,10 @@ public class Controller implements Initializable {
     private MenuItem aboutButton;
     @FXML
     private ChoiceBox<String> tilesButton;
-    private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
+    //private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
+    private String[] tilesChoice = {"3x3", "4x4", "5x5"};
+
+
 
 
     @FXML
@@ -101,10 +106,8 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void levelSelect(MouseEvent event) {
-        String levelSelected = levelButton.getValue();
-        System.out.println(levelSelected);
-        //levelButton.getItems().addAll(levelChoice);
+    void levelSelect(ActionEvent event) {
+        levelSelected = levelButton.getValue();
     }
 
     @FXML
@@ -122,8 +125,6 @@ public class Controller implements Initializable {
     }
     @FXML
     void tilesSelect(ActionEvent event) {
-        //tilesButton.getItems().addAll(tilesChoice);
-        GameScene gs = new GameScene();
         String determine = tilesButton.getValue();
         if (Objects.equals(determine, "3x3")){
             GameScene.n = 3;
@@ -147,8 +148,20 @@ public class Controller implements Initializable {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         //colorButton.setValue(Color.rgb(189,177,92));
         colorButton.setValue(colorSelected);
-
-
+        switch (GameScene.n){
+            case 3:
+                tilesButton.setValue("3x3");
+                break;
+            case 4:
+                tilesButton.setValue("4x4");
+                break;
+            case 5:
+                tilesButton.setValue("5x5");
+                break;
+            case 6:
+                tilesButton.setValue("6x6");
+                break;
+        }
     }
 
 

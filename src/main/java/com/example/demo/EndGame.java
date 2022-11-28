@@ -16,6 +16,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,6 +26,8 @@ import java.util.Optional;
 
 public class EndGame {
     private static EndGame singleInstance = null;
+    private String username;
+    private String score;
     private EndGame(){
 
     }
@@ -32,7 +37,28 @@ public class EndGame {
         return singleInstance;
     }
 
-    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score){
+    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
+        username = Main.usernameEnter;
+        String varient = null;
+        switch (n){
+            case 3:
+                varient = "3x3";
+                break;
+            case 4:
+                varient = "4x4";
+                break;
+            case 5:
+                varient = "5x5";
+                break;
+            case 6:
+                varient = "6x6";
+                break;
+        }
+        File file = new File("data/score.txt");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+        bw.write(username + ", " + score + ", " + varient +", LOSE" +";" + "\n");
+        bw.close();
+
         Text text = new Text("GAME OVER");
         text.relocate(200,250);
         text.setFont(Font.font(80));

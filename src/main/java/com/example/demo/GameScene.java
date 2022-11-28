@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Objects;
@@ -24,7 +25,6 @@ import java.util.jar.Manifest;
 class GameScene {
     private static int HEIGHT = 600;
     public static int n = 4;
-    //public static int n = 5;
     private final static int distanceBetweenCells = 10;
     public static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     private TextMaker textMaker = TextMaker.getSingleInstance();
@@ -310,10 +310,66 @@ class GameScene {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 winValue = cells[i][j].getNumber();
-                if (winValue >= 2048){
-                    win = true;
-                    break;
+                if (n == 3){
+                    if (Controller.levelSelected.equals("Easy") && winValue >= 64){
+                        win = true;
+                        break;
+                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 128){
+                        win = true;
+                        break;
+                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 256){
+                        win = true;
+                        break;
+                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 512){
+                        win = true;
+                        break;
+                    }
+
+                }else if (n ==4){
+                    if (Controller.levelSelected.equals("Easy") && winValue >= 1024){
+                        win = true;
+                        break;
+                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 2048){
+                        win = true;
+                        break;
+                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 4096){
+                        win = true;
+                        break;
+                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 8192){
+                        win = true;
+                        break;
+                    }
+                }else if (n ==5){
+                    if (Controller.levelSelected.equals("Easy") && winValue >= 8192){
+                        win = true;
+                        break;
+                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 16384){
+                        win = true;
+                        break;
+                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 32768){
+                        win = true;
+                        break;
+                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 65536){
+                        win = true;
+                        break;
+                    }
+
+                }else if (n ==6){
+                    if (Controller.levelSelected.equals("Easy") && winValue >= 524288){
+                        win = true;
+                        break;
+                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 1048576){
+                        win = true;
+                        break;
+                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 2097152){
+                        win = true;
+                        break;
+                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 4194304){
+                        win = true;
+                        break;
+                    }
                 }
+
             }
         }
     }
@@ -393,7 +449,11 @@ class GameScene {
                         //Stage primaryStage = main.getSTAGE();
                         //Scene winGameScene = main.getWinScene();
                         primaryStage.setScene(winGameScene);
-                        WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);
+                        try {
+                            WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                         root.getChildren().clear();
                         score = 0;
                     }
@@ -422,10 +482,18 @@ class GameScene {
 
                                 if (win){
                                     primaryStage.setScene(winGameScene);
-                                    WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score);
+                                    try {
+                                        WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }else {
                                     primaryStage.setScene(endGameScene);
-                                    EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
+                                    try {
+                                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, n);
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                 }
                                 root.getChildren().clear();
                                 score = 0;

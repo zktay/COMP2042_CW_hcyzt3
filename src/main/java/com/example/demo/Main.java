@@ -192,8 +192,12 @@ public class Main extends Application implements Initializable {
     }
 
     @FXML
-    void viewScore(ActionEvent event) {
-
+    void viewScore(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("leaderboard.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setTitle("ZK 2048");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
