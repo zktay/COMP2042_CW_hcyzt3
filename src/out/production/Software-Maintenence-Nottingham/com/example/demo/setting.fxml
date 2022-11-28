@@ -56,8 +56,8 @@
    <bottom>
       <Pane prefHeight="425.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="helpButton" layoutX="400.0" layoutY="160.0" mnemonicParsing="false" onAction="#help" prefHeight="35.0" prefWidth="100.0" text="HELP" />
-            <Button fx:id="backButton" layoutX="400.0" layoutY="205.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="100.0" text="BACK" />
+            <Button fx:id="helpButton" layoutX="400.0" layoutY="118.0" mnemonicParsing="false" onAction="#help" prefHeight="35.0" prefWidth="100.0" text="HELP" />
+            <Button fx:id="backButton" layoutX="400.0" layoutY="163.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="100.0" text="BACK" />
             <ChoiceBox fx:id="levelButton" layoutX="400.0" layoutY="28.0" onDragDetected="#levelSelect" prefHeight="35.0" prefWidth="100.0" value="Normal" />
             <Text layoutX="290.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEVEL:" wrappingWidth="110.0">
                <font>
@@ -73,12 +73,6 @@
                <value>
                   <Color red="0.7411764860153198" green="0.6941176652908325" blue="0.3607843220233917" />
                </value></ColorPicker>
-            <ChoiceBox fx:id="tilesButton" layoutX="400.0" layoutY="116.0" onAction="#tilesSelect" prefHeight="35.0" prefWidth="100.0" value="4x4"/>
-            <Text layoutX="290.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TILES:" wrappingWidth="110.0">
-               <font>
-                  <Font name="Berlin Sans FB" size="30.0" />
-               </font>
-            </Text>
          </children>
       </Pane>
    </bottom>

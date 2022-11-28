@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -47,9 +46,6 @@ public class Controller implements Initializable {
     private MenuItem exitGameTab;
     @FXML
     private MenuItem aboutButton;
-    @FXML
-    private ChoiceBox<String> tilesButton;
-    private String[] tilesChoice = {"3x3", "4x4", "5x5"};
 
 
     @FXML
@@ -104,7 +100,7 @@ public class Controller implements Initializable {
     void levelSelect(MouseEvent event) {
         String levelSelected = levelButton.getValue();
         System.out.println(levelSelected);
-        //levelButton.getItems().addAll(levelChoice);
+        levelButton.getItems().addAll(levelChoice);
     }
 
     @FXML
@@ -120,33 +116,14 @@ public class Controller implements Initializable {
         //main.indexPanel.setBackground(new Background(new BackgroundFill(colorSelected, null, null)));
 
     }
-    @FXML
-    void tilesSelect(ActionEvent event) {
-        //tilesButton.getItems().addAll(tilesChoice);
-        GameScene gs = new GameScene();
-        String determine = tilesButton.getValue();
-        if (Objects.equals(determine, "3x3")){
-            GameScene.n = 3;
-            System.out.println(GameScene.n);
-        }else if (Objects.equals(determine, "4x4")){
-            GameScene.n = 4;
-            System.out.println(GameScene.n);
-        }else if (Objects.equals(determine, "5x5")){
-            GameScene.n = 5;
-            System.out.println(GameScene.n);
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         levelButton.getItems().addAll(levelChoice);
-        tilesButton.getItems().addAll(tilesChoice);
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         //colorButton.setValue(Color.rgb(189,177,92));
         colorButton.setValue(colorSelected);
-
+        //colorButton.getItems().addAll(colorChoice);
 
     }
-
-
 }

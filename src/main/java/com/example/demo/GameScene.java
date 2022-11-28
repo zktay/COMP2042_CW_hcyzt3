@@ -23,8 +23,7 @@ import java.util.jar.Manifest;
 
 class GameScene {
     private static int HEIGHT = 600;
-    public static int n = 4;
-    //public static int n = 5;
+    private static int n = 4;
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     private TextMaker textMaker = TextMaker.getSingleInstance();
