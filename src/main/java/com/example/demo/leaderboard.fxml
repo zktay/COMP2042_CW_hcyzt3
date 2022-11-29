@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -62,6 +63,12 @@
                   <TableColumn fx:id="result" editable="false" prefWidth="101.0" resizable="false" text="Win/Lost" />
               </columns>
             </TableView>
+            <TextField fx:id="textBox" layoutX="601.0" layoutY="18.0" promptText="Type Anything...">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </TextField>
+            <Button fx:id="searchButton" layoutX="762.0" layoutY="18.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
          </children>
       </Pane>
    </center>
