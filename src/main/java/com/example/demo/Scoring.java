@@ -5,17 +5,17 @@ public class Scoring {
     private int index;
     private String username;
     private String score;
-    private String varient;
+    private String variant;
     private String difficulty;
     private String result;
 
 
 
-    public Scoring(int index, String username, String score, String varient, String difficulty, String result){
+    public Scoring(int index, String username, String score, String variant, String difficulty, String result){
         this.index = index;
         this.username = username;
         this.score = score;
-        this.varient = varient;
+        this.variant = variant;
         this.difficulty = difficulty;
         this.result = result;
     }
@@ -45,12 +45,12 @@ public class Scoring {
         this.score = score;
     }
 
-    public String getVarient() {
-        return varient;
+    public String getVariant() {
+        return variant;
     }
 
-    public void setVarient(String varient) {
-        this.varient = varient;
+    public void setVariant(String variant) {
+        this.variant = variant;
     }
 
     public String getDifficulty() {
