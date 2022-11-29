@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -99,8 +100,8 @@ public class leaderboard implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
-        //getScore();
-        leaderboard.setItems(Score);
+        getScore();
+        leaderboard.setItems(Scoring);
         index.setCellValueFactory(new PropertyValueFactory<>("Index"));
         username.setCellValueFactory(new PropertyValueFactory<>("Username"));
         score.setCellValueFactory(new PropertyValueFactory<>("Score"));
@@ -114,35 +115,22 @@ public class leaderboard implements Initializable {
 
     private void getScore(){
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-
+            Scoring = FXCollections.observableArrayList();
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
-                String[] arrayLine = line.split("; ");
+                String[] arrayLine = line.split(";");
                 for (String data : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] temp1 = data.split(", ");
-
-                        Scoring = FXCollections.observableArrayList(
-                                new Scoring(counter,temp1[0], temp1[1], temp1[2], temp1[3], temp1[4]));
-
+                            Scoring.add(new Scoring(counter, temp1[0], temp1[1], temp1[2], temp1[3], temp1[4]));
                     }
                 }
                 counter ++;
-                //    System.out.println(Arrays.toString(array));
-                //leaderboard.getItems().add(String.valueOf(new Scoring(1,array[0],array[1],array[2],array[3],array[4])));
             }
-            br.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    private ObservableList<Scoring> Score = FXCollections.observableArrayList(
-            new Scoring(1,"Amos", "32312", "4x4", "Hard", "Lose")
-            );
-
-
-
 }

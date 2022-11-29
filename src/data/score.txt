@@ -1,1 +1,5 @@
 fdsa, 2384, 4x4, Normal, LOSE;
+fdsa, 21334, 4x4, Normal, LOSE;
+fdsa, 56562, 5x5, Easy, WIN;
+fdsa, 9625, 3x3, Hard, WIN;
+fdsa, 1234, 4x4, Normal, LOSE;

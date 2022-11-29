@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.StackedAreaChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -56,7 +55,7 @@ public class EndGame {
         }
         File file = new File("data/score.txt");
         BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-        bw.write(username + ", " + score + ", " + varient + ", " + Controller.levelSelected +", LOSE" +";" + "\n");
+        bw.write(username + ", " + score + ", " + varient + ", " + Setting.levelSelected +", LOSE" + "\n");
         bw.close();
 
         Text text = new Text("GAME OVER");

@@ -1,13 +1,11 @@
 package com.example.demo;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
@@ -15,12 +13,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.security.Key;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
-import java.util.jar.Manifest;
 
 class GameScene {
     private static int HEIGHT = 600;
@@ -311,60 +307,60 @@ class GameScene {
             for (int j = 0; j < n; j++) {
                 winValue = cells[i][j].getNumber();
                 if (n == 3){
-                    if (Controller.levelSelected.equals("Easy") && winValue >= 64){
+                    if (Setting.levelSelected.equals("Easy") && winValue >= 64){
                         win = true;
                         break;
-                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 128){
+                    }else if (Setting.levelSelected.equals("Normal") && winValue >= 128){
                         win = true;
                         break;
-                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 256){
+                    } else if (Setting.levelSelected.equals("Hard") && winValue >= 256){
                         win = true;
                         break;
-                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 512){
+                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 512){
                         win = true;
                         break;
                     }
 
                 }else if (n ==4){
-                    if (Controller.levelSelected.equals("Easy") && winValue >= 1024){
+                    if (Setting.levelSelected.equals("Easy") && winValue >= 1024){
                         win = true;
                         break;
-                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 2048){
+                    }else if (Setting.levelSelected.equals("Normal") && winValue >= 2048){
                         win = true;
                         break;
-                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 4096){
+                    } else if (Setting.levelSelected.equals("Hard") && winValue >= 4096){
                         win = true;
                         break;
-                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 8192){
+                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 8192){
                         win = true;
                         break;
                     }
                 }else if (n ==5){
-                    if (Controller.levelSelected.equals("Easy") && winValue >= 8192){
+                    if (Setting.levelSelected.equals("Easy") && winValue >= 8192){
                         win = true;
                         break;
-                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 16384){
+                    }else if (Setting.levelSelected.equals("Normal") && winValue >= 16384){
                         win = true;
                         break;
-                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 32768){
+                    } else if (Setting.levelSelected.equals("Hard") && winValue >= 32768){
                         win = true;
                         break;
-                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 65536){
+                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 65536){
                         win = true;
                         break;
                     }
 
                 }else if (n ==6){
-                    if (Controller.levelSelected.equals("Easy") && winValue >= 524288){
+                    if (Setting.levelSelected.equals("Easy") && winValue >= 524288){
                         win = true;
                         break;
-                    }else if (Controller.levelSelected.equals("Normal") && winValue >= 1048576){
+                    }else if (Setting.levelSelected.equals("Normal") && winValue >= 1048576){
                         win = true;
                         break;
-                    } else if (Controller.levelSelected.equals("Hard") && winValue >= 2097152){
+                    } else if (Setting.levelSelected.equals("Hard") && winValue >= 2097152){
                         win = true;
                         break;
-                    }if (Controller.levelSelected.equals("Extreme") && winValue >= 4194304){
+                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 4194304){
                         win = true;
                         break;
                     }

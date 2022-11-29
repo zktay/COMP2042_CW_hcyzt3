@@ -9,23 +9,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.MissingFormatArgumentException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Setting implements Initializable {
     private Stage stage;
     private Scene scene;
     public static Color colorSelected = Color.rgb(189,177,92);

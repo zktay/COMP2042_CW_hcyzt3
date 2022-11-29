@@ -2,11 +2,9 @@ package com.example.demo;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,13 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 
@@ -121,7 +116,7 @@ public class Main extends Application implements Initializable {
 
     @FXML
     void exitGame(ActionEvent event) {
-        Controller con = new Controller();
+        Setting con = new Setting();
         con.exitGame(event);
     }
 
@@ -234,7 +229,7 @@ public class Main extends Application implements Initializable {
 
     @FXML
     public void help(ActionEvent event) {
-        Controller con = new Controller();
+        Setting con = new Setting();
         con.help(event);
     }
 
@@ -244,7 +239,7 @@ public class Main extends Application implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Controller c = new Controller();
+        Setting c = new Setting();
         if (c.getColorSelected() != null){
             colorSelected = c.getColorSelected();
         }
