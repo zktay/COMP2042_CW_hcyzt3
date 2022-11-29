@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.skin.TableHeaderRow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -108,9 +110,17 @@ public class leaderboard implements Initializable {
         variant.setCellValueFactory(new PropertyValueFactory<>("Variant"));
         difficulty.setCellValueFactory(new PropertyValueFactory<>("Difficulty"));
         result.setCellValueFactory(new PropertyValueFactory<>("Result"));
-
         //leaderboard.setItems();
-
+        leaderboard.getColumns().addListener(new ListChangeListener() {
+            @Override
+            public void onChanged(Change change) {
+                change.next();
+                if(change.wasReplaced()) {
+                    leaderboard.getColumns().clear();
+                    leaderboard.getColumns().addAll();
+                }
+            }
+        });
     }
 
     private void getScore(){
@@ -120,10 +130,11 @@ public class leaderboard implements Initializable {
             int counter = 1;
             while ((line = br.readLine()) != null){
                 String[] arrayLine = line.split(";");
-                for (String data : arrayLine){
+                for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
-                        String[] temp1 = data.split(", ");
-                            Scoring.add(new Scoring(counter, temp1[0], temp1[1], temp1[2], temp1[3], temp1[4]));
+                        String[] data = temp.split(", ");
+
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                     }
                 }
                 counter ++;
@@ -133,4 +144,6 @@ public class leaderboard implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 }

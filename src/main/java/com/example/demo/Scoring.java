@@ -4,14 +4,14 @@ public class Scoring {
 
     private int index;
     private String username;
-    private String score;
+    private int score;
     private String variant;
     private String difficulty;
     private String result;
 
 
 
-    public Scoring(int index, String username, String score, String variant, String difficulty, String result){
+    public Scoring(int index, String username, int score, String variant, String difficulty, String result){
         this.index = index;
         this.username = username;
         this.score = score;
@@ -37,11 +37,11 @@ public class Scoring {
         this.username = username;
     }
 
-    public String getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
