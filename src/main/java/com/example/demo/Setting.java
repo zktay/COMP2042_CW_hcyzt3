@@ -143,6 +143,15 @@ public class Setting implements Initializable {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         //colorButton.setValue(Color.rgb(189,177,92));
         colorButton.setValue(colorSelected);
+        if (levelSelected.equals("Easy")){
+            levelButton.setValue("Easy");
+        }else if (levelSelected.equals("Normal")){
+            levelButton.setValue("Normal");
+        } else if (levelSelected.equals("Hard")){
+            levelButton.setValue("Hard");
+        }if (levelSelected.equals("Extreme")){
+            levelButton.setValue("Extreme");
+        }
         switch (GameScene.n){
             case 3:
                 tilesButton.setValue("3x3");

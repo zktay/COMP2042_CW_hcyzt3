@@ -58,13 +58,19 @@ public class leaderboard implements Initializable {
     @FXML
     private Text firstPlaceText;
     @FXML
+    private Text firstScore;
+    @FXML
     private Circle secondPlace;
     @FXML
     private Text secondPlaceText;
     @FXML
+    private Text secondScore;
+    @FXML
     private Circle thirdPlace;
     @FXML
     private Text thirdPlaceText;
+    @FXML
+    private Text thirdScore;
 
     @FXML
     private MenuItem tutorial;
@@ -160,7 +166,7 @@ public class leaderboard implements Initializable {
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
-                String[] arrayLine = line.split(";");
+                String[] arrayLine = line.split("\n");
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
@@ -189,7 +195,7 @@ public class leaderboard implements Initializable {
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
-                String[] arrayLine = line.split(";");
+                String[] arrayLine = line.split("\n");
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
@@ -216,7 +222,7 @@ public class leaderboard implements Initializable {
                             leaderboard.setItems(Scoring);
                             counter ++;
 
-                        }else if (data[0].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
+                        }/*else if (data[0].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             //resetting the index
@@ -238,11 +244,13 @@ public class leaderboard implements Initializable {
                             leaderboard.setItems(Scoring);
                             counter ++;
 
-                        }else if (Objects.equals(textBox.getText(), "")){
+                        }*//*else if (Objects.equals(textBox.getText(), "")){
+
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
+                            filterBoard.setValue("All");
                             counter++;
-                        }
+                        }*/
 
 
                     }
@@ -268,7 +276,7 @@ public class leaderboard implements Initializable {
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
-                String[] arrayLine = line.split(";");
+                String[] arrayLine = line.split("\n");
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
@@ -321,11 +329,14 @@ public class leaderboard implements Initializable {
 
             String line;
             while ((line = br.readLine()) != null){
-                String[] arrayLine = line.split(";");
+                String[] arrayLine = line.split("\n");
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] temp1 = temp.split(", ");
                         if (Objects.equals(temp1[2], board)) {
+                            String concat = temp1[0] + " " + temp1[1];
+                            podiumArray.add(concat);
+                        }else if (Objects.equals("All", board)){
                             String concat = temp1[0] + " " + temp1[1];
                             podiumArray.add(concat);
                         }
@@ -340,6 +351,7 @@ public class leaderboard implements Initializable {
             firstPlaceText.setText(topThree[0]);
             secondPlaceText.setText(topThree[1]);
             thirdPlaceText.setText(topThree[2]);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

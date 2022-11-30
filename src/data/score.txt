@@ -2,3 +2,11 @@ TAY, 304, 3x3, Easy, WIN
 Testing, 528, 4x4, Easy, LOSE
 htrgdf, 364, 4x4, Hard, LOSE
 kujyhtg, 1056, 4x4, Extreme, LOSE
+God, 100, 3x3, Hard, LOSE
+fsa, 152, 3x3, Extreme, LOSE
+Teting123, 2664, 5x5, Extreme, LOSE
+Jason, 3436, 5x5, Normal, LOSE
+Nikki, 3452, 5x5, Hard, LOSE
+JJPan, 60123, 6x6, Easy, LOSE
+HMPhang, 12398, 6x6, Normal, LOSE
+JYSoong, 1003921, 6x6, Normal, WIN

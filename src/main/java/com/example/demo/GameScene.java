@@ -316,7 +316,7 @@ class GameScene {
                     } else if (Setting.levelSelected.equals("Hard") && winValue >= 256){
                         win = true;
                         break;
-                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 512){
+                    }else if (Setting.levelSelected.equals("Extreme") && winValue >= 512){
                         win = true;
                         break;
                     }
@@ -331,7 +331,7 @@ class GameScene {
                     } else if (Setting.levelSelected.equals("Hard") && winValue >= 4096){
                         win = true;
                         break;
-                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 8192){
+                    }else if (Setting.levelSelected.equals("Extreme") && winValue >= 8192){
                         win = true;
                         break;
                     }
@@ -345,7 +345,7 @@ class GameScene {
                     } else if (Setting.levelSelected.equals("Hard") && winValue >= 32768){
                         win = true;
                         break;
-                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 65536){
+                    }else if (Setting.levelSelected.equals("Extreme") && winValue >= 65536){
                         win = true;
                         break;
                     }
@@ -360,7 +360,7 @@ class GameScene {
                     } else if (Setting.levelSelected.equals("Hard") && winValue >= 2097152){
                         win = true;
                         break;
-                    }if (Setting.levelSelected.equals("Extreme") && winValue >= 4194304){
+                    }else if (Setting.levelSelected.equals("Extreme") && winValue >= 4194304){
                         win = true;
                         break;
                     }
