@@ -94,17 +94,32 @@ public class leaderboard implements Initializable {
     private Button searchButton;
     @FXML
     void TutorialButton(ActionEvent event) {
-
+        Main main = new Main();
+        main.howToPlay(event);
     }
 
     @FXML
     void exitGame(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit");
+        alert.setHeaderText("Quit Game");
+        alert.setContentText("Are you sure?");
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            System.exit(0);
+        }
     }
 
     @FXML
     void help(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("2048 Game created by ZKTay under Nottingham University of Malaysia");
+        alert.setContentText("Contact Us @ hcyzt3@nottingham.edu.my\n© 2022-2023 | ZKTay");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+        }
     }
 
     @FXML
@@ -222,44 +237,10 @@ public class leaderboard implements Initializable {
                             leaderboard.setItems(Scoring);
                             counter ++;
 
-                        }/*else if (data[0].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
-                            //resetting the index
-                            counter ++;
-                        } else if (data[1].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
-                            counter ++;
-                        } else if (data[2].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
-                            counter ++;
-                        } else if (data[3].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
-                            counter ++;
-                        }else if (data[4].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
-                            counter ++;
-
-                        }*//*else if (Objects.equals(textBox.getText(), "")){
-
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
-                            filterBoard.setValue("All");
-                            counter++;
-                        }*/
-
-
+                        }
                     }
-
-
                 }
-
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -283,7 +264,6 @@ public class leaderboard implements Initializable {
                         if (Objects.equals(data[2], boardFiltered)){
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             counter ++;
-                        //}else if (Objects.equals(boardFiltered, "All")){
                         }else if (Objects.equals("All", boardFiltered)){
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             counter ++;
@@ -299,7 +279,6 @@ public class leaderboard implements Initializable {
         }
     }
     public static void sort (ArrayList<String> arr){
-
         int N = arr.size();
         int E = N-1;
         String temp;
@@ -325,8 +304,6 @@ public class leaderboard implements Initializable {
     void podium(String board){
         podiumArray.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-            //String[] topThree = new String[3];
-
             String line;
             while ((line = br.readLine()) != null){
                 String[] arrayLine = line.split("\n");

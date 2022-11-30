@@ -10,3 +10,5 @@ Nikki, 3452, 5x5, Hard, LOSE
 JJPan, 60123, 6x6, Easy, LOSE
 HMPhang, 12398, 6x6, Normal, LOSE
 JYSoong, 1003921, 6x6, Normal, WIN
+Testing, 8784, 6x6, Normal, LOSE
+Test, 176, 6x6, Easy, WIN

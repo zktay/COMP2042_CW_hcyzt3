@@ -71,7 +71,6 @@ public class Setting implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            //root.getChildren().clear();
             System.exit(0);
         }
     }
@@ -113,9 +112,6 @@ public class Setting implements Initializable {
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.show();
-        //Main main = new Main();
-        //main.setPanelColor(colorSelected);
-        //main.indexPanel.setBackground(new Background(new BackgroundFill(colorSelected, null, null)));
 
     }
     @FXML
@@ -141,7 +137,6 @@ public class Setting implements Initializable {
         levelButton.getItems().addAll(levelChoice);
         tilesButton.getItems().addAll(tilesChoice);
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
-        //colorButton.setValue(Color.rgb(189,177,92));
         colorButton.setValue(colorSelected);
         if (levelSelected.equals("Easy")){
             levelButton.setValue("Easy");

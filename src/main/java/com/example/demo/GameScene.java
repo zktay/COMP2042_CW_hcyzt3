@@ -441,9 +441,6 @@ class GameScene {
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{ //changed to key_released to avoid key holding
                 Platform.runLater(() -> {
                     if (notContinuing){
-                        //Group wingameRoot = main.getWinRoot();
-                        //Stage primaryStage = main.getSTAGE();
-                        //Scene winGameScene = main.getWinScene();
                         primaryStage.setScene(winGameScene);
                         try {
                             WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);
