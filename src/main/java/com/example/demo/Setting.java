@@ -48,7 +48,6 @@ public class Setting implements Initializable {
     @FXML
     private ChoiceBox<String> tilesButton;
     private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
-    //private String[] tilesChoice = {"3x3", "4x4", "5x5"};
 
 
 

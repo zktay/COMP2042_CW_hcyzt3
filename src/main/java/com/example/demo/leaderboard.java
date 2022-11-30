@@ -41,6 +41,10 @@ public class leaderboard implements Initializable {
     private BorderPane Pane;
     ObservableList<Scoring> Scoring;
     @FXML
+    private ChoiceBox<String> filterBoard;
+    private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6", "All"};
+    private String boardFiltered;
+    @FXML
     private Button backButton;
 
     @FXML
@@ -109,8 +113,28 @@ public class leaderboard implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
+        filterBoard.getItems().addAll(tilesChoice);
+
+        switch (GameScene.n){
+            case 3:
+                filterBoard.setValue("3x3");
+                boardFiltered = "3x3";
+                break;
+            case 4:
+                filterBoard.setValue("4x4");
+                boardFiltered = "4x4";
+                break;
+            case 5:
+                filterBoard.setValue("5x5");
+                boardFiltered = "5x5";
+                break;
+            case 6:
+                filterBoard.setValue("6x6");
+                boardFiltered = "6x6";
+                break;
+        }
         getScore();
-        podium();
+        podium(boardFiltered);
         index.setCellValueFactory(new PropertyValueFactory<>("Index"));
         username.setCellValueFactory(new PropertyValueFactory<>("Username"));
         score.setCellValueFactory(new PropertyValueFactory<>("Score"));
@@ -140,10 +164,13 @@ public class leaderboard implements Initializable {
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
+                        if (Objects.equals(data[2], boardFiltered)){
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            counter ++;
+                        }
                     }
                 }
-                counter ++;
+
             }
 
             leaderboard.setItems(Scoring);
@@ -167,29 +194,56 @@ public class leaderboard implements Initializable {
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
                         //Compare the search value and compare with the text file, if match then add the respective to the Observable list.
-                        if (data[0].equals(textBox.getText())) {
+                        if (data[0].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             //resetting the index
                             counter ++;
-                        } else if (data[1].equals(textBox.getText())) {
+                        } else if (data[1].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
-                        } else if (data[2].equals(textBox.getText())) {
+                        } else if (data[2].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
-                        } else if (data[3].equals(textBox.getText())) {
+                        } else if (data[3].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
-                        }else if (data[4].equals(textBox.getText())) {
+                        }else if (data[4].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
 
+                        }else if (data[0].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            leaderboard.setItems(Scoring);
+                            //resetting the index
+                            counter ++;
+                        } else if (data[1].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            leaderboard.setItems(Scoring);
+                            counter ++;
+                        } else if (data[2].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            leaderboard.setItems(Scoring);
+                            counter ++;
+                        } else if (data[3].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            leaderboard.setItems(Scoring);
+                            counter ++;
+                        }else if (data[4].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            leaderboard.setItems(Scoring);
+                            counter ++;
+
+                        }else if (Objects.equals(textBox.getText(), "")){
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            leaderboard.setItems(Scoring);
+                            counter++;
                         }
+
 
                     }
 
@@ -202,7 +256,40 @@ public class leaderboard implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void filterBoard(ActionEvent event){
+        textBox.setText("");
+        if (Scoring != null){
+            Scoring.clear();
+        }
+        boardFiltered = filterBoard.getValue();
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
+            Scoring = FXCollections.observableArrayList();
+            String line;
+            int counter = 1;
+            while ((line = br.readLine()) != null){
+                String[] arrayLine = line.split(";");
+                for (String temp : arrayLine){
+                    for (int i = 0; i < arrayLine.length; i++) {
+                        String[] data = temp.split(", ");
+                        if (Objects.equals(data[2], boardFiltered)){
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            counter ++;
+                        //}else if (Objects.equals(boardFiltered, "All")){
+                        }else if (Objects.equals("All", boardFiltered)){
+                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            counter ++;
+                        }
+                    }
+                }
 
+            }
+            podium(boardFiltered);
+            leaderboard.setItems(Scoring);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void sort (ArrayList<String> arr){
 
         int N = arr.size();
@@ -227,47 +314,32 @@ public class leaderboard implements Initializable {
             E--;
         }}
 
-    void podium(){
+    void podium(String board){
+        podiumArray.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-            String[] topThree = new String[3];
+            //String[] topThree = new String[3];
+
             String line;
             while ((line = br.readLine()) != null){
                 String[] arrayLine = line.split(";");
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] temp1 = temp.split(", ");
-                        //System.out.println(Arrays.toString(temp1));
-                        String idk = temp1[0] + " " +temp1[1];
-
-                        //System.out.println(idk);
-                        //podiumArray.add(idk);
-                        podiumArray.add(idk);
-                        //podiumArray = new String[]{Arrays.toString(podiumArray)};
-                        //System.out.println(Arrays.toString(podiumArray));
-                        //System.out.println(Arrays.deepToString(podiumArray));
-                        //bubbleSort(podiumArray);
-                        //https://stackoverflow.com/questions/60841514/2d-bubble-sort-java-program-that-have-string-and-integer-in-array
-                        //podiumArray.add();
-                        //String data = temp1[0] + ", " +temp1[1];
-                        //podiumArray.add(data);
+                        if (Objects.equals(temp1[2], board)) {
+                            String concat = temp1[0] + " " + temp1[1];
+                            podiumArray.add(concat);
+                        }
                     }
                 }
             }
+            String[] topThree = new String[podiumArray.size()];
             sort(podiumArray);
-            for (int i = 0; i <= 2; i++ ){
+            for (int i = 0; i < podiumArray.size(); i++ ){
                 topThree[i] = podiumArray.get(i);
             }
-            String first;
-            String second;
-            String third;
-            first = topThree[0];
-            second = topThree[1];
-            third = topThree[2];
-            //System.out.println(podiumArray);
-            firstPlaceText.setText(first);
-            secondPlaceText.setText(second);
-            thirdPlaceText.setText(third);
-        //System.out.println(Arrays.toString(topThree));
+            firstPlaceText.setText(topThree[0]);
+            secondPlaceText.setText(topThree[1]);
+            thirdPlaceText.setText(topThree[2]);
         } catch (IOException e) {
             e.printStackTrace();
         }
