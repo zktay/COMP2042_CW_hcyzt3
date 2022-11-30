@@ -18,12 +18,14 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
@@ -32,7 +34,7 @@ public class leaderboard implements Initializable {
     private Stage stage;
     public static Color colorSelected = Color.rgb(189,177,92);
     //ArrayList<String> podiumArray = new ArrayList<String>();
-    String[][] podiumArray;
+    private ArrayList<String> podiumArray = new ArrayList<String>();
     @FXML
     private TableView leaderboard;
     @FXML
@@ -49,12 +51,16 @@ public class leaderboard implements Initializable {
 
     @FXML
     private Circle firstPlace;
-
+    @FXML
+    private Text firstPlaceText;
     @FXML
     private Circle secondPlace;
-
+    @FXML
+    private Text secondPlaceText;
     @FXML
     private Circle thirdPlace;
+    @FXML
+    private Text thirdPlaceText;
 
     @FXML
     private MenuItem tutorial;
@@ -197,64 +203,71 @@ public class leaderboard implements Initializable {
         }
     }
 
-    static String[][] bubbleSort(String arr[][]) {
-        int n = arr.length;
-        int tempAge = 0;
-        String tempName = "";
-        int []result = new int[n];
-        String myName[] = new String [n];
-        for (int i = 0; i < n; i++)
-        {
-            result[i] = Integer.parseInt(arr[i][1]);
-            myName[i] = arr[i][0];
-        }
-        boolean sorted = false;
-        while (!sorted){
-            sorted = true;
-            for(int i = 1; i < n; i++) {
-                if(result[i-1] > result[i]) {
-                    tempAge = result[i-1];
-                    result[i-1] = result[i];
-                    result[i] = tempAge;
-                    tempName = myName[i-1];
-                    myName[i-1] = myName[i];
-                    myName[i] = tempName;
-                    sorted = false;
+    public static void sort (ArrayList<String> arr){
+
+        int N = arr.size();
+        int E = N-1;
+        String temp;
+        boolean flag = true;
+
+        while(flag){
+            flag=false;
+
+            for(int a = 0 ; a < E ; a++){
+                if(Integer.parseInt(arr.get(a).substring(arr.get(a).indexOf(" ")+1)) <
+                        Integer.parseInt(arr.get(a+1).substring(arr.get(a+1).indexOf(" ")+1))) {
+
+                    temp=arr.get(a);
+                    arr.set(a, arr.get(a+1));
+                    arr.set(a+1, temp);
+
+                    flag=true;
                 }
             }
-        }
-        for (int i = 0; i < arr.length; i++)
-        {
-            arr[i][0] = myName[i];
-            arr[i][1] = Integer.toString(result[i]);
-        }
-        return arr;
-    }
+            E--;
+        }}
 
     void podium(){
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
+            String[] topThree = new String[3];
             String line;
             while ((line = br.readLine()) != null){
                 String[] arrayLine = line.split(";");
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] temp1 = temp.split(", ");
-                        podiumArray = new String[Integer.parseInt(temp1[0])][Integer.parseInt(temp1[1])];
+                        //System.out.println(Arrays.toString(temp1));
+                        String idk = temp1[0] + " " +temp1[1];
+
+                        //System.out.println(idk);
+                        //podiumArray.add(idk);
+                        podiumArray.add(idk);
                         //podiumArray = new String[]{Arrays.toString(podiumArray)};
-                        System.out.println(Arrays.toString(podiumArray));
-                        System.out.println(Arrays.deepToString(podiumArray));
-                        bubbleSort(podiumArray);
+                        //System.out.println(Arrays.toString(podiumArray));
+                        //System.out.println(Arrays.deepToString(podiumArray));
+                        //bubbleSort(podiumArray);
                         //https://stackoverflow.com/questions/60841514/2d-bubble-sort-java-program-that-have-string-and-integer-in-array
                         //podiumArray.add();
-
                         //String data = temp1[0] + ", " +temp1[1];
                         //podiumArray.add(data);
                     }
                 }
             }
-
-
-
+            sort(podiumArray);
+            for (int i = 0; i <= 2; i++ ){
+                topThree[i] = podiumArray.get(i);
+            }
+            String first;
+            String second;
+            String third;
+            first = topThree[0];
+            second = topThree[1];
+            third = topThree[2];
+            //System.out.println(podiumArray);
+            firstPlaceText.setText(first);
+            secondPlaceText.setText(second);
+            thirdPlaceText.setText(third);
+        //System.out.println(Arrays.toString(topThree));
         } catch (IOException e) {
             e.printStackTrace();
         }
