@@ -245,7 +245,7 @@ class GameScene {
             // update score by getting score from new cell
             score += cells[i][des + sign].getNumber();
             continueOrNot();
-            cells[i][des].setModify(true);
+            cells[i][des + sign].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
         }
@@ -257,7 +257,7 @@ class GameScene {
             // update score by getting score from new cell
             score += cells[des + sign][j].getNumber();
             continueOrNot();
-            cells[des][j].setModify(true);
+            cells[des + sign][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
