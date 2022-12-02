@@ -1,5 +1,10 @@
 package com.example.demo;
-
+/**
+ *  Setting.java
+ *  To control the setting page.
+ *  Allow user to choose the background color of the game, level of the game, size of the board
+ *
+ */
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,6 +79,7 @@ public class Setting implements Initializable {
             System.exit(0);
         }
     }
+    //Retrieve color selected from the color picker
     @FXML
     void colorSelect(ActionEvent event) {
         colorSelected = colorButton.getValue();
@@ -99,11 +105,13 @@ public class Setting implements Initializable {
         }
     }
 
+    //Retrieve the level selected by the user from the level choice box
     @FXML
     void levelSelect(ActionEvent event) {
         levelSelected = levelButton.getValue();
     }
 
+    //Direct user back to the main page after setting the game
     @FXML
     void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
@@ -114,6 +122,8 @@ public class Setting implements Initializable {
         stage.show();
 
     }
+
+    //To pass the size of the board to gamescene, the gap between the cells, and the overall size of the board
     @FXML
     void tilesSelect(ActionEvent event) {
         String determine = tilesButton.getValue();
@@ -132,6 +142,7 @@ public class Setting implements Initializable {
         }
     }
 
+    //Initialize the levelchoice, colorChoice.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         levelButton.getItems().addAll(levelChoice);

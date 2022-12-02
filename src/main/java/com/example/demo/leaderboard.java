@@ -1,5 +1,10 @@
 package com.example.demo;
-
+/**
+ *  leaderboard.java
+ *  Responsible for the whole score button's page from the index page.
+ *  Will be showing top 3 and record of previous players.
+ *
+ */
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -131,6 +136,7 @@ public class leaderboard implements Initializable {
         stage.show();
     }
 
+    //Initialize the data and set to respective text field and table.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
@@ -175,6 +181,7 @@ public class leaderboard implements Initializable {
         });
     }
 
+    //read previous records from score.txt
     private void getScore(){
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
             Scoring = FXCollections.observableArrayList();
@@ -202,6 +209,7 @@ public class leaderboard implements Initializable {
         }
     }
 
+    //Search function to let user search accordingly to specific filter( tiles, level, username, score, etc)
     @FXML
     void searchAction(ActionEvent event) {
         //clear the observableList to remove all previous items
@@ -245,6 +253,8 @@ public class leaderboard implements Initializable {
             e.printStackTrace();
         }
     }
+
+    //Filter the table to show respective score accordingly to the board size (3x3, 4x4, etc)
     @FXML
     private void filterBoard(ActionEvent event){
         textBox.setText("");
@@ -278,6 +288,8 @@ public class leaderboard implements Initializable {
             e.printStackTrace();
         }
     }
+
+    //Sorting function to sort the array from highest to lowest
     public static void sort (ArrayList<String> arr){
         int N = arr.size();
         int E = N-1;
@@ -301,6 +313,7 @@ public class leaderboard implements Initializable {
             E--;
         }}
 
+    //Sort the top 3 user of respective board size and display it into a text field
     void podium(String board){
         podiumArray.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {

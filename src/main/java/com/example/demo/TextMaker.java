@@ -1,5 +1,9 @@
 package com.example.demo;
-
+/**
+ *  TextMaker.java
+ *  To control how text are showed in respective scene, including the color and the font size
+ *
+ */
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

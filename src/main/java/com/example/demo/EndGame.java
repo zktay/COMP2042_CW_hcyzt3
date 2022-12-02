@@ -1,5 +1,10 @@
 package com.example.demo;
-
+/**
+ *  EndGame.java
+ *  To sketch the endgame scene of the 2048 game whenever the user have no more legal moves
+ *
+ *
+ */
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +41,7 @@ public class EndGame {
         return singleInstance;
     }
 
+    //sketching the endGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
         username = Main.usernameEnter;
         String varient = null;
@@ -102,7 +108,7 @@ public class EndGame {
         root.getChildren().add(homeButton);
         homeButton.relocate(600,700);
 
-
+        //Actions of those buttons, "QUIT", "RESTART", "BACK TO HOME"
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

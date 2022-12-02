@@ -1,5 +1,9 @@
 package com.example.demo;
-
+/**
+ *  Cell.java
+ *  To set the size, number, and the color of the cells.
+ *
+ */
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -21,6 +25,7 @@ public class Cell {
         return modify;
     }
 
+    //Setting the size, color of the cell and add it into the board.
     Cell(double x, double y, double scale, Group root) {
         rectangle = new Rectangle();
         rectangle.setX(x);
@@ -37,6 +42,7 @@ public class Cell {
         this.textClass = textClass;
     }
 
+    //Changing the cell color
     void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
         root.getChildren().remove(cell.getTextClass());
@@ -52,6 +58,7 @@ public class Cell {
         cell.setColorByNumber(cell.getNumber());
     }
 
+    //Changing the number of the cells after getting added
     void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
         textClass.setText("0");
@@ -60,6 +67,7 @@ public class Cell {
         setColorByNumber(getNumber());
     }
 
+    //Switch case of colors of the cells
     void setColorByNumber(int number) {
         switch (number) {
             case 0:

@@ -1,5 +1,10 @@
 package com.example.demo;
-
+/**
+ *  GameScene.java
+ *  The controller class for the whole functions in the board during a game
+ *  Includes moves, add, spawns, sketching the boards tiles, when the cell reach the number to win, user's score, checking user lose or not, etc
+ *
+ */
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -43,6 +48,7 @@ class GameScene {
         return LENGTH;
     }
 
+    //Spawning random number. Either 2 or 4
     private void randomFillNumber(int turn) {
         Cell[][] emptyCells = new Cell[n][n];
         int a = 0;
@@ -92,18 +98,19 @@ class GameScene {
 
     }
 
+    //Checks the board whether contains empty cells
     private int  haveEmptyCell() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (cells[i][j].getNumber() == 0)
                     return 1;
-                if(cells[i][j].getNumber() == 2048)
-                    return 0;
             }
         }
         return -1;
     }
 
+    //To pass the cell to destination index after adding up two cells
+    // direct l = left, r = right, u = up, d = down
     private int passDestination(int i, int j, char direct) {
         int coordinate = j;
         if (direct == 'l') {
@@ -157,6 +164,8 @@ class GameScene {
         return -1;
     }
 
+    //Check the board whether to spawn a new cell or not by comparing the indexes of all previous cells in the board with the indexes of all after cells in the board
+    //Saves the previous and after moves into their array. If both arrays are the same, then do not spawn
     private void spawnOrNot(String determine){
         if (Objects.equals(determine, "old")){
             for(int i = 0; i < n; i++){
@@ -181,7 +190,7 @@ class GameScene {
         }
 
     }
-
+    //Move left function
     private void moveLeft() {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < n; j++) {
@@ -193,6 +202,7 @@ class GameScene {
         }
     }
 
+    //Move right function
     private void moveRight() {
         for (int i = 0; i < n; i++) {
             for (int j = n - 1; j >= 0; j--) {
@@ -204,6 +214,7 @@ class GameScene {
         }
     }
 
+    //Move up function
     private void moveUp() {
         for (int j = 0; j < n; j++) {
             //for (int i = n - 1; i >= 0; i--) {
@@ -217,6 +228,7 @@ class GameScene {
 
     }
 
+    //Move down function
     private void moveDown() {
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
@@ -229,6 +241,7 @@ class GameScene {
 
     }
 
+    //Check the horizontal destination is valid or not
     private boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0) {
             if (cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
@@ -239,6 +252,7 @@ class GameScene {
         return false;
     }
 
+    //Controls horizontals moves. Also controls scoring system
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
@@ -251,6 +265,7 @@ class GameScene {
         }
     }
 
+    //Controls verticals moves. Also controls scoring system
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
@@ -263,6 +278,7 @@ class GameScene {
         }
     }
 
+    //Check the vertical destination is valid or not
     private boolean isValidDesV(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0)
             if (cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
@@ -273,14 +289,12 @@ class GameScene {
     }
 
 
-
+    //Check cells between cells have same number or not to avoid false "noMoreMoves"
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
             if (cells[i + 1][j].getNumber() == cells[i][j].getNumber()){
                 return true;
             }
-
-
             if (cells[i][j + 1].getNumber() == cells[i][j].getNumber()){
                 return true;
             }
@@ -289,6 +303,7 @@ class GameScene {
         return false;
     }
 
+    //If the board are full and no same numbers around the cells then return true to canNotMove.
     private boolean canNotMove() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -302,6 +317,7 @@ class GameScene {
         return true;
     }
 
+    //Determine the cells number to achieve accordingly to the level selected and board selected.
     private void CellToWin() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -369,6 +385,8 @@ class GameScene {
             }
         }
     }
+
+    //To show prompt and ask user whether to continue or stop the game once they reach the targeted cell's number
     private void continueOrNot(){
         CellToWin();
         if(win && !doNotPrompt){
@@ -391,10 +409,9 @@ class GameScene {
         }
 
     }
+
+    //To Controls user's input, and the whole scene of the game/board
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
-
-
-
         this.root = root;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -456,23 +473,20 @@ class GameScene {
                         int haveEmptyCell;
                         if (key.getCode() == KeyCode.DOWN) {
                             GameScene.this.moveDown();
-                            spawnOrNot("new");
                         } else if (key.getCode() == KeyCode.UP) {
                             GameScene.this.moveUp();
-                            spawnOrNot("new");
                         } else if (key.getCode() == KeyCode.LEFT) {
                             GameScene.this.moveLeft();
-                            spawnOrNot("new");
                         } else if (key.getCode() == KeyCode.RIGHT){
                             GameScene.this.moveRight();
-                            spawnOrNot("new");
                         }
+                        spawnOrNot("new");
                         scoreText.setText(score + "");
                         haveEmptyCell = GameScene.this.haveEmptyCell();
                         if (haveEmptyCell == -1) {
 
                             if (GameScene.this.canNotMove()) {
-
+                                //Pass to winGameScene if the user wins the game
                                 if (win){
                                     primaryStage.setScene(winGameScene);
                                     try {
@@ -480,6 +494,7 @@ class GameScene {
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
+                                //Pass to winGameScene if the user lose the game
                                 }else {
                                     primaryStage.setScene(endGameScene);
                                     try {

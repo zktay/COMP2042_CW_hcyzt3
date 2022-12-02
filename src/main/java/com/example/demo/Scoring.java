@@ -1,5 +1,9 @@
 package com.example.demo;
-
+/**
+ *  Scoring.java
+ *  Setting Scoring's object.
+ *
+ */
 public class Scoring {
 
     private int index;

@@ -1,5 +1,10 @@
 package com.example.demo;
-
+/**
+ *  Main.java
+ *  The main file that will be run once the program have started.
+ *  Responsible for setting the required value for the game, such as Username, Number of tiles, level, and even background color of the game.
+ *
+ */
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,9 +31,6 @@ import java.util.*;
 public class Main extends Application implements Initializable {
     static final int WIDTH = 900;
     static final int HEIGHT = 800;
-    /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-    double height = screenBounds.getHeight();
-    double width = screenBounds.getWidth()/2;*/
     private Stage stage;
     private Scene scene;
     private Scene winScene;
@@ -88,22 +90,14 @@ public class Main extends Application implements Initializable {
         return winRoot;
     }
 
-
+    //Initial startup to load the index page of the game.
     @Override
     public void start(Stage primaryStage) throws Exception {
         try{
             setStage(primaryStage);
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("pics/Icon.png")));
             primaryStage.getIcons().add(image);
-            //Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-            //WIDTH = screenBounds.getMaxX();
-            //HEIGHT = screenBounds.getMaxY();
-            //System.out.println(WIDTH);
-            //System.out.println(HEIGHT);
-
-            //Below are fxml files
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
-
             primaryStage.setTitle("ZK 2048");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -125,6 +119,7 @@ public class Main extends Application implements Initializable {
         usernameEnter = usernameField.getText();
     }
 
+    //Control and pass the required variables when the user start the game by clicking the STARTGAME button
     @FXML
     public void startGame(ActionEvent event) {
         if (usernameField != null){
@@ -151,13 +146,9 @@ public class Main extends Application implements Initializable {
             stage.setTitle("ZK 2048");
             stage.show();
         }else{
-
             Alert alert = new Alert(Alert.AlertType.WARNING);
-
             alert.setTitle("Enter Username");
             alert.setHeaderText("Please enter your username to start the game.");
-            //alert.setContentText("Enter ?");
-
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
 
@@ -165,6 +156,7 @@ public class Main extends Application implements Initializable {
         }
     }
 
+    //Direct user to leaderboard page controlled by Leaderboard's class
     @FXML
     void viewScore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("leaderboard.fxml")));
@@ -188,8 +180,9 @@ public class Main extends Application implements Initializable {
         if (result.get() == okButton){
             getHostServices().showDocument("https://www.youtube.com/watch?v=-rqRWzSP2iM");
         }
-
     }
+
+    //To redirect user to setting page that allows user to set the size of the board, color of the board and also the difficulty of the game
     @FXML
     void setting(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("setting.fxml")));
@@ -197,14 +190,7 @@ public class Main extends Application implements Initializable {
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.show();
-
-        //inSetting = true;
     }
-
-    /*@FXML
-    void TutorialButton(ActionEvent event) {
-        getHostServices().showDocument("https://www.youtube.com/watch?v=-rqRWzSP2iM");
-    }*/
 
     @FXML
     public void help(ActionEvent event) {
@@ -216,6 +202,7 @@ public class Main extends Application implements Initializable {
         launch(args);
     }
 
+    //Initialize the background color of the game
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Setting c = new Setting();
