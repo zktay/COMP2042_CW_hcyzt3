@@ -6,14 +6,22 @@ package com.example.demo;
  *
  */
 import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -424,51 +432,89 @@ class GameScene {
      */
     //To Controls user's input, and the whole scene of the game/board
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
+        gameScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         this.root = root;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 cells[i][j] = new Cell((j) * LENGTH + (j + 1) * distanceBetweenCells + 145,
-                        (i) * LENGTH + (i + 1) * distanceBetweenCells + 180, LENGTH, root);
+                        (i) * LENGTH + (i + 1) * distanceBetweenCells + 140, LENGTH, root);
             }
 
         }
 
         Text title = new Text();
         root.getChildren().add(title);
+        title.setFill(Color.web("#776e65"));
         title.setText("2048");
-        title.setFont(Font.font(110));
+        title.setFont(Font.font("",FontWeight.BOLD, FontPosture.REGULAR, 80));
         title.relocate(150, 0);
 
 
         Text username = new Text();
         root.getChildren().add(username);
         username.setText("Name:");
-        username.setFont(Font.font(30));
+        username.setFill(Color.web("#776e65"));
+        username.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
         //username.relocate(600, 150);
-        username.relocate(155, 145);
+        username.relocate(155, 105);
 
         Text usernameText = new Text();
         root.getChildren().add(usernameText);
         usernameText.setText(Main.usernameEnter);
-        usernameText.setFont(Font.font(30));
+        usernameText.setFill(Color.web("#776e65"));
+        usernameText.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
         //usernameText.relocate(690, 150);
-        usernameText.relocate(245, 145);
+        usernameText.relocate(245, 105);
 
         Text text = new Text();
         root.getChildren().add(text);
         text.setText("Score:");
-        text.setFont(Font.font(30));
-        text.relocate(450, 145);
+        text.setFill(Color.web("#776e65"));
+        text.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
+        text.relocate(450, 105);
 
         Text scoreText = new Text();
         root.getChildren().add(scoreText);
-        scoreText.setFont(Font.font(30));
-        scoreText.relocate(530, 145);
+        scoreText.setFill(Color.web("#776e65"));
+        scoreText.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
+        scoreText.relocate(530, 105);
         scoreText.setText("0");
+
+        Button homeButton = new Button("HOME");
+        //homeButton.setId("homeButton");
+        homeButton.setPrefSize(60,30);
+        homeButton.setTextFill(Color.BLACK);
+        root.getChildren().add(homeButton);
+        homeButton.relocate(675,110);
 
         randomFillNumber(1);
         randomFillNumber(1);
         spawnOrNot("old");
+
+        homeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("HOME");
+                alert.setContentText("Any unsaved progress will lost!\nBack to Main Menu?");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    primaryStage.setTitle("ZK 2048");
+                    primaryStage.setScene(new Scene(root));
+                    primaryStage.show();
+
+
+                }
+            }
+        });
+
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{ //changed to key_released to avoid key holding
                 Platform.runLater(() -> {
                     if (notContinuing){

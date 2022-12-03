@@ -42,7 +42,7 @@
             <Button fx:id="exitButton" layoutX="400.0" layoutY="203.0" mnemonicParsing="false" onAction="#exitGame" prefHeight="35.0" prefWidth="100.0" text="EXIT" />
             <Button fx:id="scoreButton" layoutX="400.0" layoutY="113.0" mnemonicParsing="false" onAction="#viewScore" prefHeight="35.0" prefWidth="100.0" text="SCORE" />
             <Button fx:id="startButton" layoutX="400.0" layoutY="68.0" mnemonicParsing="false" onAction="#startGame" prefHeight="35.0" prefWidth="100.0" text="START" />
-            <TextField fx:id="usernameField" layoutX="388.0" layoutY="14.0" onAction="#username" prefHeight="35.0" prefWidth="125.0" />
+            <TextField fx:id="usernameField" layoutX="388.0" layoutY="14.0" onAction="#username" prefHeight="35.0" prefWidth="125.0" promptText="Username" />
             <Text layoutX="274.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
                <font>
                   <Font name="Berlin Sans FB" size="25.0" />
