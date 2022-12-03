@@ -100,6 +100,7 @@ public class Main extends Application implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
             primaryStage.setTitle("ZK 2048");
             primaryStage.setScene(new Scene(root));
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception e){
             System.out.println(e);
@@ -144,6 +145,7 @@ public class Main extends Application implements Initializable {
             GameScene game = new GameScene();
             game.game(gameScene, gameRoot, stage, endGameScene, endgameRoot, winGameScene, wingameRoot);
             stage.setTitle("ZK 2048");
+            stage.setResizable(false);
             stage.show();
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);

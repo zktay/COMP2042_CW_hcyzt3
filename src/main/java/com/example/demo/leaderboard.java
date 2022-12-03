@@ -133,6 +133,7 @@ public class leaderboard implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -141,7 +142,6 @@ public class leaderboard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         filterBoard.getItems().addAll(tilesChoice);
-
         switch (GameScene.n){
             case 3:
                 filterBoard.setValue("3x3");

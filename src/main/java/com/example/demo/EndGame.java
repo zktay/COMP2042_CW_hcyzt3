@@ -156,6 +156,7 @@ public class EndGame {
                     }
                     primaryStage.setTitle("ZK 2048");
                     primaryStage.setScene(new Scene(root));
+                    primaryStage.setResizable(false);
                     primaryStage.show();
 
 

@@ -119,6 +119,7 @@ public class Setting implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
 
     }

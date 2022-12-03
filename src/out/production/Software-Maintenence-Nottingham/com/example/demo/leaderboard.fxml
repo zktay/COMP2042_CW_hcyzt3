@@ -70,11 +70,11 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="searchButton" layoutX="762.0" layoutY="18.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
+            <Button fx:id="searchButton" layoutX="753.0" layoutY="16.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
             <Text fx:id="secondPlaceText" layoutX="276.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
             <Text fx:id="firstPlaceText" layoutX="411.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
             <Text fx:id="thirdPlaceText" layoutX="541.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
-            <ChoiceBox fx:id="filterBoard" layoutX="820.0" layoutY="18.0" onAction="#filterBoard" prefHeight="25.0" prefWidth="55.0" />
+            <ChoiceBox fx:id="filterBoard" layoutX="815.0" layoutY="16.0" onAction="#filterBoard" prefHeight="25.0" prefWidth="55.0" />
             <Text fx:id="firstScore" layoutX="411.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="secondScore" layoutX="276.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="thirdScore" layoutX="541.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
