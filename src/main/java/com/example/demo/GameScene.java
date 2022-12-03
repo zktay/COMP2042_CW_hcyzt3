@@ -386,6 +386,9 @@ class GameScene {
         }
     }
 
+    /**
+     *
+     */
     //To show prompt and ask user whether to continue or stop the game once they reach the targeted cell's number
     private void continueOrNot(){
         CellToWin();
@@ -410,13 +413,22 @@ class GameScene {
 
     }
 
+    /**
+     * @param gameScene
+     * @param root
+     * @param primaryStage
+     * @param endGameScene
+     * @param endGameRoot
+     * @param winGameScene
+     * @param wingameRoot
+     */
     //To Controls user's input, and the whole scene of the game/board
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
         this.root = root;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                cells[i][j] = new Cell((j) * LENGTH + (j + 1) * distanceBetweenCells,
-                        (i) * LENGTH + (i + 1) * distanceBetweenCells, LENGTH, root);
+                cells[i][j] = new Cell((j) * LENGTH + (j + 1) * distanceBetweenCells + 145,
+                        (i) * LENGTH + (i + 1) * distanceBetweenCells + 180, LENGTH, root);
             }
 
         }
@@ -425,31 +437,33 @@ class GameScene {
         root.getChildren().add(title);
         title.setText("2048");
         title.setFont(Font.font(110));
-        title.relocate(600, 10);
+        title.relocate(150, 0);
 
 
         Text username = new Text();
         root.getChildren().add(username);
         username.setText("Name:");
         username.setFont(Font.font(30));
-        username.relocate(600, 150);
+        //username.relocate(600, 150);
+        username.relocate(155, 145);
 
         Text usernameText = new Text();
         root.getChildren().add(usernameText);
         usernameText.setText(Main.usernameEnter);
         usernameText.setFont(Font.font(30));
-        usernameText.relocate(690, 150);
+        //usernameText.relocate(690, 150);
+        usernameText.relocate(245, 145);
 
         Text text = new Text();
         root.getChildren().add(text);
         text.setText("Score:");
         text.setFont(Font.font(30));
-        text.relocate(605, 200);
+        text.relocate(450, 145);
 
         Text scoreText = new Text();
         root.getChildren().add(scoreText);
         scoreText.setFont(Font.font(30));
-        scoreText.relocate(690, 200);
+        scoreText.relocate(530, 145);
         scoreText.setText("0");
 
         randomFillNumber(1);
