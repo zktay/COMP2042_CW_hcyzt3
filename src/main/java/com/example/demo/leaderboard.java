@@ -44,7 +44,7 @@ public class leaderboard implements Initializable {
     private TableView leaderboard;
     @FXML
     private BorderPane Pane;
-    ObservableList<Scoring> Scoring;
+    ObservableList<Scoring> Scoring = FXCollections.observableArrayList();
     @FXML
     private ChoiceBox<String> filterBoard;
     private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6", "All"};
@@ -159,6 +159,10 @@ public class leaderboard implements Initializable {
                 filterBoard.setValue("6x6");
                 boardFiltered = "6x6";
                 break;
+            default:
+                filterBoard.setValue("All");
+                boardFiltered = "All";
+                break;
         }
         getScore();
         podium(boardFiltered);
@@ -184,7 +188,6 @@ public class leaderboard implements Initializable {
     //read previous records from score.txt
     private void getScore(){
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-            Scoring = FXCollections.observableArrayList();
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
@@ -223,28 +226,27 @@ public class leaderboard implements Initializable {
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
                         //Compare the search value and compare with the text file, if match then add the respective to the Observable list.
-                        if (data[0].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
+                        if (data[0].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered) && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             //resetting the index
                             counter ++;
-                        } else if (data[1].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
+                        } else if (data[1].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
-                        } else if (data[2].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
+                        } else if (data[2].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
-                        } else if (data[3].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
+                        } else if (data[3].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
-                        }else if (data[4].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
+                        }else if (data[4].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
                             Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             leaderboard.setItems(Scoring);
                             counter ++;
-
                         }
                     }
                 }
@@ -263,7 +265,6 @@ public class leaderboard implements Initializable {
         }
         boardFiltered = filterBoard.getValue();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-            Scoring = FXCollections.observableArrayList();
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
@@ -346,6 +347,4 @@ public class leaderboard implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 }

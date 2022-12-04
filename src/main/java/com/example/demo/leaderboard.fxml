@@ -58,8 +58,8 @@
             <TableView fx:id="leaderboard" layoutX="113.0" layoutY="341.0" prefHeight="378.0" prefWidth="675.0">
               <columns>
                   <TableColumn fx:id="index" editable="false" prefWidth="75.0" resizable="false" text="Index" />
-                <TableColumn fx:id="username" editable="false" prefWidth="226.0" resizable="false" text="Username" />
-                <TableColumn fx:id="score" editable="false" prefWidth="114.0" resizable="false" text="Score" />
+                  <TableColumn fx:id="username" editable="false" prefWidth="226.0" resizable="false" text="Username" />
+                  <TableColumn fx:id="score" editable="false" prefWidth="114.0" resizable="false" text="Score" />
                   <TableColumn fx:id="variant" editable="false" prefWidth="81.0" resizable="false" text="Variant" />
                   <TableColumn fx:id="difficulty" editable="false" prefWidth="77.0" resizable="false" text="Difficulty" />
                   <TableColumn fx:id="result" editable="false" prefWidth="101.0" resizable="false" text="Win/Lost" />
@@ -78,6 +78,11 @@
             <Text fx:id="firstScore" layoutX="411.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="secondScore" layoutX="276.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="thirdScore" layoutX="541.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
+            <Text layoutX="113.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logs:">
+               <font>
+                  <Font name="Berlin Sans FB" size="23.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </center>

@@ -78,6 +78,11 @@
             <Text fx:id="firstScore" layoutX="411.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="secondScore" layoutX="276.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="thirdScore" layoutX="541.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
+            <Text layoutX="113.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logs:">
+               <font>
+                  <Font name="Berlin Sans FB" size="23.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </center>
