@@ -147,6 +147,7 @@ public class Main extends Application implements Initializable {
             stage.setTitle("ZK 2048");
             stage.setResizable(false);
             stage.show();
+
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Enter Username");

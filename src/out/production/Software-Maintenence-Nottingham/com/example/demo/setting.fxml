@@ -56,9 +56,9 @@
    <bottom>
       <Pane prefHeight="425.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="helpButton" layoutX="400.0" layoutY="160.0" mnemonicParsing="false" onAction="#help" prefHeight="35.0" prefWidth="100.0" text="HELP" />
-            <Button fx:id="backButton" layoutX="400.0" layoutY="205.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="100.0" text="BACK" />
-            <ChoiceBox fx:id="levelButton" layoutX="400.0" layoutY="28.0" onAction="#levelSelect" prefHeight="35.0" prefWidth="100.0" value="Normal" />
+            <Button fx:id="helpButton" focusTraversable="false" layoutX="400.0" layoutY="160.0" mnemonicParsing="false" onAction="#help" prefHeight="35.0" prefWidth="100.0" text="HELP" />
+            <Button fx:id="backButton" focusTraversable="false" layoutX="400.0" layoutY="205.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="100.0" text="BACK" />
+            <ChoiceBox fx:id="levelButton" focusTraversable="false" layoutX="400.0" layoutY="28.0" onAction="#levelSelect" prefHeight="35.0" prefWidth="100.0" value="Normal" />
             <Text layoutX="290.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEVEL:" wrappingWidth="110.0">
                <font>
                   <Font name="Berlin Sans FB" size="30.0" />
@@ -69,11 +69,11 @@
                   <Font name="Berlin Sans FB" size="30.0" />
                </font>
             </Text>
-            <ColorPicker fx:id="colorButton" layoutX="400.0" layoutY="72.0" onAction="#colorSelect" prefHeight="35.0" prefWidth="100.0">
+            <ColorPicker fx:id="colorButton" focusTraversable="false" layoutX="400.0" layoutY="72.0" onAction="#colorSelect" prefHeight="35.0" prefWidth="100.0">
                <value>
                   <Color red="0.7411764860153198" green="0.6941176652908325" blue="0.3607843220233917" />
                </value></ColorPicker>
-            <ChoiceBox fx:id="tilesButton" layoutX="400.0" layoutY="116.0" onAction="#tilesSelect" prefHeight="35.0" prefWidth="100.0"/>
+            <ChoiceBox fx:id="tilesButton" focusTraversable="false" layoutX="400.0" layoutY="116.0" onAction="#tilesSelect" prefHeight="35.0" prefWidth="100.0" />
             <Text layoutX="290.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TILES:" wrappingWidth="110.0">
                <font>
                   <Font name="Berlin Sans FB" size="30.0" />

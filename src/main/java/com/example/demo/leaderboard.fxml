@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -50,12 +49,12 @@
             <Circle fx:id="secondPlace" fill="#d6d6d6" layoutX="315.0" layoutY="177.0" radius="42.0" stroke="SILVER" strokeType="INSIDE" />
             <Circle fx:id="firstPlace" fill="#fcb434" layoutX="450.0" layoutY="135.0" radius="42.0" stroke="#ffd000" strokeType="INSIDE" />
             <Circle fx:id="thirdPlace" fill="#cd7f32" layoutX="580.0" layoutY="196.0" radius="42.0" stroke="#6d6240" strokeType="INSIDE" />
-            <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefWidth="75.0" text="BACK">
+            <Button fx:id="backButton" focusTraversable="false" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefWidth="75.0" text="BACK">
                <font>
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Button>
-            <TableView fx:id="leaderboard" layoutX="113.0" layoutY="341.0" prefHeight="378.0" prefWidth="675.0">
+            <TableView fx:id="leaderboard" focusTraversable="false" layoutX="113.0" layoutY="341.0" prefHeight="378.0" prefWidth="675.0">
               <columns>
                   <!--<TableColumn fx:id="index" editable="false" prefWidth="75.0" resizable="false" text="Index" />-->
                   <!--<TableColumn fx:id="username" editable="false" prefWidth="226.0" resizable="false" text="Username" />-->
@@ -70,19 +69,14 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </TextField>
-            <Button fx:id="searchButton" layoutX="753.0" layoutY="16.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
+            <Button fx:id="searchButton" focusTraversable="false" layoutX="753.0" layoutY="16.0" mnemonicParsing="false" onAction="#searchAction" text="Search" />
             <Text fx:id="secondPlaceText" layoutX="276.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
             <Text fx:id="firstPlaceText" layoutX="411.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
             <Text fx:id="thirdPlaceText" layoutX="541.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
-            <ChoiceBox fx:id="filterBoard" layoutX="815.0" layoutY="16.0" onAction="#filterBoard" prefHeight="25.0" prefWidth="55.0" />
+            <ChoiceBox fx:id="filterBoard" focusTraversable="false" layoutX="815.0" layoutY="16.0" onAction="#filterBoard" prefHeight="25.0" prefWidth="55.0" />
             <Text fx:id="firstScore" layoutX="411.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="secondScore" layoutX="276.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
             <Text fx:id="thirdScore" layoutX="541.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
-            <Text layoutX="113.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logs:">
-               <font>
-                  <Font name="Berlin Sans FB" size="23.0" />
-               </font>
-            </Text>
          </children>
       </Pane>
    </center>

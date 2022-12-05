@@ -481,6 +481,7 @@ class GameScene {
         scoreText.setText("0");
 
         Button homeButton = new Button("HOME");
+        homeButton.setFocusTraversable(false);
         //homeButton.setId("homeButton");
         homeButton.setPrefSize(60,30);
         homeButton.setTextFill(Color.BLACK);
@@ -526,10 +527,25 @@ class GameScene {
                         }
                         root.getChildren().clear();
                         score = 0;
+                    }if (key.getCode() == KeyCode.ESCAPE){
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("HOME");
+                        alert.setContentText("Any unsaved progress will lost!\nBack to Main Menu?");
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == ButtonType.OK){
+                            Parent root1 = null;
+                            try {
+                                root1 = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            primaryStage.setTitle("ZK 2048");
+                            primaryStage.setScene(new Scene(root1));
+                            primaryStage.show();
+                        }
                     }
                     //Check keypress
                     if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT){
-
                         int haveEmptyCell;
                         if (key.getCode() == KeyCode.DOWN) {
                             GameScene.this.moveDown();
