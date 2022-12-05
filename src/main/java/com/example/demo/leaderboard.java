@@ -44,7 +44,7 @@ public class leaderboard implements Initializable {
     private TableView leaderboard;
     @FXML
     private BorderPane Pane;
-    ObservableList<Scoring> Scoring;
+    ObservableList<Scoring> ScoringList;
     @FXML
     private ChoiceBox<String> filterBoard;
     private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6", "All"};
@@ -143,24 +143,35 @@ public class leaderboard implements Initializable {
     //read previous records from score.txt
     private void getScore(){
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-            Scoring = FXCollections.observableArrayList();
+            ArrayList<Scoring> list = new ArrayList<>();
             String line;
             int counter = 1;
+
             while ((line = br.readLine()) != null){
                 String[] arrayLine = line.split("\n");
+
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
                         if (Objects.equals(data[2], boardFiltered)){
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            Scoring scoringObj = new Scoring();
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            //Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
                             counter ++;
+                            list.add(scoringObj);
+                            sortTable(list);
                         }
                     }
                 }
 
             }
-
-            leaderboard.setItems(Scoring);
+            ScoringList = FXCollections.observableArrayList(list);
+            leaderboard.setItems(ScoringList);
             //leaderboard.getSortOrder().add(TableColumn<Scoring, score>);
 
         } catch (IOException e) {
@@ -182,9 +193,10 @@ public class leaderboard implements Initializable {
     @FXML
     void searchAction(ActionEvent event) {
         //clear the observableList to remove all previous items
-        Scoring.clear();
+        ScoringList.clear();
+        ArrayList<Scoring> list = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-            Scoring = FXCollections.observableArrayList();
+            ScoringList = FXCollections.observableArrayList(list);
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
@@ -192,27 +204,64 @@ public class leaderboard implements Initializable {
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] data = temp.split(", ");
+                        System.out.println(Arrays.toString(data));
+                        Scoring scoringObj = new Scoring();
                         //Compare the search value and compare with the text file, if match then add the respective to the Observable list.
                         if (data[0].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered) && Objects.equals(data[2], boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            list.add(scoringObj);
+                            sortTable(list);
+                            leaderboard.setItems(ScoringList);
                             //resetting the index
                             counter ++;
                         } else if (data[1].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            list.add(scoringObj);
+                            sortTable(list);
+                            leaderboard.setItems(ScoringList);
                             counter ++;
                         } else if (data[2].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            list.add(scoringObj);
+                            sortTable(list);
+                            leaderboard.setItems(ScoringList);
                             counter ++;
                         } else if (data[3].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            list.add(scoringObj);
+                            sortTable(list);
+                            leaderboard.setItems(ScoringList);
                             counter ++;
                         }else if (data[4].equals(textBox.getText()) ||  Objects.equals("All", boardFiltered)  && Objects.equals(data[2], boardFiltered)) {
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
-                            leaderboard.setItems(Scoring);
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            list.add(scoringObj);
+                            sortTable(list);
+                            leaderboard.setItems(ScoringList);
                             counter ++;
                         }
                     }
@@ -226,25 +275,40 @@ public class leaderboard implements Initializable {
     //Filter the table to show respective score accordingly to the board size (3x3, 4x4, etc)
     @FXML
     private void filterBoard(ActionEvent event){
+        ArrayList<Scoring> list = new ArrayList<>();
         textBox.setText("");
-        if (Scoring != null){
-            Scoring.clear();
+        if (ScoringList != null){
+            ScoringList.clear();
         }
         boardFiltered = filterBoard.getValue();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
-            Scoring = FXCollections.observableArrayList();
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
                 String[] arrayLine = line.split("\n");
                 for (String temp : arrayLine){
                     for (int i = 0; i < arrayLine.length; i++) {
+                        Scoring scoringObj = new Scoring();
                         String[] data = temp.split(", ");
                         if (Objects.equals(data[2], boardFiltered)){
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            list.add(scoringObj);
+                            sortTable(list);
                             counter ++;
                         }else if (Objects.equals("All", boardFiltered)){
-                            Scoring.add(new Scoring(counter, data[0], Integer.parseInt(data[1]), data[2], data[3], data[4]));
+                            scoringObj.setIndex(counter);
+                            scoringObj.setUsername(data[0]);
+                            scoringObj.setScore(Integer.parseInt(data[1]));
+                            scoringObj.setVariant(data[2]);
+                            scoringObj.setDifficulty(data[3]);
+                            scoringObj.setResult(data[4]);
+                            list.add(scoringObj);
+                            sortTable(list);
                             counter ++;
                         }
                     }
@@ -252,7 +316,8 @@ public class leaderboard implements Initializable {
 
             }
             podium(boardFiltered);
-            leaderboard.setItems(Scoring);
+            ScoringList = FXCollections.observableArrayList(list);
+            leaderboard.setItems(ScoringList);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -281,6 +346,23 @@ public class leaderboard implements Initializable {
             }
             E--;
         }}
+
+    public static void sortTable (ArrayList<Scoring> arr){
+        int N = arr.size();
+        int E = N-1;
+
+        for(int i=0; i<E; i++ ){ //selection sort
+            int max = i;
+            for(int j=i+1; j<N; j++){
+                if (arr.get(j).getScore() > arr.get(max).getScore()){
+                    max = j;
+                }
+            }
+            Scoring temp = arr.get(max);
+            arr.set(max, arr.get(i));
+            arr.set(i, temp);
+        }
+    }
 
     //Sort the top 3 user of respective board size and display it into a text field
     void podium(String board){
@@ -320,6 +402,7 @@ public class leaderboard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         filterBoard.getItems().addAll(tilesChoice);
+        System.out.println(GameScene.n);
         switch (GameScene.n){
             case 3:
                 filterBoard.setValue("3x3");

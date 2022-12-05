@@ -15,14 +15,14 @@ public class Scoring {
 
 
 
-    public Scoring(int index, String username, int score, String variant, String difficulty, String result){
-        this.index = index;
-        this.username = username;
-        this.score = score;
-        this.variant = variant;
-        this.difficulty = difficulty;
-        this.result = result;
-    }
+//    public Scoring(int index, String username, int score, String variant, String difficulty, String result){
+//        this.index = index;
+//        this.username = username;
+//        this.score = score;
+//        this.variant = variant;
+//        this.difficulty = difficulty;
+//        this.result = result;
+//    }
 
 
     public int getIndex() {
