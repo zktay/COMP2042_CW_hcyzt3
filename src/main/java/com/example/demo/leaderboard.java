@@ -44,7 +44,7 @@ public class leaderboard implements Initializable {
     private TableView leaderboard;
     @FXML
     private BorderPane Pane;
-    ObservableList<Scoring> Scoring = FXCollections.observableArrayList();
+    ObservableList<Scoring> Scoring;
     @FXML
     private ChoiceBox<String> filterBoard;
     private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6", "All"};
@@ -138,56 +138,12 @@ public class leaderboard implements Initializable {
     }
 
     //Initialize the data and set to respective text field and table.
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
-        filterBoard.getItems().addAll(tilesChoice);
-        switch (GameScene.n){
-            case 3:
-                filterBoard.setValue("3x3");
-                boardFiltered = "3x3";
-                break;
-            case 4:
-                filterBoard.setValue("4x4");
-                boardFiltered = "4x4";
-                break;
-            case 5:
-                filterBoard.setValue("5x5");
-                boardFiltered = "5x5";
-                break;
-            case 6:
-                filterBoard.setValue("6x6");
-                boardFiltered = "6x6";
-                break;
-            default:
-                filterBoard.setValue("All");
-                boardFiltered = "All";
-                break;
-        }
-        getScore();
-        podium(boardFiltered);
-        index.setCellValueFactory(new PropertyValueFactory<>("Index"));
-        username.setCellValueFactory(new PropertyValueFactory<>("Username"));
-        score.setCellValueFactory(new PropertyValueFactory<>("Score"));
-        variant.setCellValueFactory(new PropertyValueFactory<>("Variant"));
-        difficulty.setCellValueFactory(new PropertyValueFactory<>("Difficulty"));
-        result.setCellValueFactory(new PropertyValueFactory<>("Result"));
-        //leaderboard.setItems();
-        leaderboard.getColumns().addListener(new ListChangeListener() {
-            @Override
-            public void onChanged(Change change) {
-                change.next();
-                if(change.wasReplaced()) {
-                    leaderboard.getColumns().clear();
-                    leaderboard.getColumns().addAll();
-                }
-            }
-        });
-    }
+
 
     //read previous records from score.txt
     private void getScore(){
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
+            Scoring = FXCollections.observableArrayList();
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
@@ -210,6 +166,16 @@ public class leaderboard implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        /*leaderboard.getColumns().addListener(new ListChangeListener() {
+            @Override
+            public void onChanged(Change change) {
+                change.next();
+                if(change.wasReplaced()) {
+                    leaderboard.getColumns().clear();
+                    leaderboard.getColumns().addAll();
+                }
+            }
+        });*/
     }
 
     //Search function to let user search accordingly to specific filter( tiles, level, username, score, etc)
@@ -218,6 +184,7 @@ public class leaderboard implements Initializable {
         //clear the observableList to remove all previous items
         Scoring.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
+            Scoring = FXCollections.observableArrayList();
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
@@ -265,6 +232,7 @@ public class leaderboard implements Initializable {
         }
         boardFiltered = filterBoard.getValue();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
+            Scoring = FXCollections.observableArrayList();
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null){
@@ -346,5 +314,43 @@ public class leaderboard implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
+        filterBoard.getItems().addAll(tilesChoice);
+        switch (GameScene.n){
+            case 3:
+                filterBoard.setValue("3x3");
+                boardFiltered = "3x3";
+                break;
+            case 4:
+                filterBoard.setValue("4x4");
+                boardFiltered = "4x4";
+                break;
+            case 5:
+                filterBoard.setValue("5x5");
+                boardFiltered = "5x5";
+                break;
+            case 6:
+                filterBoard.setValue("6x6");
+                boardFiltered = "6x6";
+                break;
+            default:
+                filterBoard.setValue("All");
+                boardFiltered = "All";
+                break;
+        }
+        getScore();
+        podium(boardFiltered);
+        index.setCellValueFactory(new PropertyValueFactory<>("Index"));
+        username.setCellValueFactory(new PropertyValueFactory<>("Username"));
+        score.setCellValueFactory(new PropertyValueFactory<>("Score"));
+        variant.setCellValueFactory(new PropertyValueFactory<>("Variant"));
+        difficulty.setCellValueFactory(new PropertyValueFactory<>("Difficulty"));
+        result.setCellValueFactory(new PropertyValueFactory<>("Result"));
+        //leaderboard.setItems();
+
     }
 }
