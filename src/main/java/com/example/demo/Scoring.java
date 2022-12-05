@@ -6,7 +6,7 @@ package com.example.demo;
  */
 public class Scoring {
 
-    private int index;
+    //private int index;
     private String username;
     private int score;
     private String variant;
@@ -25,13 +25,13 @@ public class Scoring {
 //    }
 
 
-    public int getIndex() {
+    /*public int getIndex() {
         return index;
     }
 
     public void setIndex(int index) {
         this.index = index;
-    }
+    }*/
 
     public String getUsername() {
         return username;
