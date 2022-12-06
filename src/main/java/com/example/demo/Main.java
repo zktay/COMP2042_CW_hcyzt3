@@ -126,7 +126,7 @@ public class Main extends Application implements Initializable {
         if (usernameField != null){
             username(event);
         }
-        if (!Objects.equals(usernameEnter, "")) {
+        if (!usernameEnter.isBlank()) {
             Stage stage = getSTAGE();
             Group endgameRoot = new Group();
             Group wingameRoot = new Group();
