@@ -65,24 +65,16 @@ public class EndGame {
         bw.close();
 
         Text text = new Text("GAME OVER");
-        text.relocate(200,250);
+        text.relocate(240,250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
 
-
-      /*  Text username = new Text(Main.usernameEnter);
-        username.relocate(200,350);
-        username.setFont(Font.font(80));
-        root.getChildren().add(username);*/
-
-
-        Text scoreText = new Text(score+"");
-
+        Text scoreText = new Text("Score: " +score);
 
         String temp = String.valueOf(score);
         //Wrong Approach cuz one length doesnt means one pixel
         int  temp1 = temp.length();
-        int scoreAlign = ((900 - temp1) /2) - 100;
+        int scoreAlign = ((900 - temp1) /2) - 200;
 
         scoreText.setFill(Color.BLACK);
 

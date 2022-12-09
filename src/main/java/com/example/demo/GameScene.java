@@ -31,7 +31,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
-class GameScene {
+class
+GameScene {
     private static int HEIGHT = 600;
     public static int n = 4;
     private final static int distanceBetweenCells = 10;
@@ -518,16 +519,7 @@ class GameScene {
 
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{ //changed to key_released to avoid key holding
                 Platform.runLater(() -> {
-                    if (notContinuing){
-                        primaryStage.setScene(winGameScene);
-                        try {
-                            WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        root.getChildren().clear();
-                        score = 0;
-                    }if (key.getCode() == KeyCode.ESCAPE){
+                    if (key.getCode() == KeyCode.ESCAPE){
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("HOME");
                         alert.setContentText("Any unsaved progress will lost!\nBack to Main Menu?");
@@ -555,6 +547,16 @@ class GameScene {
                             GameScene.this.moveLeft();
                         } else if (key.getCode() == KeyCode.RIGHT){
                             GameScene.this.moveRight();
+                        }
+                        if (notContinuing){
+                            primaryStage.setScene(winGameScene);
+                            try {
+                                WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            root.getChildren().clear();
+                            score = 0;
                         }
                         spawnOrNot("new");
                         scoreText.setText(score + "");

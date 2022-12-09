@@ -24,10 +24,26 @@ class TextMaker {
 
     Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
-        double fontSize = (2.5 * length) / 7.0;
         Text text = new Text(input);
-        text.setFont(Font.font(fontSize));
-        text.relocate((xCell + (1.2)* length / 7.0), (yCell + 2 * length / 7.0));
+
+        double fontSize;
+        if (length <= 4){
+            fontSize = (2.5 * length) / 7.0;
+            text.setFont(Font.font(fontSize));
+            text.relocate((xCell + (1.2)* length / 7.0), (yCell + 2 * length / 7.0));
+        }else if (length >= 5){
+            fontSize = (2.3 * length) / 9.0;
+            text.setFont(Font.font(fontSize));
+            text.relocate((xCell + (1.2)* length / 11.0), (yCell + 2 * length / 7.0));;
+        }else if (length >= 7 ){
+            fontSize = (1.1 * length) / 7.0;
+            text.setFont(Font.font(fontSize));
+            text.relocate((xCell + (1)* length / 15.0), (yCell + 2 * length / 7.0));;
+        }
+
+
+
+
         text.setFill(Color.WHITE);
 
         return text;
