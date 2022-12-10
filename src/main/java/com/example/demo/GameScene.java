@@ -24,15 +24,15 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
+import java.nio.file.Paths;
+import java.util.*;
 
-class
-GameScene {
+class GameScene {
     private static int HEIGHT = 600;
     public static int n = 4;
     private final static int distanceBetweenCells = 10;
@@ -48,6 +48,7 @@ GameScene {
     private boolean Spawn = true;
     private int[][] oldCells = new int[n][n];
     private int[][] newCells = new int[n][n];
+    MediaPlayer mediaPlayer;
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -239,6 +240,7 @@ GameScene {
 
     //Move down function
     private void moveDown() {
+
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
                 moveVertically(i, j, passDestination(i, j, 'd'), 1);
@@ -267,6 +269,9 @@ GameScene {
             cells[i][j].adder(cells[i][des + sign]);
             // update score by getting score from new cell
             score += cells[i][des + sign].getNumber();
+            if (Setting.playEffect){
+                soundEffect();
+            }
             continueOrNot();
             cells[i][des + sign].setModify(true);
         } else if (des != j) {
@@ -280,6 +285,9 @@ GameScene {
             cells[i][j].adder(cells[des + sign][j]);
             // update score by getting score from new cell
             score += cells[des + sign][j].getNumber();
+            if (Setting.playEffect){
+                soundEffect();
+            }
             continueOrNot();
             cells[des + sign][j].setModify(true);
         } else if (des != i) {
@@ -422,6 +430,14 @@ GameScene {
 
     }
 
+    private void soundEffect(){
+        String effect = "sounds/success.mp3";
+        Media m = new Media(Paths.get(effect).toUri().toString());
+        mediaPlayer = new MediaPlayer(m);
+        mediaPlayer.play();
+    }
+
+
     /**
      * @param gameScene
      * @param root
@@ -508,6 +524,8 @@ GameScene {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                    Duration temp = Main.mediaPlayer.getCurrentTime();
+                    Main.nowPlaying = temp;
                     primaryStage.setTitle("ZK 2048");
                     primaryStage.setScene(new Scene(root));
                     primaryStage.show();

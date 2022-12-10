@@ -26,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -125,12 +126,15 @@ public class leaderboard implements Initializable {
 
     @FXML
     void back(ActionEvent event) throws IOException {
+        Duration temp = Main.mediaPlayer.getCurrentTime();
+        Main.nowPlaying = temp;
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
+
     }
 
 
@@ -355,6 +359,7 @@ public class leaderboard implements Initializable {
             E--;
         }}
 
+    //Sort the table data read from the text file
     public static void sortTable (ArrayList<Scoring> arr){
         int N = arr.size();
         int E = N-1;
@@ -477,8 +482,7 @@ public class leaderboard implements Initializable {
         result.setReorderable(false);
         leaderboard.getColumns().add(result);
 
-        //index = new TableColumn<>("Index");
-        //index.setCellValueFactory(new PropertyValueFactory<>("Index"));
+        //Data binding
         username.setCellValueFactory(new PropertyValueFactory<>("Username"));
         score.setCellValueFactory(new PropertyValueFactory<>("Score"));
         variant.setCellValueFactory(new PropertyValueFactory<>("Variant"));

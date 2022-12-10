@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Menu?>
@@ -56,8 +57,8 @@
    <bottom>
       <Pane prefHeight="425.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="helpButton" focusTraversable="false" layoutX="400.0" layoutY="160.0" mnemonicParsing="false" onAction="#help" prefHeight="35.0" prefWidth="100.0" text="HELP" />
-            <Button fx:id="backButton" focusTraversable="false" layoutX="400.0" layoutY="205.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="100.0" text="BACK" />
+            <Button fx:id="helpButton" focusTraversable="false" layoutX="400.0" layoutY="250.0" mnemonicParsing="false" onAction="#help" prefHeight="35.0" prefWidth="100.0" text="HELP" />
+            <Button fx:id="backButton" focusTraversable="false" layoutX="400.0" layoutY="295.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="100.0" text="BACK" />
             <ChoiceBox fx:id="levelButton" focusTraversable="false" layoutX="400.0" layoutY="28.0" onAction="#levelSelect" prefHeight="35.0" prefWidth="100.0" value="Normal" />
             <Text layoutX="290.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEVEL:" wrappingWidth="110.0">
                <font>
@@ -79,6 +80,8 @@
                   <Font name="Berlin Sans FB" size="30.0" />
                </font>
             </Text>
+            <CheckBox fx:id="musicButton" focusTraversable="false" layoutX="400.0" layoutY="160.0" mnemonicParsing="false" onAction="#musicToggle" prefHeight="35.0" prefWidth="100.0" text="Music" />
+            <CheckBox fx:id="effectButton" focusTraversable="false" layoutX="400.0" layoutY="205.0" mnemonicParsing="false" onAction="#effectToggle" prefHeight="35.0" prefWidth="100.0" text="Sound Effect" />
          </children>
       </Pane>
    </bottom>

@@ -18,14 +18,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Main extends Application implements Initializable {
@@ -60,6 +66,9 @@ public class Main extends Application implements Initializable {
     @FXML
     public TextField usernameField;
     public static String usernameEnter;
+    public static MediaPlayer mediaPlayer;
+    public static boolean mediaPlaying;
+    public static Duration nowPlaying;
 
 
 
@@ -201,6 +210,31 @@ public class Main extends Application implements Initializable {
         con.help(event);
     }
 
+    public void intro(){
+        if (Setting.playMusic){
+            String effect = "sounds/song.mp3";
+            Media m = new Media(Paths.get(effect).toUri().toString());
+            mediaPlayer = new MediaPlayer(m);
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                public void run() {
+                    mediaPlayer.seek(Duration.ZERO);
+                }
+            });
+            if (nowPlaying == null){
+                mediaPlayer.play();
+            }else{
+                mediaPlayer.seek(nowPlaying);
+                mediaPlayer.play();
+            }
+            mediaPlaying = true;
+        }
+
+    }
+
+    public void stopMusic(){
+        mediaPlayer.stop();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -209,6 +243,12 @@ public class Main extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Setting c = new Setting();
+        if (Setting.playMusic){
+            if (!mediaPlaying){
+                intro();
+            }
+        }
+
         if (c.getColorSelected() != null){
             colorSelected = c.getColorSelected();
         }

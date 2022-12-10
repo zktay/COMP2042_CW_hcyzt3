@@ -41,3 +41,4 @@ fdas, 2469134, 4x4, Normal, WIN
 fdsa, 2469134, 4x4, Normal, WIN
 fdsa, 2469134, 4x4, Normal, WIN
 fda, 828, 4x4, Normal, LOSE
+kj, 1028, 4x4, Normal, LOSE

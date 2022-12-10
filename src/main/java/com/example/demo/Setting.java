@@ -19,12 +19,15 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.MissingFormatArgumentException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.jar.Manifest;
 
 public class Setting implements Initializable {
     private Stage stage;
@@ -53,6 +56,14 @@ public class Setting implements Initializable {
     @FXML
     private ChoiceBox<String> tilesButton;
     private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
+    @FXML
+    public CheckBox effectButton;
+    @FXML
+    public CheckBox musicButton;
+
+    public static boolean playMusic = true;
+    public static boolean playEffect = true;
+
 
 
 
@@ -115,13 +126,37 @@ public class Setting implements Initializable {
     @FXML
     void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
-
+        Duration temp = Main.mediaPlayer.getCurrentTime();
+        Main.nowPlaying = temp;
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
 
+    }
+
+    @FXML
+    void effectToggle(ActionEvent event) {
+        if (effectButton.isSelected()){
+            playEffect = true;
+        }else if (!effectButton.isSelected()){
+            playEffect = false;
+
+        }
+    }
+
+    @FXML
+    void musicToggle(ActionEvent event) {
+        if (musicButton.isSelected()){
+            playMusic = true;
+            Main main = new Main();
+            main.intro();
+        }else if (!musicButton.isSelected()){
+            playMusic = false;
+            Main main = new Main();
+            main.stopMusic();
+        }
     }
 
     //To pass the size of the board to gamescene, the gap between the cells, and the overall size of the board
@@ -146,6 +181,17 @@ public class Setting implements Initializable {
     //Initialize the levelchoice, colorChoice.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (playMusic){
+            musicButton.setSelected(true);
+        }else {
+            musicButton.setSelected(false);
+        }
+        if (playEffect){
+            effectButton.setSelected(true);
+        }else {
+            effectButton.setSelected(false);
+        }
+
         levelButton.getItems().addAll(levelChoice);
         tilesButton.getItems().addAll(tilesChoice);
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));

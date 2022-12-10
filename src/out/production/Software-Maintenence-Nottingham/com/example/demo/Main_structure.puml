@@ -1,0 +1,282 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.example.demo.Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1322970774 { 
+   	label=example
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_134842393 { 
+   	label=demo
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Cell813456180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Cell</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   modify: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rectangle: Rectangle [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   root: Group [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   score: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   textClass: Text [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># adder(cell: Cell)</TD></TR>
+<TR><TD ALIGN="LEFT" ># changeCell(cell: Cell)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EndGame813456180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EndGame</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   score: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   username: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ endGameShow(endGameScene: Scene, root: Group, primaryStage: Stage, score: long, n: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameScene813456180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameScene</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   Spawn: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cells: Cell[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   doNotPrompt: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newCells: int[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   notContinuing: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   oldCells: int[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   root: Group [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   score: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   textMaker: TextMaker [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   win: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   winValue: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- CellToWin()</TD></TR>
+<TR><TD ALIGN="LEFT" >- canNotMove(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- continueOrNot()</TD></TR>
+<TR><TD ALIGN="LEFT" ># game(gameScene: Scene, root: Group, primaryStage: Stage, endGameScene: Scene, endGameRoot: Group, winGameScene: Scene, wingameRoot: Group)</TD></TR>
+<TR><TD ALIGN="LEFT" >- haveEmptyCell(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- haveSameNumberNearly(i: int, j: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- isValidDesH(i: int, j: int, des: int, sign: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- isValidDesV(i: int, j: int, des: int, sign: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveDown()</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveHorizontally(i: int, j: int, des: int, sign: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveLeft()</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveRight()</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveVertically(i: int, j: int, des: int, sign: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >- passDestination(i: int, j: int, direct: char): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- randomFillNumber(turn: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >- spawnOrNot(determine: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Main813456180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   exitButton: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   exitGameTab: MenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameRoot: Group [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   gameScene: Scene [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   helpTab: MenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   indexPanel: BorderPane [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   root: Parent [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scene: Scene [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scoreButton: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   settingButton: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stage: Stage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   startButton: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tutorial: MenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   usernameField: TextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   winRoot: Group [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   winScene: Scene [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># exitGame(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ help(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ howToPlay(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initialize(url: URL, resourceBundle: ResourceBundle)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start(primaryStage: Stage)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ startGame(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >- username(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># viewScore(event: ActionEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Setting813456180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Setting</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   Pane: BorderPane [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   aboutButton: MenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   backButton: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   colorButton: ColorPicker [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   exitGameTab: MenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   helpButton: Button [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   levelButton: ChoiceBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   levelChoice: String[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   root: Parent [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scene: Scene [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stage: Stage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tilesButton: ChoiceBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tilesChoice: String[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tutorial: MenuItem [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># TutorialButton(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># back(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># colorSelect(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># exitGame(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># help(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ initialize(url: URL, resourceBundle: ResourceBundle)</TD></TR>
+<TR><TD ALIGN="LEFT" ># levelSelect(event: ActionEvent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># tilesSelect(event: ActionEvent)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TextMaker813456180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TextMaker</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># changeTwoText(first: Text, second: Text)</TD></TR>
+<TR><TD ALIGN="LEFT" ># madeText(input: String, xCell: double, yCell: double, root: Group): Text</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+WinGame813456180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)WinGame</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   username: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ winGameShow(winGameScene: Scene, root: Group, primaryStage: Stage, score: long, n: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+GameScene813456180 -> Cell813456180[label="cells
+[0..*]"];
+GameScene813456180 -> EndGame813456180[label="game() -> endGameShow()"];
+GameScene813456180 -> TextMaker813456180[label="textMaker
+[0..1]"];
+Main813456180 -> GameScene813456180[label="startGame() -> game()"];
+Setting813456180 -> Main813456180[label="TutorialButton() -> howToPlay()"];
+    
+}
+@enduml
