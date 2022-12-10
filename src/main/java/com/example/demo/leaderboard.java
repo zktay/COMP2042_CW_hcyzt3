@@ -39,7 +39,6 @@ public class leaderboard implements Initializable {
     private Parent root;
     private Stage stage;
     public static Color colorSelected = Color.rgb(189,177,92);
-    //ArrayList<String> podiumArray = new ArrayList<String>();
     private ArrayList<String> podiumArray = new ArrayList<String>();
     @FXML
     private TableView leaderboard;
@@ -134,7 +133,7 @@ public class leaderboard implements Initializable {
         stage.show();
     }
 
-    //Initialize the data and set to respective text field and table.
+
 
 
     //read previous records from score.txt
@@ -407,6 +406,7 @@ public class leaderboard implements Initializable {
         }
     }
 
+    //Initialize the data and set to respective text field and table.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
