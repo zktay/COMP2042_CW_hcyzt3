@@ -33,6 +33,7 @@ public class Setting implements Initializable {
     private Stage stage;
     private Scene scene;
     public static Color colorSelected = Color.rgb(189,177,92);
+    String determine;
 
     @FXML
     private BorderPane Pane;
@@ -44,7 +45,7 @@ public class Setting implements Initializable {
     @FXML
     private Button helpButton;
     @FXML
-    private ChoiceBox<String> levelButton;
+    ChoiceBox<String> levelButton;
     private String[] levelChoice = {"Easy","Normal","Hard", "Extreme"};
     public static String levelSelected = "Normal";
     @FXML
@@ -54,7 +55,7 @@ public class Setting implements Initializable {
     @FXML
     private MenuItem aboutButton;
     @FXML
-    private ChoiceBox<String> tilesButton;
+    ChoiceBox<String> tilesButton;
     private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
     @FXML
     public CheckBox effectButton;
@@ -162,7 +163,7 @@ public class Setting implements Initializable {
     //To pass the size of the board to gamescene, the gap between the cells, and the overall size of the board
     @FXML
     void tilesSelect(ActionEvent event) {
-        String determine = tilesButton.getValue();
+        determine = tilesButton.getValue();
         if (Objects.equals(determine, "3x3")){
             GameScene.n = 3;
             GameScene.LENGTH = (600 - ((4)* 10)) / (double) 3;

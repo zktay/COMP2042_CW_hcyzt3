@@ -74,9 +74,9 @@
             <Text fx:id="firstPlaceText" layoutX="411.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
             <Text fx:id="thirdPlaceText" layoutX="541.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
             <ChoiceBox fx:id="filterBoard" focusTraversable="false" layoutX="815.0" layoutY="16.0" onAction="#filterBoard" prefHeight="25.0" prefWidth="55.0" />
-            <Text fx:id="firstScore" layoutX="411.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
-            <Text fx:id="secondScore" layoutX="276.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
-            <Text fx:id="thirdScore" layoutX="541.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="78.0" />
+            <Text fx:id="firstScore" layoutX="411.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
+            <Text fx:id="secondScore" layoutX="276.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
+            <Text fx:id="thirdScore" layoutX="541.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="78.0" />
          </children>
       </Pane>
    </center>

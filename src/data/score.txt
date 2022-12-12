@@ -42,3 +42,5 @@ fdsa, 2469134, 4x4, Normal, WIN
 fdsa, 2469134, 4x4, Normal, WIN
 fda, 828, 4x4, Normal, LOSE
 kj, 1028, 4x4, Normal, LOSE
+HAHAI, 292, 3x3, Easy, WIN
+HAHAHAH, 472, 3x3, Easy, WIN

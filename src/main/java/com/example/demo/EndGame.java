@@ -32,7 +32,7 @@ public class EndGame {
     private static EndGame singleInstance = null;
     private String username;
     private String score;
-    private EndGame(){
+    EndGame(){
 
     }
     public static EndGame getInstance(){

@@ -40,7 +40,7 @@ public class leaderboard implements Initializable {
     private Parent root;
     private Stage stage;
     public static Color colorSelected = Color.rgb(189,177,92);
-    private ArrayList<String> podiumArray = new ArrayList<String>();
+    private ArrayList<Scoring> podiumArray = new ArrayList<Scoring>();
     @FXML
     private TableView leaderboard;
     @FXML
@@ -158,7 +158,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }
                     }
                 }
@@ -205,7 +205,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         } else if (data[1].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -213,7 +213,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         } else if (data[2].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -221,7 +221,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         } else if (data[3].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -229,7 +229,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }else if (data[4].equals(textBox.getText()) && Objects.equals(data[2], boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -237,7 +237,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }else if (data[0].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -245,7 +245,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }else if (data[1].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -253,7 +253,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }else if (data[2].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -261,7 +261,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }else if (data[3].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -269,7 +269,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }else if (data[4].equals(textBox.getText()) && Objects.equals("All", boardFiltered)) {
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -277,7 +277,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }
                         ScoringList = FXCollections.observableArrayList(list);
                         leaderboard.setItems(ScoringList);
@@ -313,7 +313,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }else if (Objects.equals("All", boardFiltered)){
                             scoringObj.setUsername(data[0]);
                             scoringObj.setScore(Integer.parseInt(data[1]));
@@ -321,7 +321,7 @@ public class leaderboard implements Initializable {
                             scoringObj.setDifficulty(data[3]);
                             scoringObj.setResult(data[4]);
                             list.add(scoringObj);
-                            sortTable(list);
+                            sort(list);
                         }
                     }
                 }
@@ -336,7 +336,7 @@ public class leaderboard implements Initializable {
     }
 
     //Sorting function to sort the array from highest to lowest
-    public static void sort (ArrayList<String> arr){
+    /*public static void sortOld (ArrayList<String> arr){
         int N = arr.size();
         int E = N-1;
         String temp;
@@ -357,10 +357,11 @@ public class leaderboard implements Initializable {
                 }
             }
             E--;
-        }}
+        }
+    }*/
 
-    //Sort the table data read from the text file
-    public static void sortTable (ArrayList<Scoring> arr){
+    //Sort the table data read from the text file from highest to lowest using Scoring Object.getScore().
+    public static void sort (ArrayList<Scoring> arr){
         int N = arr.size();
         int E = N-1;
 
@@ -388,23 +389,38 @@ public class leaderboard implements Initializable {
                     for (int i = 0; i < arrayLine.length; i++) {
                         String[] temp1 = temp.split(", ");
                         if (Objects.equals(temp1[2], board)) {
-                            String concat = temp1[0] + " " + temp1[1];
-                            podiumArray.add(concat);
+                            Scoring scoringObj = new Scoring();
+                            scoringObj.setUsername(temp1[0]);
+                            scoringObj.setScore(Integer.parseInt(temp1[1]));
+                            scoringObj.setVariant(temp1[2]);
+                            scoringObj.setDifficulty(temp1[3]);
+                            scoringObj.setResult(temp1[4]);
+                            podiumArray.add(scoringObj);
                         }else if (Objects.equals("All", board)){
-                            String concat = temp1[0] + " " + temp1[1];
-                            podiumArray.add(concat);
+                            Scoring scoringObj = new Scoring();
+                            scoringObj.setUsername(temp1[0]);
+                            scoringObj.setScore(Integer.parseInt(temp1[1]));
+                            scoringObj.setVariant(temp1[2]);
+                            scoringObj.setDifficulty(temp1[3]);
+                            scoringObj.setResult(temp1[4]);
+                            podiumArray.add(scoringObj);
                         }
                     }
                 }
             }
-            String[] topThree = new String[podiumArray.size()];
+            //String[] topThree = new String[podiumArray.size()];
+            ArrayList<Scoring> topThree= new ArrayList<Scoring>();
             sort(podiumArray);
             for (int i = 0; i < podiumArray.size(); i++ ){
-                topThree[i] = podiumArray.get(i);
+                topThree.add(i, podiumArray.get(i));
+                //System.out.println(podiumArray.toString());
             }
-            firstPlaceText.setText(topThree[0]);
-            secondPlaceText.setText(topThree[1]);
-            thirdPlaceText.setText(topThree[2]);
+            firstPlaceText.setText(topThree.get(0).getUsername());
+            firstScore.setText(String.valueOf(topThree.get(0).getScore()));
+            secondPlaceText.setText(topThree.get(1).getUsername());
+            secondScore.setText(String.valueOf(topThree.get(1).getScore()));
+            thirdPlaceText.setText(topThree.get(2).getUsername());
+            thirdScore.setText(String.valueOf(topThree.get(2).getScore()));
 
         } catch (IOException e) {
             e.printStackTrace();

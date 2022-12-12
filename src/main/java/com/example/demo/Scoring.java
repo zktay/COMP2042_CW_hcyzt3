@@ -25,11 +25,11 @@ public class Scoring {
 //    }
 
 
-    /*public int getIndex() {
+    /*public int getindex() {
         return index;
     }
 
-    public void setIndex(int index) {
+    public void setindex(int index) {
         this.index = index;
     }*/
 
