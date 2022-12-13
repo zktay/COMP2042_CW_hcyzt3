@@ -380,7 +380,7 @@ class GameScene {
                     if (Setting.levelSelected.equals("Easy") && winValue >= 1024){
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("Normal") && winValue >= 2048){
+                    }else if (Setting.levelSelected.equals("Normal") && winValue >= 8){
                         win = true;
                         break;
                     } else if (Setting.levelSelected.equals("Hard") && winValue >= 4096){
@@ -598,7 +598,7 @@ class GameScene {
                     //Check keypress
                     if (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT){
                         int haveEmptyCell;
-                        if (key.getCode() == KeyCode.DOWN) {
+                        /*if (key.getCode() == KeyCode.DOWN) {
                             GameScene.this.moveDown();
                         } else if (key.getCode() == KeyCode.UP) {
                             GameScene.this.moveUp();
@@ -606,7 +606,14 @@ class GameScene {
                             GameScene.this.moveLeft();
                         } else if (key.getCode() == KeyCode.RIGHT){
                             GameScene.this.moveRight();
+                        }*/
+                        switch (key.getCode()){
+                            case DOWN -> GameScene.this.moveDown();
+                            case UP -> GameScene.this.moveUp();
+                            case LEFT -> GameScene.this.moveLeft();
+                            case RIGHT -> GameScene.this.moveRight();
                         }
+
                         if (notContinuing || forceWin){
                             primaryStage.setScene(winGameScene);
                             try {

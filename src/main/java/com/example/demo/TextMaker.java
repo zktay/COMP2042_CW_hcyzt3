@@ -13,7 +13,7 @@ import javafx.scene.text.TextAlignment;
 class TextMaker {
     private static TextMaker singleInstance = null;
 
-    private TextMaker() {
+    TextMaker() {
 
     }
 

@@ -53,3 +53,9 @@ fads, 8, 4x4, Normal, WIN
 fdas, 12, 4x4, Color, WIN
 fads, 16, 4x4, Color, WIN
 fads, 12, 4x4, Color, WIN
+fds, 992, 4x4, Color, LOSE
+fads, 8, 4x4, Normal, WIN
+fad, 20, 4x4, Normal, WIN
+fdas, 8, 4x4, Normal, WIN
+fdas, 12, 4x4, Normal, WIN
+FDA, 8, 4x4, Normal, WIN

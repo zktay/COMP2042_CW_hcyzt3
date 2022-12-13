@@ -15,6 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -24,6 +26,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -42,25 +45,29 @@ public class WinGame {
     }
     //sketching the winGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
     public void winGameShow(Scene winGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
+        String effect = "sounds/cat.mp3";
+        Media m = new Media(Paths.get(effect).toUri().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(m);
+        mediaPlayer.play();
         username = Main.usernameEnter;
-        String varient = null;
+        String variant = null;
         switch (n){
             case 3:
-                varient = "3x3";
+                variant = "3x3";
                 break;
             case 4:
-                varient = "4x4";
+                variant = "4x4";
                 break;
             case 5:
-                varient = "5x5";
+                variant = "5x5";
                 break;
             case 6:
-                varient = "6x6";
+                variant = "6x6";
                 break;
         }
         File file = new File("data/score.txt");
         BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-        bw.write(username + ", " + score + ", " + varient + ", " + Setting.levelSelected +", WIN" + "\n");
+        bw.write(username + ", " + score + ", " + variant + ", " + Setting.levelSelected +", WIN" + "\n");
         bw.close();
 
         Text text = new Text("YOU WON!");
@@ -123,6 +130,7 @@ public class WinGame {
                 Main main = new Main();
                 Stage stage = main.getSTAGE();
                 try {
+                    mediaPlayer.stop();
                     main.startGame(actionEvent);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -141,6 +149,7 @@ public class WinGame {
                 if (result.get() == ButtonType.OK){
                     Parent root = null;
                     try {
+                        mediaPlayer.stop();
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
