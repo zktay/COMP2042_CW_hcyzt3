@@ -19,7 +19,7 @@
 <li> Sorted Leaderboard with searching and filter system.  </li>
 <li> Podium that shows top 3 for respective game board.  </li>
 <li> Color picker that allows user to change background color including gamescene.  </li>
-<li> Level selection that consists of "Easy, Normal, Hard, Extreme" that comes with different target cell number to reach.  </li>
+<li> Level selection that consists of "Easy", "Normal", "Hard", "Extreme", "3072", and "Color" that comes with different target cell number to reach. While 3072 will randomly spawn 3 or 6 instead of 2 or 4. Color will spawn color instead of cells with numbers</li>
 <li> Board selection that consists of "3x3, 4x4, 5x5, 6x6" which have different target cell's number to reach.  </li>
 <li> Help Button to show who to contact if met any problem.  </li>
 <li> Menu Bar that redirect user to 3rd party website (youtube) about how to play 2048.  </li>

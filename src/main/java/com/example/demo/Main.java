@@ -23,10 +23,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.stage.Screen;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import java.io.IOException;

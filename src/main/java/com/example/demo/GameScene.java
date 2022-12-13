@@ -49,6 +49,7 @@ class GameScene {
     private int[][] oldCells = new int[n][n];
     private int[][] newCells = new int[n][n];
     MediaPlayer mediaPlayer;
+    Boolean forceWin = false;
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -370,6 +371,9 @@ class GameScene {
                     else if (Setting.levelSelected.equals("3072") && winValue >= 192){
                         win = true;
                         break;
+                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                        forceWin = true;
+                        break;
                     }
 
                 }else if (n ==4){
@@ -389,6 +393,9 @@ class GameScene {
                     else if (Setting.levelSelected.equals("3072") && winValue >= 3072){
                         win = true;
                         break;
+                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                        forceWin = true;
+                        break;
                     }
                 }else if (n ==5){
                     if (Setting.levelSelected.equals("Easy") && winValue >= 8192){
@@ -405,6 +412,9 @@ class GameScene {
                         break;
                     }else if (Setting.levelSelected.equals("3072") && winValue >= 24576){
                         win = true;
+                        break;
+                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                        forceWin = true;
                         break;
                     }
 
@@ -423,6 +433,9 @@ class GameScene {
                         break;
                     }else if (Setting.levelSelected.equals("3072") && winValue >= 1572864){
                         win = true;
+                        break;
+                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                        forceWin = true;
                         break;
                     }
                 }
@@ -594,7 +607,7 @@ class GameScene {
                         } else if (key.getCode() == KeyCode.RIGHT){
                             GameScene.this.moveRight();
                         }
-                        if (notContinuing){
+                        if (notContinuing || forceWin){
                             primaryStage.setScene(winGameScene);
                             try {
                                 WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);

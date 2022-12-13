@@ -47,3 +47,9 @@ HAHAHAH, 472, 3x3, Easy, WIN
 hgfd, 1158, 3x3, 3072, LOSE
 testing123, 1456, 3x3, 3072, WIN
 HEHE, 158, 3x3, 3072, LOSE
+fad, 264, 3x3, Color, LOSE
+fda, 324, 3x3, Color, LOSE
+fads, 8, 4x4, Normal, WIN
+fdas, 12, 4x4, Color, WIN
+fads, 16, 4x4, Color, WIN
+fads, 12, 4x4, Color, WIN

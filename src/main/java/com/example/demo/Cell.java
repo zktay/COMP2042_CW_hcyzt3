@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class Cell {
     private Rectangle rectangle;
@@ -63,6 +64,7 @@ public class Cell {
     //Changing the number of the cells after getting added
     void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
+        cell.getTextClass().setTextAlignment(TextAlignment.CENTER);
         textClass.setText("0");
         root.getChildren().remove(textClass);
         cell.setColorByNumber(cell.getNumber());
