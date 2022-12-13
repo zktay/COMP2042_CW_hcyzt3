@@ -1,10 +1,10 @@
 package com.example.demo;
 /**
- *  Setting.java
- *  To control the setting page.
- *  Allow user to choose the background color of the game, level of the game, size of the board
- *
+ * Setting.java
+ * To control the setting page.
+ * Allow user to choose the background color of the game, level of the game, size of the board, background music, audio effects.
  */
+
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,18 +23,26 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.MissingFormatArgumentException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.jar.Manifest;
 
 public class Setting implements Initializable {
+    public static Color colorSelected = Color.rgb(189, 177, 92);
+    public static String levelSelected = "Normal";
+    public static boolean playMusic = true;
+    public static boolean playEffect = true;
+    @FXML
+    public CheckBox effectButton;
+    @FXML
+    public CheckBox musicButton;
+    String determine;
+    @FXML
+    ChoiceBox<String> levelButton;
+    @FXML
+    ChoiceBox<String> tilesButton;
     private Stage stage;
     private Scene scene;
-    public static Color colorSelected = Color.rgb(189,177,92);
-    String determine;
-
     @FXML
     private BorderPane Pane;
     private Parent root;
@@ -44,30 +52,14 @@ public class Setting implements Initializable {
     private ColorPicker colorButton;
     @FXML
     private Button helpButton;
-    @FXML
-    ChoiceBox<String> levelButton;
-    private String[] levelChoice = {"Easy","Normal","Hard", "Extreme", "3072", "Color"};
-    public static String levelSelected = "Normal";
+    private final String[] levelChoice = {"Easy", "Normal", "Hard", "Extreme", "3072", "Color"};
     @FXML
     private MenuItem tutorial;
     @FXML
     private MenuItem exitGameTab;
     @FXML
     private MenuItem aboutButton;
-    @FXML
-    ChoiceBox<String> tilesButton;
-    private String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
-    @FXML
-    public CheckBox effectButton;
-    @FXML
-    public CheckBox musicButton;
-
-    public static boolean playMusic = true;
-    public static boolean playEffect = true;
-
-
-
-
+    private final String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
 
     @FXML
     void TutorialButton(ActionEvent event) {
@@ -87,10 +79,11 @@ public class Setting implements Initializable {
         alert.setContentText("Are you sure?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             System.exit(0);
         }
     }
+
     //Retrieve color selected from the color picker
     @FXML
     void colorSelect(ActionEvent event) {
@@ -99,11 +92,12 @@ public class Setting implements Initializable {
         setColorSelected(colorSelected);
     }
 
-    void setColorSelected(Color color){
-        colorSelected = color;
-    }
-    public Color getColorSelected(){
+    public Color getColorSelected() {
         return colorSelected;
+    }
+
+    void setColorSelected(Color color) {
+        colorSelected = color;
     }
 
     @FXML
@@ -113,7 +107,7 @@ public class Setting implements Initializable {
         alert.setHeaderText("2048 Game created by ZKTay under Nottingham University of Malaysia");
         alert.setContentText("Contact Us @ hcyzt3@nottingham.edu.my\n© 2022-2023 | ZKTay");
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
         }
     }
 
@@ -129,7 +123,7 @@ public class Setting implements Initializable {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
         Duration temp = Main.mediaPlayer.getCurrentTime();
         Main.nowPlaying = temp;
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
@@ -139,9 +133,9 @@ public class Setting implements Initializable {
 
     @FXML
     void effectToggle(ActionEvent event) {
-        if (effectButton.isSelected()){
+        if (effectButton.isSelected()) {
             playEffect = true;
-        }else if (!effectButton.isSelected()){
+        } else if (!effectButton.isSelected()) {
             playEffect = false;
 
         }
@@ -149,11 +143,11 @@ public class Setting implements Initializable {
 
     @FXML
     void musicToggle(ActionEvent event) {
-        if (musicButton.isSelected()){
+        if (musicButton.isSelected()) {
             playMusic = true;
             Main main = new Main();
             main.intro();
-        }else if (!musicButton.isSelected()){
+        } else if (!musicButton.isSelected()) {
             playMusic = false;
             Main main = new Main();
             main.stopMusic();
@@ -164,16 +158,16 @@ public class Setting implements Initializable {
     @FXML
     void tilesSelect(ActionEvent event) {
         determine = tilesButton.getValue();
-        if (Objects.equals(determine, "3x3")){
+        if (Objects.equals(determine, "3x3")) {
             GameScene.n = 3;
-            GameScene.LENGTH = (600 - ((4)* 10)) / (double) 3;
-        }else if (Objects.equals(determine, "4x4")){
+            GameScene.LENGTH = (600 - ((4) * 10)) / (double) 3;
+        } else if (Objects.equals(determine, "4x4")) {
             GameScene.n = 4;
-            GameScene.LENGTH = (600 - ((5)* 10)) / (double) 4;
-        }else if (Objects.equals(determine, "5x5")){
+            GameScene.LENGTH = (600 - ((5) * 10)) / (double) 4;
+        } else if (Objects.equals(determine, "5x5")) {
             GameScene.n = 5;
-            GameScene.LENGTH = (600 - ((6)* 10)) / (double) 5;
-        }else if (Objects.equals(determine, "6x6")) {
+            GameScene.LENGTH = (600 - ((6) * 10)) / (double) 5;
+        } else if (Objects.equals(determine, "6x6")) {
             GameScene.n = 6;
             GameScene.LENGTH = (600 - ((7) * 10)) / (double) 6;
         }
@@ -182,14 +176,10 @@ public class Setting implements Initializable {
     //Initialize the levelchoice, colorChoice.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (playMusic){
-            musicButton.setSelected(true);
-        }else {
-            musicButton.setSelected(false);
-        }
-        if (playEffect){
+        musicButton.setSelected(playMusic);
+        if (playEffect) {
             effectButton.setSelected(true);
-        }else {
+        } else {
             effectButton.setSelected(false);
         }
 
@@ -197,21 +187,21 @@ public class Setting implements Initializable {
         tilesButton.getItems().addAll(tilesChoice);
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         colorButton.setValue(colorSelected);
-        if (levelSelected.equals("Easy")){
+        if (levelSelected.equals("Easy")) {
             levelButton.setValue("Easy");
-        }else if (levelSelected.equals("Normal")){
+        } else if (levelSelected.equals("Normal")) {
             levelButton.setValue("Normal");
-        } else if (levelSelected.equals("Hard")){
+        } else if (levelSelected.equals("Hard")) {
             levelButton.setValue("Hard");
-        }else if (levelSelected.equals("Extreme")){
+        } else if (levelSelected.equals("Extreme")) {
             levelButton.setValue("Extreme");
-        }else if(levelSelected.equals("3072")) {
+        } else if (levelSelected.equals("3072")) {
             levelButton.setValue("3072");
-        }else if(levelSelected.equals("Color")) {
+        } else if (levelSelected.equals("Color")) {
             levelButton.setValue("Color");
         }
 
-        switch (GameScene.n){
+        switch (GameScene.n) {
             case 3:
                 tilesButton.setValue("3x3");
                 break;

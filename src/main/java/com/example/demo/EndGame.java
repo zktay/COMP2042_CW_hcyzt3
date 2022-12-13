@@ -1,7 +1,7 @@
 package com.example.demo;
 /**
  *  EndGame.java
- *  To set the endgame scene including music if the user lost the game.
+ *  To set the endGame scene including music if the user lost the game.
  *  Allows user to restart, exit, or back to home.
  *
  */

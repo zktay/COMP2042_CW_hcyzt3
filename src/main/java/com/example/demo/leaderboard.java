@@ -2,12 +2,12 @@ package com.example.demo;
 /**
  *  leaderboard.java
  *  Responsible for the whole score button's page from the index page.
- *  Will be showing top 3 and record of previous players.
+ *  Will be showing top 3 of each board and also top players accordingly to searched result and filters.
  *
  */
+
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.skin.TableHeaderRow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -32,9 +31,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class leaderboard implements Initializable {
     private Parent root;
@@ -334,31 +335,6 @@ public class leaderboard implements Initializable {
             e.printStackTrace();
         }
     }
-
-    //Sorting function to sort the array from highest to lowest
-    /*public static void sortOld (ArrayList<String> arr){
-        int N = arr.size();
-        int E = N-1;
-        String temp;
-        boolean flag = true;
-
-        while(flag){
-            flag=false;
-
-            for(int a = 0 ; a < E ; a++){
-                if(Integer.parseInt(arr.get(a).substring(arr.get(a).indexOf(" ")+1)) <
-                        Integer.parseInt(arr.get(a+1).substring(arr.get(a+1).indexOf(" ")+1))) {
-
-                    temp=arr.get(a);
-                    arr.set(a, arr.get(a+1));
-                    arr.set(a+1, temp);
-
-                    flag=true;
-                }
-            }
-            E--;
-        }
-    }*/
 
     //Sort the table data read from the text file from highest to lowest using Scoring Object.getScore().
     public static void sort (ArrayList<Scoring> arr){

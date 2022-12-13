@@ -1,8 +1,9 @@
 package com.example.demo;
+
 /**
- *  Scoring.java
- *  Setting Scoring's object.
- *
+ * Scoring.java
+ * Setting Scoring object to keep value passed from leaderboard.
+ * Every object contains, username, score, variant, difficulty, and result.
  */
 public class Scoring {
 
@@ -12,26 +13,6 @@ public class Scoring {
     private String variant;
     private String difficulty;
     private String result;
-
-
-
-//    public Scoring(int index, String username, int score, String variant, String difficulty, String result){
-//        this.index = index;
-//        this.username = username;
-//        this.score = score;
-//        this.variant = variant;
-//        this.difficulty = difficulty;
-//        this.result = result;
-//    }
-
-
-    /*public int getindex() {
-        return index;
-    }
-
-    public void setindex(int index) {
-        this.index = index;
-    }*/
 
     public String getUsername() {
         return username;

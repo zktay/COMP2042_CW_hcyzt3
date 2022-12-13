@@ -1,10 +1,11 @@
 package com.example.demo;
 /**
- *  Main.java
- *  The main file that will be run once the program have started.
- *  Responsible for setting the required value for the game, such as Username, Number of tiles, level, and even background color of the game.
- *
+ * Main.java
+ * The main file will be run the program have started.
+ * Responsible for setting the required value for the game, such as Username, Number of tiles, level, and even background color of the game, window size and etc.
+ * Controlling the main page (index page) of the program including accessing to Setting page, Leaderboard page, Exit the program, and also starting the game.
  */
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,24 +16,36 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class Main extends Application implements Initializable {
     static final int WIDTH = 900;
     static final int HEIGHT = 800;
+    public static Color colorSelected = Color.rgb(189, 177, 92);
+    public static String usernameEnter;
+    public static MediaPlayer mediaPlayer;
+    public static boolean mediaPlaying;
+    public static Duration nowPlaying;
+    public static Stage STAGE;
+    private static final Scanner input = new Scanner(System.in);
+    @FXML
+    public TextField usernameField;
     private Stage stage;
     private Scene scene;
     private Scene winScene;
@@ -40,13 +53,10 @@ public class Main extends Application implements Initializable {
     private Parent root;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-    private static Scanner input= new Scanner(System.in);
     @FXML
     private Button exitButton;
-    public static Color colorSelected = Color.rgb(189,177,92);
     @FXML
     private BorderPane indexPanel;
-
     @FXML
     private Button scoreButton;
     @FXML
@@ -59,46 +69,47 @@ public class Main extends Application implements Initializable {
     private MenuItem exitGameTab;
     @FXML
     private MenuItem helpTab;
-    @FXML
-    public TextField usernameField;
-    public static String usernameEnter;
-    public static MediaPlayer mediaPlayer;
-    public static boolean mediaPlaying;
-    public static Duration nowPlaying;
 
-
-
-    public static Stage STAGE;
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
     }
+
     public void setGameRoot(Group gameRoot) {
         this.gameRoot = gameRoot;
     }
-    public void setStage(Stage primaryStage){
+
+    public void setStage(Stage primaryStage) {
         STAGE = primaryStage;
     }
+
     public Stage getSTAGE() {
         return STAGE;
     }
-    public void setWinScene(Scene winSceneParam){
-        winScene = winSceneParam;
-    }
-    public Scene getWinScene(){
+
+    public Scene getWinScene() {
         return winScene;
     }
-    public void setWinRoot(Group winRootParam){
-        winRoot = winRootParam;
+
+    public void setWinScene(Scene winSceneParam) {
+        winScene = winSceneParam;
     }
-    public Group getWinRoot(){
+
+    public Group getWinRoot() {
         return winRoot;
+    }
+
+    public void setWinRoot(Group winRootParam) {
+        winRoot = winRootParam;
     }
 
     //Initial startup to load the index page of the game.
     @Override
     public void start(Stage primaryStage) throws Exception {
-        try{
+        try {
             setStage(primaryStage);
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("pics/Icon.png")));
             primaryStage.getIcons().add(image);
@@ -107,12 +118,11 @@ public class Main extends Application implements Initializable {
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.show();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
     }
-
 
     @FXML
     void exitGame(ActionEvent event) {
@@ -128,7 +138,7 @@ public class Main extends Application implements Initializable {
     //Control and pass the required variables when the user start the game by clicking the STARTGAME button
     @FXML
     public void startGame(ActionEvent event) {
-        if (usernameField != null){
+        if (usernameField != null) {
             username(event);
         }
         if (!usernameEnter.isBlank()) {
@@ -153,12 +163,12 @@ public class Main extends Application implements Initializable {
             stage.setResizable(false);
             stage.show();
 
-        }else{
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Enter Username");
             alert.setHeaderText("Please enter your username to start the game.");
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
+            if (result.get() == ButtonType.OK) {
 
             }
         }
@@ -168,7 +178,7 @@ public class Main extends Application implements Initializable {
     @FXML
     void viewScore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("leaderboard.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.show();
@@ -185,7 +195,7 @@ public class Main extends Application implements Initializable {
         alert.setContentText("Are you sure?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == okButton){
+        if (result.get() == okButton) {
             getHostServices().showDocument("https://www.youtube.com/watch?v=-rqRWzSP2iM");
         }
     }
@@ -194,7 +204,7 @@ public class Main extends Application implements Initializable {
     @FXML
     void setting(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("setting.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle("ZK 2048");
         stage.setScene(new Scene(root));
         stage.show();
@@ -206,8 +216,8 @@ public class Main extends Application implements Initializable {
         con.help(event);
     }
 
-    public void intro(){
-        if (Setting.playMusic){
+    public void intro() {
+        if (Setting.playMusic) {
             String effect = "sounds/song.mp3";
             Media m = new Media(Paths.get(effect).toUri().toString());
             mediaPlayer = new MediaPlayer(m);
@@ -216,9 +226,9 @@ public class Main extends Application implements Initializable {
                     mediaPlayer.seek(Duration.ZERO);
                 }
             });
-            if (nowPlaying == null){
+            if (nowPlaying == null) {
                 mediaPlayer.play();
-            }else{
+            } else {
                 mediaPlayer.seek(nowPlaying);
                 mediaPlayer.play();
             }
@@ -227,25 +237,21 @@ public class Main extends Application implements Initializable {
 
     }
 
-    public void stopMusic(){
+    public void stopMusic() {
         mediaPlayer.stop();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
     //Initialize the background color of the game
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Setting c = new Setting();
-        if (Setting.playMusic){
-            if (!mediaPlaying){
+        if (Setting.playMusic) {
+            if (!mediaPlaying) {
                 intro();
             }
         }
 
-        if (c.getColorSelected() != null){
+        if (c.getColorSelected() != null) {
             colorSelected = c.getColorSelected();
         }
         indexPanel.setBackground(new Background(new BackgroundFill(colorSelected, null, null)));
