@@ -110,6 +110,7 @@ public class Cell {
             case 2048, 3072:
                 rectangle.setFill(Color.rgb(250,0,0,1));
                 break;
+            //Set default color if the cell value goes over 2048
             default:
                 rectangle.setFill(Color.rgb(64, 60, 52));
                 break;

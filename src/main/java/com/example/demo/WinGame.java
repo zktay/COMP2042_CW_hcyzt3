@@ -30,6 +30,8 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.demo.Main.mediaPlayer;
+
 
 public class WinGame {
     private static WinGame singleInstance = null;
@@ -45,10 +47,12 @@ public class WinGame {
     }
     //sketching the winGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
     public void winGameShow(Scene winGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
-        String effect = "sounds/cat.mp3";
-        Media m = new Media(Paths.get(effect).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(m);
-        mediaPlayer.play();
+        if (Setting.playEffect) {
+            String effect = "sounds/cat.mp3";
+            Media m = new Media(Paths.get(effect).toUri().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(m);
+            mediaPlayer.play();
+        }
         username = Main.usernameEnter;
         String variant = null;
         switch (n){

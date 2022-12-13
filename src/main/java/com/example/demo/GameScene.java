@@ -1,10 +1,10 @@
 package com.example.demo;
 /**
- *  GameScene.java
- *  The controller class for the whole functions in the board during a game
- *  Includes moves, add, spawns, sketching the boards tiles, when the cell reach the number to win, user's score, checking user lose or not, etc
- *
+ * GameScene.java
+ * The controller class for the whole functions in the board during a game
+ * Includes moves, add, spawns, sketching the boards tiles, when the cell reach the number to win, user's score, checking user lose or not, etc.
  */
+
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -18,19 +18,22 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Random;
 
 class GameScene {
     private static int HEIGHT = 600;
@@ -263,6 +266,7 @@ class GameScene {
             for (int i = 0; i < n; i++) {
                 cells[i][j].setModify(false);
             }
+
         }
 
     }
@@ -368,32 +372,31 @@ class GameScene {
                         win = true;
                         break;
                     }
-                    else if (Setting.levelSelected.equals("3072") && winValue >= 192){
+                    else if (Setting.levelSelected.equals("3072") && winValue >= 192) {
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                    } else if (Setting.levelSelected.equals("Color") && winValue >= 2048) {
                         forceWin = true;
                         break;
                     }
 
                 }else if (n ==4){
-                    if (Setting.levelSelected.equals("Easy") && winValue >= 1024){
+                    if (Setting.levelSelected.equals("Easy") && winValue >= 1024) {
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("Normal") && winValue >= 8){
+                    } else if (Setting.levelSelected.equals("Normal") && winValue >= 2048) {
                         win = true;
                         break;
-                    } else if (Setting.levelSelected.equals("Hard") && winValue >= 4096){
+                    } else if (Setting.levelSelected.equals("Hard") && winValue >= 4096) {
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("Extreme") && winValue >= 8192){
+                    } else if (Setting.levelSelected.equals("Extreme") && winValue >= 8192) {
                         win = true;
                         break;
-                    }
-                    else if (Setting.levelSelected.equals("3072") && winValue >= 3072){
+                    } else if (Setting.levelSelected.equals("3072") && winValue >= 3072) {
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                    } else if (Setting.levelSelected.equals("Color") && winValue >= 2048) {
                         forceWin = true;
                         break;
                     }
@@ -410,10 +413,10 @@ class GameScene {
                     }else if (Setting.levelSelected.equals("Extreme") && winValue >= 65536){
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("3072") && winValue >= 24576){
+                    }else if (Setting.levelSelected.equals("3072") && winValue >= 24576) {
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                    } else if (Setting.levelSelected.equals("Color") && winValue >= 2048) {
                         forceWin = true;
                         break;
                     }
@@ -431,10 +434,10 @@ class GameScene {
                     }else if (Setting.levelSelected.equals("Extreme") && winValue >= 4194304){
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("3072") && winValue >= 1572864){
+                    }else if (Setting.levelSelected.equals("3072") && winValue >= 1572864) {
                         win = true;
                         break;
-                    }else if (Setting.levelSelected.equals("Color") && winValue == 2048){
+                    } else if (Setting.levelSelected.equals("Color") && winValue >= 2048) {
                         forceWin = true;
                         break;
                     }

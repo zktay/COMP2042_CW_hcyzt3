@@ -1,8 +1,8 @@
 package com.example.demo;
 /**
  *  EndGame.java
- *  To sketch the endgame scene of the 2048 game whenever the user have no more legal moves
- *
+ *  To set the endgame scene including music if the user lost the game.
+ *  Allows user to restart, exit, or back to home.
  *
  */
 import javafx.event.ActionEvent;
@@ -46,10 +46,12 @@ public class EndGame {
 
     //sketching the endGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
-        String effect = "sounds/song.mp3";
-        Media m = new Media(Paths.get(effect).toUri().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(m);
-        mediaPlayer.play();
+        if (Setting.playEffect){
+            String effect = "sounds/losing.mp3";
+            Media m = new Media(Paths.get(effect).toUri().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(m);
+            mediaPlayer.play();
+        }
         username = Main.usernameEnter;
         String variant = null;
         switch (n){
