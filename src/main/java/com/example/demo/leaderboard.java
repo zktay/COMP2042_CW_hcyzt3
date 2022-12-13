@@ -172,16 +172,6 @@ public class leaderboard implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*leaderboard.getColumns().addListener(new ListChangeListener() {
-            @Override
-            public void onChanged(Change change) {
-                change.next();
-                if(change.wasReplaced()) {
-                    leaderboard.getColumns().clear();
-                    leaderboard.getColumns().addAll();
-                }
-            }
-        });*/
     }
 
     //Search function to let user search accordingly to specific filter( tiles, level, username, score, etc)
@@ -493,7 +483,5 @@ public class leaderboard implements Initializable {
             }, cell.emptyProperty(), cell.indexProperty()));
             return cell ;
         });
-        //leaderboard.setItems();
-
     }
 }

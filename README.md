@@ -27,6 +27,7 @@
 <li> User are required to enter their username before starting the game (input will be validate), username are allowed to be duplicated.  </li>
 <li> Every buttons comes with hover effects to improve UX.  </li>
 <li> Background music and sound effect while two tiles added together (can be toggle off by user manually in setting page, both default are on)  </li>
+<li> endGame and winGame will have their respective sounds effect to celebrate</li>
 </ul>
 
 ### Improvements to exisitng scenes.
