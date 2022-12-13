@@ -93,16 +93,30 @@ class GameScene {
         int xCell, yCell;
         xCell = random.nextInt(aForBound + 1);
         yCell = random.nextInt(bForBound + 1);
-        if (putTwo) {
-            text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-            emptyCells[xCell][yCell].setTextClass(text);
-            root.getChildren().add(text);
-            emptyCells[xCell][yCell].setColorByNumber(2);
-        } else {
-            text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
-            emptyCells[xCell][yCell].setTextClass(text);
-            root.getChildren().add(text);
-            emptyCells[xCell][yCell].setColorByNumber(4);
+        if (Setting.levelSelected.equals("3072")) {
+            if (putTwo) {
+                text = textMaker.madeText("3", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                emptyCells[xCell][yCell].setTextClass(text);
+                root.getChildren().add(text);
+                emptyCells[xCell][yCell].setColorByNumber(3);
+            } else {
+                text = textMaker.madeText("6", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                emptyCells[xCell][yCell].setTextClass(text);
+                root.getChildren().add(text);
+                emptyCells[xCell][yCell].setColorByNumber(6);
+            }
+        }else {
+            if (putTwo) {
+                text = textMaker.madeText("2", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                emptyCells[xCell][yCell].setTextClass(text);
+                root.getChildren().add(text);
+                emptyCells[xCell][yCell].setColorByNumber(3);
+            } else {
+                text = textMaker.madeText("4", emptyCells[xCell][yCell].getX(), emptyCells[xCell][yCell].getY(), root);
+                emptyCells[xCell][yCell].setTextClass(text);
+                root.getChildren().add(text);
+                emptyCells[xCell][yCell].setColorByNumber(6);
+            }
         }
 
 
@@ -353,6 +367,10 @@ class GameScene {
                         win = true;
                         break;
                     }
+                    else if (Setting.levelSelected.equals("3072") && winValue >= 192){
+                        win = true;
+                        break;
+                    }
 
                 }else if (n ==4){
                     if (Setting.levelSelected.equals("Easy") && winValue >= 1024){
@@ -365,6 +383,10 @@ class GameScene {
                         win = true;
                         break;
                     }else if (Setting.levelSelected.equals("Extreme") && winValue >= 8192){
+                        win = true;
+                        break;
+                    }
+                    else if (Setting.levelSelected.equals("3072") && winValue >= 3072){
                         win = true;
                         break;
                     }
@@ -381,6 +403,9 @@ class GameScene {
                     }else if (Setting.levelSelected.equals("Extreme") && winValue >= 65536){
                         win = true;
                         break;
+                    }else if (Setting.levelSelected.equals("3072") && winValue >= 24576){
+                        win = true;
+                        break;
                     }
 
                 }else if (n ==6){
@@ -394,6 +419,9 @@ class GameScene {
                         win = true;
                         break;
                     }else if (Setting.levelSelected.equals("Extreme") && winValue >= 4194304){
+                        win = true;
+                        break;
+                    }else if (Setting.levelSelected.equals("3072") && winValue >= 1572864){
                         win = true;
                         break;
                     }

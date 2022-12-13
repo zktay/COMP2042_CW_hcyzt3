@@ -54,7 +54,7 @@
                   <Font name="Berlin Sans FB" size="18.0" />
                </font>
             </Button>
-            <TableView fx:id="leaderboard" focusTraversable="false" layoutX="113.0" layoutY="341.0" prefHeight="378.0" prefWidth="675.0">
+            <TableView fx:id="leaderboard" focusTraversable="false" layoutX="113.0" layoutY="341.0" prefHeight="378.0" prefWidth="660.0" maxWidth="660.0">
               <columns>
                   <!--<TableColumn fx:id="index" editable="false" prefWidth="75.0" resizable="false" text="Index" />-->
                   <!--<TableColumn fx:id="username" editable="false" prefWidth="226.0" resizable="false" text="Username" />-->

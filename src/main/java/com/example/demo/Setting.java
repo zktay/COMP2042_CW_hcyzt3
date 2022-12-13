@@ -46,7 +46,7 @@ public class Setting implements Initializable {
     private Button helpButton;
     @FXML
     ChoiceBox<String> levelButton;
-    private String[] levelChoice = {"Easy","Normal","Hard", "Extreme"};
+    private String[] levelChoice = {"Easy","Normal","Hard", "Extreme", "3072"};
     public static String levelSelected = "Normal";
     @FXML
     private MenuItem tutorial;
@@ -203,9 +203,12 @@ public class Setting implements Initializable {
             levelButton.setValue("Normal");
         } else if (levelSelected.equals("Hard")){
             levelButton.setValue("Hard");
-        }if (levelSelected.equals("Extreme")){
+        }else if (levelSelected.equals("Extreme")){
             levelButton.setValue("Extreme");
+        }else if(levelSelected.equals("3072")) {
+            levelButton.setValue("3072");
         }
+
         switch (GameScene.n){
             case 3:
                 tilesButton.setValue("3x3");

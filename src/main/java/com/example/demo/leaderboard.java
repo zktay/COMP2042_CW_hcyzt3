@@ -458,42 +458,42 @@ public class leaderboard implements Initializable {
         podium(boardFiltered);
         //Index
         TableColumn<Scoring, Void> index = new TableColumn<>("Index");
-        index.setPrefWidth(75);
+        index.setPrefWidth(60);
         index.setResizable(false);
         index.setReorderable(false);
         leaderboard.getColumns().add(index);
 
         //Username
         TableColumn<Scoring, Void> username = new TableColumn<>("Username");
-        username.setPrefWidth(226);
+        username.setPrefWidth(225);
         username.setResizable(false);
         username.setReorderable(false);
         leaderboard.getColumns().add(username);
 
         //Score
         TableColumn<Scoring, Void> score = new TableColumn<>("Score");
-        score.setPrefWidth(114);
+        score.setPrefWidth(115);
         score.setResizable(false);
         score.setReorderable(false);
         leaderboard.getColumns().add(score);
 
         //Variant
         TableColumn<Scoring, Void> variant = new TableColumn<>("Variant");
-        variant.setPrefWidth(81);
+        variant.setPrefWidth(80);
         variant.setResizable(false);
         variant.setReorderable(false);
         leaderboard.getColumns().add(variant);
 
         //Difficulty
         TableColumn<Scoring, Void> difficulty = new TableColumn<>("Difficulty");
-        difficulty.setPrefWidth(77);
+        difficulty.setPrefWidth(75);
         difficulty.setResizable(false);
         difficulty.setReorderable(false);
         leaderboard.getColumns().add(difficulty);
 
         //Result
         TableColumn<Scoring, Void> result = new TableColumn<>("Result");
-        result.setPrefWidth(101);
+        result.setPrefWidth(100);
         result.setResizable(false);
         result.setReorderable(false);
         leaderboard.getColumns().add(result);

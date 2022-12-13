@@ -44,3 +44,6 @@ fda, 828, 4x4, Normal, LOSE
 kj, 1028, 4x4, Normal, LOSE
 HAHAI, 292, 3x3, Easy, WIN
 HAHAHAH, 472, 3x3, Easy, WIN
+hgfd, 1158, 3x3, 3072, LOSE
+testing123, 1456, 3x3, 3072, WIN
+HEHE, 158, 3x3, 3072, LOSE
