@@ -15,8 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -24,80 +22,16 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Random;
 
 class GameScene extends controller{
-    private static int HEIGHT = 600;
-    //public static int n = 4;
-    private final static int distanceBetweenCells = 10;
-    public static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
-    //private TextMaker textMaker = TextMaker.getSingleInstance();
-    /*private Cell[][] cells = new Cell[n][n];*/
-    //private Group root;
-    /*long score = 0;*/
-    //boolean win = false;
-    int winValue;
-    //boolean notContinuing = false;
-    //boolean doNotPrompt = false;
-    //private boolean Spawn = true;
-    /*private int[][] oldCells = new int[n][n];
-    private int[][] newCells = new int[n][n];*/
-    MediaPlayer mediaPlayer;
-    Boolean forceWin = false;
-    //controller c = new controller();
-    static void setN(int number) {
-        n = number;
-        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
-    }
-
 
     static double getLENGTH() {
         return LENGTH;
     }
 
-    //Check cells between cells have same number or not to avoid false "noMoreMoves"
-    private boolean haveSameNumberNearly(int i, int j) {
-        if (i < n - 1 && j < n - 1) {
-            if (cells[i + 1][j].getNumber() == cells[i][j].getNumber()){
-                return true;
-            }
-            if (cells[i][j + 1].getNumber() == cells[i][j].getNumber()){
-                return true;
-            }
-
-        }
-        return false;
-    }
-
-    //If the board are full and no same numbers around the cells then return true to canNotMove.
-    private boolean canNotMove() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (haveSameNumberNearly(i, j)) {
-
-                    return false;
-
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * @param gameScene
-     * @param root
-     * @param primaryStage
-     * @param endGameScene
-     * @param endGameRoot
-     * @param winGameScene
-     * @param wingameRoot
-     */
     //To Controls user's input, and the whole scene of the game/board
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
         gameScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());

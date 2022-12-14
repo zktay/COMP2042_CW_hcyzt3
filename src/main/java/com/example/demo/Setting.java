@@ -107,8 +107,7 @@ public class Setting implements Initializable {
         alert.setHeaderText("2048 Game created by ZKTay under Nottingham University of Malaysia");
         alert.setContentText("Contact Us @ hcyzt3@nottingham.edu.my\n© 2022-2023 | ZKTay");
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-        }
+        result.get();
     }
 
     //Retrieve the level selected by the user from the level choice box
@@ -159,17 +158,13 @@ public class Setting implements Initializable {
     void tilesSelect(ActionEvent event) {
         determine = tilesButton.getValue();
         if (Objects.equals(determine, "3x3")) {
-            controller.n = 3;
-            GameScene.LENGTH = (600 - ((4) * 10)) / (double) 3;
+            controller.setN(3);
         } else if (Objects.equals(determine, "4x4")) {
-            controller.n = 4;
-            GameScene.LENGTH = (600 - ((5) * 10)) / (double) 4;
+            controller.setN(4);
         } else if (Objects.equals(determine, "5x5")) {
-            controller.n = 5;
-            GameScene.LENGTH = (600 - ((6) * 10)) / (double) 5;
+            controller.setN(5);
         } else if (Objects.equals(determine, "6x6")) {
-            controller.n = 6;
-            GameScene.LENGTH = (600 - ((7) * 10)) / (double) 6;
+            controller.setN(6);
         }
     }
 
@@ -177,43 +172,26 @@ public class Setting implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         musicButton.setSelected(playMusic);
-        if (playEffect) {
-            effectButton.setSelected(true);
-        } else {
-            effectButton.setSelected(false);
-        }
+        effectButton.setSelected(playEffect);
 
         levelButton.getItems().addAll(levelChoice);
         tilesButton.getItems().addAll(tilesChoice);
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         colorButton.setValue(colorSelected);
-        if (levelSelected.equals("Easy")) {
-            levelButton.setValue("Easy");
-        } else if (levelSelected.equals("Normal")) {
-            levelButton.setValue("Normal");
-        } else if (levelSelected.equals("Hard")) {
-            levelButton.setValue("Hard");
-        } else if (levelSelected.equals("Extreme")) {
-            levelButton.setValue("Extreme");
-        } else if (levelSelected.equals("3072")) {
-            levelButton.setValue("3072");
-        } else if (levelSelected.equals("Color")) {
-            levelButton.setValue("Color");
+        switch (levelSelected) {
+            case "Easy" -> levelButton.setValue("Easy");
+            case "Normal" -> levelButton.setValue("Normal");
+            case "Hard" -> levelButton.setValue("Hard");
+            case "Extreme" -> levelButton.setValue("Extreme");
+            case "3072" -> levelButton.setValue("3072");
+            case "Color" -> levelButton.setValue("Color");
         }
 
         switch (controller.n) {
-            case 3:
-                tilesButton.setValue("3x3");
-                break;
-            case 4:
-                tilesButton.setValue("4x4");
-                break;
-            case 5:
-                tilesButton.setValue("5x5");
-                break;
-            case 6:
-                tilesButton.setValue("6x6");
-                break;
+            case 3 -> tilesButton.setValue("3x3");
+            case 4 -> tilesButton.setValue("4x4");
+            case 5 -> tilesButton.setValue("5x5");
+            case 6 -> tilesButton.setValue("6x6");
         }
     }
 

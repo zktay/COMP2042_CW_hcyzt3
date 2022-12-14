@@ -70,3 +70,4 @@ BreakingDown2, 1172, 4x4, Normal, LOSE
 BreakingDown2, 1220, 4x4, Normal, LOSE
 fdsa, 1304, 4x4, Normal, LOSE
 放大, 316, 4x4, Normal, LOSE
+富士达, 756, 4x4, Normal, LOSE

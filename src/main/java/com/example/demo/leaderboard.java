@@ -40,7 +40,6 @@ import java.util.ResourceBundle;
 public class leaderboard implements Initializable {
     private Parent root;
     private Stage stage;
-    public static Color colorSelected = Color.rgb(189,177,92);
     private ArrayList<Scoring> podiumArray = new ArrayList<Scoring>();
     @FXML
     private TableView leaderboard;
@@ -77,7 +76,7 @@ public class leaderboard implements Initializable {
     private Text thirdScore;
     @FXML
     private MenuItem tutorial;
-    @FXML
+    /*@FXML
     private TableColumn<Scoring, Void>  index;
     @FXML
     private TableColumn<Scoring, String> difficulty;
@@ -89,7 +88,7 @@ public class leaderboard implements Initializable {
     private TableColumn<Scoring, String> username;
 
     @FXML
-    private TableColumn<Scoring, String> variant;
+    private TableColumn<Scoring, String> variant;*/
     @FXML
     private TextField textBox;
 
@@ -137,9 +136,6 @@ public class leaderboard implements Initializable {
         stage.show();
 
     }
-
-
-
 
     //read previous records from score.txt
     private void getScore(){
@@ -374,12 +370,10 @@ public class leaderboard implements Initializable {
                     }
                 }
             }
-            //String[] topThree = new String[podiumArray.size()];
             ArrayList<Scoring> topThree= new ArrayList<Scoring>();
             sort(podiumArray);
             for (int i = 0; i < podiumArray.size(); i++ ){
                 topThree.add(i, podiumArray.get(i));
-                //System.out.println(podiumArray.toString());
             }
             firstPlaceText.setText(topThree.get(0).getUsername());
             firstScore.setText(String.valueOf(topThree.get(0).getScore()));
@@ -398,27 +392,27 @@ public class leaderboard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         filterBoard.getItems().addAll(tilesChoice);
-        switch (controller.n){
-            case 3:
+        switch (controller.n) {
+            case 3 -> {
                 filterBoard.setValue("3x3");
                 boardFiltered = "3x3";
-                break;
-            case 4:
+            }
+            case 4 -> {
                 filterBoard.setValue("4x4");
                 boardFiltered = "4x4";
-                break;
-            case 5:
+            }
+            case 5 -> {
                 filterBoard.setValue("5x5");
                 boardFiltered = "5x5";
-                break;
-            case 6:
+            }
+            case 6 -> {
                 filterBoard.setValue("6x6");
                 boardFiltered = "6x6";
-                break;
-            default:
+            }
+            default -> {
                 filterBoard.setValue("All");
                 boardFiltered = "All";
-                break;
+            }
         }
         getScore();
         podium(boardFiltered);
@@ -472,6 +466,7 @@ public class leaderboard implements Initializable {
         result.setCellValueFactory(new PropertyValueFactory<>("Result"));
 
 
+        //Get row from the table then add index to the row
         index.setCellFactory(col -> {
             TableCell<Scoring, Void> cell = new TableCell<>();
             cell.textProperty().bind(Bindings.createStringBinding(() -> {

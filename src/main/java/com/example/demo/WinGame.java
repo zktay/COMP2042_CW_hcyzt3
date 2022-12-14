@@ -56,21 +56,13 @@ public class WinGame {
             mediaPlayer.play();
         }
         username = Main.usernameEnter;
-        String variant = null;
-        switch (n) {
-            case 3:
-                variant = "3x3";
-                break;
-            case 4:
-                variant = "4x4";
-                break;
-            case 5:
-                variant = "5x5";
-                break;
-            case 6:
-                variant = "6x6";
-                break;
-        }
+        String variant = switch (n) {
+            case 3 -> "3x3";
+            case 4 -> "4x4";
+            case 5 -> "5x5";
+            case 6 -> "6x6";
+            default -> null;
+        };
         File file = new File("data/score.txt");
         BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
         bw.write(username + ", " + score + ", " + variant + ", " + Setting.levelSelected + ", WIN" + "\n");
@@ -164,8 +156,6 @@ public class WinGame {
                     primaryStage.setScene(new Scene(root));
                     primaryStage.setResizable(false);
                     primaryStage.show();
-
-
                 }
             }
         });

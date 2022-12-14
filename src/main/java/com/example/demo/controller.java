@@ -14,7 +14,10 @@ import java.util.Optional;
  * responsible for passing cells to destination, receive user input and process it accordingly
  */
 public class controller extends spawn{
+    private static int HEIGHT = 600;
+    final static int distanceBetweenCells = 10;
     public static int n = 4;
+    public static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
 
     int winValue;
     boolean doNotPrompt = false;
@@ -23,6 +26,11 @@ public class controller extends spawn{
     Boolean forceWin = false;
     boolean notContinuing = false;
     long score = 0;
+
+    static void setN(int number) {
+        n = number;
+        LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
+    }
     private int passDestination(int i, int j, char direct) {
         int coordinate = j;
         if (direct == 'l') {
@@ -113,7 +121,6 @@ public class controller extends spawn{
 
     //Move down function
     void moveDown() {
-
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
                 moveVertically(i, j, passDestination(i, j, 'd'), 1);
@@ -165,7 +172,6 @@ public class controller extends spawn{
             alert.setTitle("Congrats!");
             alert.setHeaderText("You have finished the game.\nDo you want to continue?");
             alert.setContentText("Good Luck Have Fun!");
-
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == okButton) {
                 doNotPrompt = true;
@@ -173,27 +179,23 @@ public class controller extends spawn{
                 doNotPrompt = true;
                 notContinuing = true;
             }
-
-
         }
-
     }
 
     boolean isValidDesV(int i, int j, int des, int sign) {
-        if (des + sign < n && des + sign >= 0)
-            if (cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
-                    && cells[des + sign][j].getNumber() != 0) {
-                return true;
-            }
+        if (des + sign < n && des + sign >= 0){
+            //return true if the criteria met
+            return cells[des + sign][j].getNumber() == cells[i][j].getNumber() && !cells[des + sign][j].getModify()
+                    && cells[des + sign][j].getNumber() != 0;
+        }
         return false;
     }
 
     boolean isValidDesH(int i, int j, int des, int sign) {
         if (des + sign < n && des + sign >= 0) {
-            if (cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
-                    && cells[i][des + sign].getNumber() != 0) {
-                return true;
-            }
+            //return true if the criteria met
+            return cells[i][des + sign].getNumber() == cells[i][j].getNumber() && !cells[i][des + sign].getModify()
+                    && cells[i][des + sign].getNumber() != 0;
         }
         return false;
     }

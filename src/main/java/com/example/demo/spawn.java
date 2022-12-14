@@ -99,14 +99,12 @@ public class spawn {
             for(int i = 0; i < n; i++){
                 for (int j = 0; j < n; j++){
                     oldCells[i][j] = cells[i][j].getNumber();
-
                 }
             }
         }else if(Objects.equals(determine, "new")){
             for(int i = 0; i < n; i++){
                 for (int j = 0; j < n; j++){
                     newCells[i][j] = cells[i][j].getNumber();
-
                 }
             }
         }
@@ -116,7 +114,32 @@ public class spawn {
         }else {
             Spawn = true;
         }
+    }
 
+    //Check cells between cells have same number or not to avoid false "noMoreMoves"
+    private boolean haveSameNumberNearly(int i, int j) {
+        if (i < n - 1 && j < n - 1) {
+            if (cells[i + 1][j].getNumber() == cells[i][j].getNumber()){
+                return true;
+            }
+            if (cells[i][j + 1].getNumber() == cells[i][j].getNumber()){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    //If the board are full and no same numbers around the cells then return true to canNotMove.
+    boolean canNotMove() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (haveSameNumberNearly(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
