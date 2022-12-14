@@ -124,11 +124,7 @@ public class Main extends Application implements Initializable {
 
     }
 
-    @FXML
-    void exitGame(ActionEvent event) {
-        Setting con = new Setting();
-        con.exitGame(event);
-    }
+
 
     @FXML
     private void username(ActionEvent event) {
@@ -184,8 +180,41 @@ public class Main extends Application implements Initializable {
         stage.show();
     }
 
+    //To redirect user to setting page that allows user to set the size of the board, color of the board and also the difficulty of the game
     @FXML
-    public void howToPlay(ActionEvent event) {
+    void setting(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("setting.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("ZK 2048");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void help(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("2048 Game created by ZKTay under Nottingham University of Malaysia");
+        alert.setContentText("Contact Us @ hcyzt3@nottingham.edu.my\n© 2022-2023 | ZKTay");
+        Optional<ButtonType> result = alert.showAndWait();
+        result.get();
+    }
+
+    @FXML
+    void exitGame(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit");
+        alert.setHeaderText("Quit Game");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            System.exit(0);
+        }
+    }
+
+    @FXML
+    void howToPlay(ActionEvent event) {
         ButtonType okButton = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
         ButtonType noButton = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
         Alert alert = new Alert(Alert.AlertType.WARNING, "", okButton, noButton);
@@ -198,22 +227,6 @@ public class Main extends Application implements Initializable {
         if (result.get() == okButton) {
             getHostServices().showDocument("https://www.youtube.com/watch?v=-rqRWzSP2iM");
         }
-    }
-
-    //To redirect user to setting page that allows user to set the size of the board, color of the board and also the difficulty of the game
-    @FXML
-    void setting(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("setting.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("ZK 2048");
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    @FXML
-    public void help(ActionEvent event) {
-        Setting con = new Setting();
-        con.help(event);
     }
 
     public void intro() {

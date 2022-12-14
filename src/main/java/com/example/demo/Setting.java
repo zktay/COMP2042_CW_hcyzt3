@@ -73,15 +73,8 @@ public class Setting implements Initializable {
 
     @FXML
     void exitGame(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Quit");
-        alert.setHeaderText("Quit Game");
-        alert.setContentText("Are you sure?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            System.exit(0);
-        }
+        Main main = new Main();
+        main.exitGame(event);
     }
 
     //Retrieve color selected from the color picker
@@ -102,12 +95,8 @@ public class Setting implements Initializable {
 
     @FXML
     void help(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText("2048 Game created by ZKTay under Nottingham University of Malaysia");
-        alert.setContentText("Contact Us @ hcyzt3@nottingham.edu.my\n© 2022-2023 | ZKTay");
-        Optional<ButtonType> result = alert.showAndWait();
-        result.get();
+        Main main = new Main();
+        main.help(event);
     }
 
     //Retrieve the level selected by the user from the level choice box
