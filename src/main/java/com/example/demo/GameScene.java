@@ -67,30 +67,30 @@ class GameScene extends controller{
         root.getChildren().add(username);
         username.setText("Name:");
         username.setFill(Color.web("#776e65"));
-        username.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
+        username.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 20));
         //username.relocate(600, 150);
-        username.relocate(155, 105);
+        username.relocate(155, 123);
 
         Text usernameText = new Text();
         root.getChildren().add(usernameText);
         usernameText.setText(Main.usernameEnter);
         usernameText.setFill(Color.web("#776e65"));
-        usernameText.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
+        usernameText.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 20));
         //usernameText.relocate(690, 150);
-        usernameText.relocate(245, 105);
+        usernameText.relocate(215, 123);
 
         Text text = new Text();
         root.getChildren().add(text);
         text.setText("Score:");
         text.setFill(Color.web("#776e65"));
-        text.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
-        text.relocate(450, 105);
+        text.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 20));
+        text.relocate(450, 123);
 
         Text scoreText = new Text();
         root.getChildren().add(scoreText);
         scoreText.setFill(Color.web("#776e65"));
-        scoreText.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 30));
-        scoreText.relocate(530, 105);
+        scoreText.setFont(Font.font("",FontWeight.SEMI_BOLD, FontPosture.REGULAR, 20));
+        scoreText.relocate(505, 124);
         scoreText.setText("0");
 
         Button homeButton = new Button("HOME");
@@ -99,7 +99,7 @@ class GameScene extends controller{
         homeButton.setPrefSize(60,30);
         homeButton.setTextFill(Color.BLACK);
         root.getChildren().add(homeButton);
-        homeButton.relocate(675,110);
+        homeButton.relocate(675,115);
 
         randomFillNumber(1);
         randomFillNumber(1);

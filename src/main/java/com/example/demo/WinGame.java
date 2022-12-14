@@ -57,6 +57,7 @@ public class WinGame {
      * sketching the winGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
      */
     public void winGameShow(Scene winGameScene, Group root, Stage primaryStage, long score, int n) throws IOException {
+        winGameScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         if (Setting.playEffect) {
             String effect = "sounds/cat.mp3";
             Media m = new Media(Paths.get(effect).toUri().toString());

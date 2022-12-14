@@ -55,6 +55,7 @@ public class EndGame {
      */
 
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
+        endGameScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         if (Setting.playEffect){
             String effect = "sounds/losing.mp3";
             Media m = new Media(Paths.get(effect).toUri().toString());
