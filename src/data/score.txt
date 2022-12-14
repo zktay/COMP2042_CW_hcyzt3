@@ -65,3 +65,8 @@ gfds, 812, 4x4, Normal, LOSE
 gfds, 2152, 4x4, Normal, LOSE
 fdsa, 12, 4x4, Normal, WIN
 fdsa, 1168, 4x4, Normal, LOSE
+BreakingDown, 2632, 4x4, Normal, LOSE
+BreakingDown2, 1172, 4x4, Normal, LOSE
+BreakingDown2, 1220, 4x4, Normal, LOSE
+fdsa, 1304, 4x4, Normal, LOSE
+放大, 316, 4x4, Normal, LOSE

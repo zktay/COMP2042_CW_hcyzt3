@@ -398,7 +398,7 @@ public class leaderboard implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));
         filterBoard.getItems().addAll(tilesChoice);
-        switch (GameScene.n){
+        switch (controller.n){
             case 3:
                 filterBoard.setValue("3x3");
                 boardFiltered = "3x3";

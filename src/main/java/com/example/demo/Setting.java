@@ -159,16 +159,16 @@ public class Setting implements Initializable {
     void tilesSelect(ActionEvent event) {
         determine = tilesButton.getValue();
         if (Objects.equals(determine, "3x3")) {
-            GameScene.n = 3;
+            controller.n = 3;
             GameScene.LENGTH = (600 - ((4) * 10)) / (double) 3;
         } else if (Objects.equals(determine, "4x4")) {
-            GameScene.n = 4;
+            controller.n = 4;
             GameScene.LENGTH = (600 - ((5) * 10)) / (double) 4;
         } else if (Objects.equals(determine, "5x5")) {
-            GameScene.n = 5;
+            controller.n = 5;
             GameScene.LENGTH = (600 - ((6) * 10)) / (double) 5;
         } else if (Objects.equals(determine, "6x6")) {
-            GameScene.n = 6;
+            controller.n = 6;
             GameScene.LENGTH = (600 - ((7) * 10)) / (double) 6;
         }
     }
@@ -201,7 +201,7 @@ public class Setting implements Initializable {
             levelButton.setValue("Color");
         }
 
-        switch (GameScene.n) {
+        switch (controller.n) {
             case 3:
                 tilesButton.setValue("3x3");
                 break;
