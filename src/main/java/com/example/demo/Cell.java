@@ -1,9 +1,5 @@
 package com.example.demo;
-/**
- *  Cell.java
- *  To set the size, number, and the color of the cells.
- *
- */
+
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -11,12 +7,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+/**
+ *  Cell.java
+ *  To set the size, number, and the color of the cells.
+ *
+ */
 public class Cell {
     private Rectangle rectangle;
     private Group root;
     private Text textClass;
     private boolean modify = false;
-    public long score = 0;
 
     void setModify(boolean modify) {
         this.modify = modify;
@@ -26,7 +26,7 @@ public class Cell {
         return modify;
     }
 
-    //Setting the size, color of the cell and add it into the board.
+    //Setting the background cell placement to the board, gray boxes.
     Cell(double x, double y, double scale, Group root) {
         rectangle = new Rectangle();
         rectangle.setX(x);
@@ -45,7 +45,11 @@ public class Cell {
         this.textClass = textClass;
     }
 
-    //Changing the cell color
+    /**
+     * @param cell
+     * Changing the cell's value and it's color
+     */
+
     void changeCell(Cell cell) {
         TextMaker.changeTwoText(textClass, cell.getTextClass());
         root.getChildren().remove(cell.getTextClass());
@@ -61,7 +65,10 @@ public class Cell {
         cell.setColorByNumber(cell.getNumber());
     }
 
-    //Changing the number of the cells after getting added
+    /**
+     * @param cell
+     * Changing the number of the cells after additional
+     */
     void adder(Cell cell) {
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
         cell.getTextClass().setTextAlignment(TextAlignment.CENTER);
@@ -71,7 +78,11 @@ public class Cell {
         setColorByNumber(getNumber());
     }
 
-    //Switch case using lambda to set colors of the cells
+
+    /**
+     * @param number
+     * Switch case using lambda to set colors of the cells
+     */
     void setColorByNumber(int number) {
         switch (number) {
             case 0 -> rectangle.setFill(Color.rgb(224, 226, 226, 0.5));

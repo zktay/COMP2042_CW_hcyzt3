@@ -1,9 +1,5 @@
 package com.example.demo;
-/**
- * Setting.java
- * To control the setting page.
- * Allow user to choose the background color of the game, level of the game, size of the board, background music, audio effects.
- */
+
 
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
@@ -26,7 +22,11 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
+/**
+ * Setting.java
+ * To control the setting page.
+ * Allow user to choose the background color of the game, level of the game, size of the board, background music, audio effects.
+ */
 public class Setting implements Initializable {
     public static Color colorSelected = Color.rgb(189, 177, 92);
     public static String levelSelected = "Normal";
@@ -60,7 +60,10 @@ public class Setting implements Initializable {
     @FXML
     private MenuItem aboutButton;
     private final String[] tilesChoice = {"3x3", "4x4", "5x5", "6x6"};
-
+    /**
+     * @param event
+     * MenuBar "How to Play" button
+     */
     @FXML
     void TutorialButton(ActionEvent event) {
         Main main = new Main();
@@ -70,14 +73,20 @@ public class Setting implements Initializable {
     private HostServices getHostServices() {
         return null;
     }
-
+    /**
+     * @param event
+     * MenuBar "Exit Game" button
+     */
     @FXML
     void exitGame(ActionEvent event) {
         Main main = new Main();
         main.exitGame(event);
     }
 
-    //Retrieve color selected from the color picker
+    /**
+     * @param event
+     * Retrieve color selected from the color picker
+     */
     @FXML
     void colorSelect(ActionEvent event) {
         colorSelected = colorButton.getValue();
@@ -92,20 +101,31 @@ public class Setting implements Initializable {
     void setColorSelected(Color color) {
         colorSelected = color;
     }
-
+    /**
+     * @param event
+     * MenuBar "Help" button
+     */
     @FXML
     void help(ActionEvent event) {
         Main main = new Main();
         main.help(event);
     }
 
-    //Retrieve the level selected by the user from the level choice box
+    /**
+     * @param event
+     * Retrieve the level selected by the user from the level choice box
+     */
     @FXML
     void levelSelect(ActionEvent event) {
         levelSelected = levelButton.getValue();
     }
 
-    //Direct user back to the main page after setting the game
+
+    /**
+     * @param event
+     * @throws IOException
+     * Direct user back to the main page after setting the game
+     */
     @FXML
     void back(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("index.fxml")));
@@ -119,6 +139,10 @@ public class Setting implements Initializable {
 
     }
 
+    /**
+     * @param event
+     * To set enable or disable the audio effect(endGame, winGame, gameScene audio effect)
+     */
     @FXML
     void effectToggle(ActionEvent event) {
         if (effectButton.isSelected()) {
@@ -129,6 +153,10 @@ public class Setting implements Initializable {
         }
     }
 
+    /**
+     * @param event
+     * To set enable or disable the background audio
+     */
     @FXML
     void musicToggle(ActionEvent event) {
         if (musicButton.isSelected()) {
@@ -142,7 +170,10 @@ public class Setting implements Initializable {
         }
     }
 
-    //To pass the size of the board to gamescene, the gap between the cells, and the overall size of the board
+    /**
+     * @param event
+     * To pass the size of the board to controller, the gap between the cells, and the overall size of the board
+     */
     @FXML
     void tilesSelect(ActionEvent event) {
         determine = tilesButton.getValue();
@@ -157,7 +188,12 @@ public class Setting implements Initializable {
         }
     }
 
-    //Initialize the levelchoice, colorChoice.
+    /**
+     * @param url
+     * @param resourceBundle
+     * Initialize the levelchoice, colorChoice, music, audio effect, and also background color
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         musicButton.setSelected(playMusic);

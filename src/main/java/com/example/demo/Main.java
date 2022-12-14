@@ -1,10 +1,5 @@
 package com.example.demo;
-/**
- * Main.java
- * The main file will be run the program have started.
- * Responsible for setting the required value for the game, such as Username, Number of tiles, level, and even background color of the game, window size and etc.
- * Controlling the main page (index page) of the program including accessing to Setting page, Leaderboard page, Exit the program, and also starting the game.
- */
+
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -33,7 +28,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
+/**
+ * Main.java
+ * The main file will be run the program have started.
+ * Responsible for setting the required value for the game, such as Username, Number of tiles, level, and even background color of the game, window size and etc.
+ * Controlling the main page (index page) of the program including accessing to Setting page, Leaderboard page, Exit the program, and also starting the game.
+ */
 public class Main extends Application implements Initializable {
     static final int WIDTH = 900;
     static final int HEIGHT = 800;
@@ -125,13 +125,20 @@ public class Main extends Application implements Initializable {
     }
 
 
-
+    /**
+     * @param event
+     * Get username keyed-in in the username text field before starting the game.
+     */
     @FXML
     private void username(ActionEvent event) {
         usernameEnter = usernameField.getText();
     }
 
-    //Control and pass the required variables when the user start the game by clicking the STARTGAME button
+    /**
+     * @param event
+     * Control and pass the required variables when the user start the game by clicking the STARTGAME button
+     */
+
     @FXML
     public void startGame(ActionEvent event) {
         if (usernameField != null) {
@@ -170,7 +177,12 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    //Direct user to leaderboard page controlled by Leaderboard's class
+    /**
+     * @param event
+     * @throws IOException
+     * Direct user to leaderboard page controlled by Leaderboard's class
+     */
+
     @FXML
     void viewScore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("leaderboard.fxml")));
@@ -180,7 +192,11 @@ public class Main extends Application implements Initializable {
         stage.show();
     }
 
-    //To redirect user to setting page that allows user to set the size of the board, color of the board and also the difficulty of the game
+    /**
+     * @param event
+     * @throws IOException
+     * To redirect user to setting page that allows user to set the size of the board, color of the board and also the difficulty of the game
+     */
     @FXML
     void setting(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("setting.fxml")));
@@ -189,7 +205,10 @@ public class Main extends Application implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
+    /**
+     * @param event
+     * MenuBar "Help" button
+     */
     @FXML
     void help(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -199,7 +218,10 @@ public class Main extends Application implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         result.get();
     }
-
+    /**
+     * @param event
+     * MenuBar "Exit Game" button
+     */
     @FXML
     void exitGame(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -212,7 +234,10 @@ public class Main extends Application implements Initializable {
             System.exit(0);
         }
     }
-
+    /**
+     * @param event
+     * MenuBar "How to Play" button
+     */
     @FXML
     void howToPlay(ActionEvent event) {
         ButtonType okButton = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
@@ -229,6 +254,9 @@ public class Main extends Application implements Initializable {
         }
     }
 
+    /**
+     * Load and play the background music
+     */
     public void intro() {
         if (Setting.playMusic) {
             String effect = "sounds/song.mp3";
@@ -250,11 +278,18 @@ public class Main extends Application implements Initializable {
 
     }
 
+    /**
+     * Stop the background music from paying
+     */
     public void stopMusic() {
         mediaPlayer.stop();
     }
 
-    //Initialize the background color of the game
+    /**
+     * @param url
+     * @param resourceBundle
+     * Initialize the background color of the game
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Setting c = new Setting();

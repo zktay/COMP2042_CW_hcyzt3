@@ -9,6 +9,10 @@ import java.util.Random;
 
 import static com.example.demo.controller.n;
 
+/**
+ * spawn.java
+ * Responsible for spawning cells, and detecting have empty cells or not to determine user win or lost the game
+ */
 public class spawn {
     Cell[][] cells = new Cell[n][n];
     private int[][] oldCells = new int[n][n];
@@ -17,7 +21,10 @@ public class spawn {
     boolean Spawn = true;
     Group root;
 
-    //Spawning random number. Either 2, 4 or 3, 6
+    /**
+     * @param turn
+     * Spawning random number. Either 2, 4 or 3, 6 in any empty cell
+     */
     void randomFillNumber(int turn) {
         Cell[][] emptyCells = new Cell[n][n];
         int a = 0;
@@ -81,7 +88,10 @@ public class spawn {
 
     }
 
-    //Checks the board whether contains empty cells
+    /**
+     * @return
+     * Checks the board whether contains empty cells to determine the game need to be end or not.
+     */
     int  haveEmptyCell() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -92,8 +102,11 @@ public class spawn {
         return -1;
     }
 
-    //Check the board whether to spawn a new cell or not by comparing the indexes of all previous cells in the board with the indexes of all after cells in the board
-    //Saves the previous and after moves into their array. If both arrays are the same, then do not spawn
+    /**
+     * @param determine
+     * Check the board whether to spawn a new cell or not by comparing the indexes of all previous cells in the board with the indexes of all after cells in the board
+     * Saves the previous and after moves into their array. If both arrays are the same, then do not spawn
+     */
     void spawnOrNot(String determine){
         if (Objects.equals(determine, "old")){
             for(int i = 0; i < n; i++){
@@ -116,7 +129,12 @@ public class spawn {
         }
     }
 
-    //Check cells between cells have same number or not to avoid false "noMoreMoves"
+    /**
+     * @param i
+     * @param j
+     * @return
+     * Check cells between cells have same number or not to avoid false "noMoreMoves"
+     */
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
             if (cells[i + 1][j].getNumber() == cells[i][j].getNumber()){
@@ -130,7 +148,11 @@ public class spawn {
         return false;
     }
 
-    //If the board are full and no same numbers around the cells then return true to canNotMove.
+    /**
+     * @return
+     * If the board are full and no same numbers around the cells then return true to canNotMove.
+     */
+
     boolean canNotMove() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {

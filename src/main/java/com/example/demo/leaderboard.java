@@ -1,10 +1,5 @@
 package com.example.demo;
-/**
- *  leaderboard.java
- *  Responsible for the whole score button's page from the index page.
- *  Will be showing top 3 of each board and also top players accordingly to searched result and filters.
- *
- */
+
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -37,6 +32,12 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ *  leaderboard.java
+ *  Responsible for the whole score button's page from the index page.
+ *  Will be showing top 3 of each board and also top players accordingly to searched result and filters.
+ *
+ */
 public class leaderboard implements Initializable {
     private Parent root;
     private Stage stage;
@@ -94,24 +95,40 @@ public class leaderboard implements Initializable {
 
     @FXML
     private Button searchButton;
+
+    /**
+     * @param event
+     * MenuBar "How to Play" button
+     */
     @FXML
     void TutorialButton(ActionEvent event) {
         Main main = new Main();
         main.howToPlay(event);
     }
-
+    /**
+     * @param event
+     * MenuBar "Exit Game" button
+     */
     @FXML
     void exitGame(ActionEvent event) {
         Main main = new Main();
         main.exitGame(event);
     }
-
+    /**
+     * @param event
+     * MenuBar "Help" button
+     */
     @FXML
     void help(ActionEvent event) {
         Main main = new Main();
         main.help(event);
     }
 
+    /**
+     * @param event
+     * @throws IOException
+     * Back to main page
+     */
     @FXML
     void back(ActionEvent event) throws IOException {
         Duration temp = Main.mediaPlayer.getCurrentTime();
@@ -122,10 +139,11 @@ public class leaderboard implements Initializable {
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
-
     }
 
-    //read previous records from score.txt
+    /**
+     * Read all records recorded in the text file, save it into Scoring Object, sort it, and add it into the table
+     */
     private void getScore(){
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
             ArrayList<Scoring> list = new ArrayList<>();
@@ -158,7 +176,11 @@ public class leaderboard implements Initializable {
         }
     }
 
-    //Search function to let user search accordingly to specific filter( tiles, level, username, score, etc)
+    /**
+     * @param event
+     * Search function to let user search accordingly to specific filter( tiles, level, username, score, etc).
+     * Clear the previous ScoringObject. Add records that met the "search" input into the table.
+     */
     @FXML
     void searchAction(ActionEvent event) {
         //clear the observableList to remove all previous items
@@ -264,7 +286,10 @@ public class leaderboard implements Initializable {
         }
     }
 
-    //Filter the table to show respective score accordingly to the board size (3x3, 4x4, etc)
+    /**
+     * @param event
+     * Filter the table to show respective score accordingly to the board size (3x3, 4x4, etc)
+     */
     @FXML
     private void filterBoard(ActionEvent event){
         ArrayList<Scoring> list = new ArrayList<>();
@@ -310,7 +335,11 @@ public class leaderboard implements Initializable {
         }
     }
 
-    //Sort the table data read from the text file from highest to lowest using Scoring Object.getScore().
+    /**
+     * @param arr
+     *
+     * Selection Sort algorithm, sort the ScoringObject by using Scoring.getScore()
+     */
     public static void sort (ArrayList<Scoring> arr){
         int N = arr.size();
         int E = N-1;
@@ -328,7 +357,10 @@ public class leaderboard implements Initializable {
         }
     }
 
-    //Sort the top 3 user of respective board size and display it into a text field
+    /**
+     * @param board
+     * Sort the top 3 user of respective board size and display the record's username and score into two respective disabled text-field.
+     */
     void podium(String board){
         podiumArray.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(new File("data/score.txt")))) {
@@ -375,7 +407,12 @@ public class leaderboard implements Initializable {
         }
     }
 
-    //Initialize the data and set to respective text field and table.
+    /**
+     * @param url
+     * @param resourceBundle
+     * Initialize the data and set to respective text field and table.
+     * getScore() will be run here.
+     * */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pane.setBackground(new Background(new BackgroundFill(Main.colorSelected, null, null)));

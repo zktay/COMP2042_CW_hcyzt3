@@ -1,10 +1,5 @@
 package com.example.demo;
-/**
- *  EndGame.java
- *  To set the endGame scene including music if the user lost the game.
- *  Allows user to restart, exit, or back to home.
- *
- */
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +25,12 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
 
-
+/**
+ *  EndGame.java
+ *  To set the endGame scene including music if the user lost the game.
+ *  Allows user to restart, exit, or back to home.
+ *
+ */
 public class EndGame {
     private static EndGame singleInstance = null;
     private String username;
@@ -44,7 +44,16 @@ public class EndGame {
         return singleInstance;
     }
 
-    //sketching the endGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
+    /**
+     * @param endGameScene
+     * @param root
+     * @param primaryStage
+     * @param score
+     * @param n
+     * @throws IOException
+     * sketching the endGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
+     */
+
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
         if (Setting.playEffect){
             String effect = "sounds/losing.mp3";

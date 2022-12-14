@@ -1,9 +1,5 @@
 package com.example.demo;
-/**
- * WinGame.java
- * To sketch the winGame scene of the 2048 game when the user reached the targeted value of the cell.
- * Allows user to restart, exit, or back to home.
- */
+
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,7 +28,11 @@ import java.util.Optional;
 
 import static com.example.demo.Main.mediaPlayer;
 
-
+/**
+ * WinGame.java
+ * To sketch the winGame scene of the 2048 game when the user reached the targeted value of the cell.
+ * Allows user to restart, exit, or back to home.
+ */
 public class WinGame {
     private static WinGame singleInstance = null;
     private String username;
@@ -47,7 +47,15 @@ public class WinGame {
         return singleInstance;
     }
 
-    //sketching the winGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
+    /**
+     * @param winGameScene
+     * @param root
+     * @param primaryStage
+     * @param score
+     * @param n
+     * @throws IOException
+     * sketching the winGameScene, get the board size from main's class. Combine username, score, board size and level, and result and write it into a file
+     */
     public void winGameShow(Scene winGameScene, Group root, Stage primaryStage, long score, int n) throws IOException {
         if (Setting.playEffect) {
             String effect = "sounds/cat.mp3";

@@ -1,9 +1,5 @@
 package com.example.demo;
-/**
- * GameScene.java
- * The controller class for the whole functions in the board during a game
- * Includes moves, add, spawns, sketching the boards tiles, when the cell reach the number to win, user's score, checking user lose or not, etc.
- */
+
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -26,13 +22,28 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * GameScene.java
+ * The controller class for the whole functions in the board during a game
+ * Includes moves, add, spawns, sketching the boards tiles, when the cell reach the number to win, user's score, checking user lose or not, etc.
+ */
 class GameScene extends controller{
 
     static double getLENGTH() {
         return LENGTH;
     }
 
-    //To Controls user's input, and the whole scene of the game/board
+    /**
+     * @param gameScene
+     * @param root
+     * @param primaryStage
+     * @param endGameScene
+     * @param endGameRoot
+     * @param winGameScene
+     * @param wingameRoot
+     * To Controls user's input, and the whole scene of the game/board
+     */
+
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
         gameScene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         this.root = root;
@@ -95,6 +106,10 @@ class GameScene extends controller{
         spawnOrNot("old");
 
         homeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            /**
+             * @param event
+             * handle "home" button clicked during the game
+             */
             @Override
             public void handle(MouseEvent event) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

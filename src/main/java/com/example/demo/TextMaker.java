@@ -1,14 +1,14 @@
 package com.example.demo;
-/**
- * TextMaker.java
- * To control how text are showed in respective scene, including the color and the font size
- */
+
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
+/**
+ * TextMaker.java
+ * To control how text are showed in respective scene, including the color and the font size
+ */
 class TextMaker {
     private static TextMaker singleInstance = null;
 
@@ -22,6 +22,11 @@ class TextMaker {
         return singleInstance;
     }
 
+    /**
+     * @param first
+     * @param second
+     * Swap the value of the first text to second text
+     */
     static void changeTwoText(Text first, Text second) {
         String temp;
         temp = first.getText();
@@ -39,6 +44,15 @@ class TextMaker {
 
     }
 
+    /**
+     * @param input
+     * @param xCell
+     * @param yCell
+     * @param root
+     * @return
+     * Create text inside the cell
+     * Set text to empty and show only color if the user selected "color" level.
+     */
     Text madeText(String input, double xCell, double yCell, Group root) {
         double length = GameScene.getLENGTH();
         Text text = new Text(input);

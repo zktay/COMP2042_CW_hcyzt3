@@ -27,10 +27,25 @@ public class controller extends spawn{
     boolean notContinuing = false;
     long score = 0;
 
+
+    /**
+     * @param number
+     * Set N to change the board's size and the length of the cell to make sure the board remain same size.
+     */
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     }
+
+
+    /**
+     * @param i
+     * @param j
+     * @param direct
+     * @return
+     * Passing one cell to either down, up, left or right including its number to the destination
+     *
+     */
     private int passDestination(int i, int j, char direct) {
         int coordinate = j;
         if (direct == 'l') {
@@ -84,6 +99,10 @@ public class controller extends spawn{
         return -1;
     }
 
+
+    /**
+     * Will be called if the user click "left" arrow key. Left function
+     */
     void moveLeft() {
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < n; j++) {
@@ -94,6 +113,9 @@ public class controller extends spawn{
             }
         }
     }
+    /**
+     * Will be called if the user click "right" arrow key. Right function
+     */
     void moveRight() {
         for (int i = 0; i < n; i++) {
             for (int j = n - 1; j >= 0; j--) {
@@ -105,7 +127,9 @@ public class controller extends spawn{
         }
     }
 
-    //Move up function
+    /**
+     * Will be called if the user click "up" arrow key. Up function
+     */
     void moveUp() {
         for (int j = 0; j < n; j++) {
             //for (int i = n - 1; i >= 0; i--) {
@@ -119,7 +143,9 @@ public class controller extends spawn{
 
     }
 
-    //Move down function
+    /**
+     * Will be called if the user click "down" arrow key. Down function
+     */
     void moveDown() {
         for (int j = 0; j < n; j++) {
             for (int i = n - 1; i >= 0; i--) {
@@ -132,6 +158,17 @@ public class controller extends spawn{
         }
 
     }
+
+
+    /**
+     * @param i
+     * @param j
+     * @param des
+     * @param sign
+     * Responsible passing two cells and add them together.
+     * Playing sound effect when two cells are added together.
+     * Controls horizontal moves. Also controls scoring system.
+     */
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
@@ -147,7 +184,15 @@ public class controller extends spawn{
         }
     }
 
-    //Controls verticals moves. Also controls scoring system
+    /**
+     * @param i
+     * @param j
+     * @param des
+     * @param sign
+     * Responsible passing two cells and add them together.
+     * Playing sound effect when two cells are added together.
+     * Controls verticals moves. Also controls scoring system.
+     */
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
@@ -163,6 +208,9 @@ public class controller extends spawn{
         }
     }
 
+    /**
+     * Prompt to ask user whether to continue the game after the user reaching the targeted cell.
+     */
     void continueOrNot(){
         CellToWin();
         if(win && !doNotPrompt){
@@ -200,6 +248,9 @@ public class controller extends spawn{
         return false;
     }
 
+    /**
+     * Determine the cell's value to win the game depends on the game's level and size of the board.
+     */
     void CellToWin() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -293,6 +344,9 @@ public class controller extends spawn{
         }
     }
 
+    /**
+     * play the sound effect when two cells are added together.
+     */
     private void soundEffect(){
         String effect = "sounds/success.mp3";
         Media m = new Media(Paths.get(effect).toUri().toString());
