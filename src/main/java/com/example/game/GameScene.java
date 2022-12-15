@@ -101,8 +101,8 @@ public class GameScene extends controller{
         root.getChildren().add(homeButton);
         homeButton.relocate(675,115);
 
-        randomFillNumber(1);
-        randomFillNumber(1);
+        randomFillNumber();
+        randomFillNumber();
         spawnOrNot("old");
 
         homeButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -203,7 +203,7 @@ public class GameScene extends controller{
                             }
                         } else if(haveEmptyCell == 1)
                             if (Spawn){
-                                GameScene.this.randomFillNumber(2);
+                                GameScene.this.randomFillNumber();
                                 spawnOrNot("old");
                             }
 

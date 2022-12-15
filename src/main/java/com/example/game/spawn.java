@@ -24,10 +24,9 @@ public class spawn {
 
     /**
      * Spawning random number. Either 2, 4 or 3, 6 in any empty cell
-     * @param turn
      *
      */
-    void randomFillNumber(int turn) {
+    void randomFillNumber() {
         Cell[][] emptyCells = new Cell[n][n];
         int a = 0;
         int b = 0;

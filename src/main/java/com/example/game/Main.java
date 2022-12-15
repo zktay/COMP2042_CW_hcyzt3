@@ -133,9 +133,6 @@ public class Main extends Application implements Initializable {
         if (!usernameEnter.isBlank()) {
             Stage stage = getSTAGE();
             Group endgameRoot = new Group();
-            Group wingameRoot = new Group();
-            //Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(194, 70, 65));
-            //Scene winGameScene = new Scene(wingameRoot, WIDTH, HEIGHT, Color.rgb(52, 165, 111));
             Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT);
 
 
