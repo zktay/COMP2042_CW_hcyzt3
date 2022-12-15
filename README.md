@@ -40,12 +40,12 @@ COMP2042TayZe/javadocs
 <li> User are required to enter their username before starting the game (input will be validate), username are allowed to be duplicated.  </li>
 <li> Every buttons comes with hover effects to improve UX.  </li>
 <li> Background music and sound effect while two tiles added together (can be toggle off by user manually in setting page, both default are on).  </li>
-<li> endGame and winGame will have their respective sounds effect to celebrate.</li>
 </ul>
 
 ### Improvements to exisitng scenes.
 <ul>
-<li> New Buttons added to EndGameScene and WinGameScene with respective fucntion (EXIT, RESTART, NEW GAME).  </li>
+<li> New Buttons added to EndGameScene with respective function (EXIT, RESTART, NEW GAME).  </li>
+<li> EndGame will have respective sounds effect accordinly to the result.</li>
 <li> GameScene will show user's username and their score above their game board.  </li>
 <li> A home button added to game board to let user back to main menu during the game, prompt will show to double confirm.  </li>
 <li> Border Radius for every cells to improve UX.  </li>
@@ -74,7 +74,6 @@ COMP2042TayZe/javadocs
 <li> leaderboard.java  </li>
 <li> Scoring.java  </li>
 <li> Setting.java  </li>
-<li> WinGame.java  </li>
 <li> controller.java </li>
 <li> spawn.java </li>
 </ul>

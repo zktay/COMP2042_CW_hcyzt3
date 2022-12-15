@@ -55,6 +55,7 @@ public class EndGame {
      * @param primaryStage
      * @param score score archived by the user
      * @param n the board size
+     * @param result To get the result passed from GameScene to determine the user win or lose the game.
      * @throws IOException
      *
      */
