@@ -74,3 +74,31 @@ fdsa, 1304, 4x4, Normal, LOSE
 fdsa, 404, 4x4, Easy, LOSE
 fdsa, 1052, 4x4, Normal, LOSE
 fdsa, 3776, 4x4, Normal, LOSE
+fdsa, 640, 4x4, Normal, LOSE
+fda, 736, 4x4, Normal, LOSE
+fda, 1236, 4x4, Normal, LOSE
+fasd, 1452, 4x4, Normal, LOSE
+fdsa, 1140, 4x4, Normal, LOSE
+fda, 908, 4x4, Normal, LOSE
+fda, 772, 4x4, Normal, LOSE
+fda, 1196, 4x4, Normal, LOSE
+TogetherItsA4, 1000, 4x4, Normal, LOSE
+IGOTA2, 928, 4x4, Normal, LOSE
+IGOTA2, 408, 4x4, Normal, LOSE
+fdsa, 648, 4x4, Normal, LOSE
+ KFD, 1228, 4x4, Normal, LOSE
+ KFD, 884, 4x4, Normal, LOSE
+fdsa, 920, 4x4, Normal, LOSE
+fdsa, 920, 4x4, Normal, LOSE
+fsdfsdafa, 264, 4x4, Normal, LOSE
+fsdfsdafa, 2980, 4x4, Normal, LOSE
+TestingAudio, 1248, 4x4, Normal, LOSE
+TestingAudio, 0, 4x4, Normal, LOSE
+TestingAudio, 936, 4x4, Normal, LOSE
+fdas, 1172, 4x4, Normal, LOSE
+fdas, 2696, 4x4, Normal, LOSE
+fdsa, 1032, 4x4, Normal, LOSE
+fdsa, 308, 4x4, Normal, LOSE
+fdsa, 876, 4x4, Normal, LOSE
+ljhgvfc, 904, 4x4, Normal, LOSE
+ljhgvfc, 356, 4x4, Normal, LOSE

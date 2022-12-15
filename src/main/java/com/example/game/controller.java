@@ -22,7 +22,7 @@ public class controller extends spawn{
     int winValue;
     boolean doNotPrompt = false;
     boolean win = false;
-    MediaPlayer mediaPlayer;
+    MediaPlayer effectPlayer;
     Boolean forceWin = false;
     boolean notContinuing = false;
     long score = 0;
@@ -354,7 +354,8 @@ public class controller extends spawn{
     private void soundEffect(){
         String effect = "sounds/success.mp3";
         Media m = new Media(Paths.get(effect).toUri().toString());
-        mediaPlayer = new MediaPlayer(m);
-        mediaPlayer.play();
+        effectPlayer = new MediaPlayer(m);
+        effectPlayer.setVolume(0.8);
+        effectPlayer.play();
     }
 }

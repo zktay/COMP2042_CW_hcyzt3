@@ -274,8 +274,10 @@ public class Main extends Application implements Initializable {
                 }
             });
             if (nowPlaying == null) {
+                mediaPlayer.setVolume(0.3);
                 mediaPlayer.play();
             } else {
+                mediaPlayer.setVolume(0.3);
                 mediaPlayer.seek(nowPlaying);
                 mediaPlayer.play();
             }

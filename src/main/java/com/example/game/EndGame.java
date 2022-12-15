@@ -25,6 +25,8 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.game.Main.mediaPlayer;
+
 /**
  *  EndGame.java
  *  To set the endGame scene including music if the user lost the game.
@@ -32,6 +34,7 @@ import java.util.Optional;
  *
  */
 public class EndGame {
+    MediaPlayer endPlayer;
     private static EndGame singleInstance = null;
     private String username;
     private String score;
@@ -57,11 +60,13 @@ public class EndGame {
 
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
         endGameScene.getStylesheets().add(getClass().getResource("style/style.css").toExternalForm());
+        Main.mediaPlayer.pause();
         if (Setting.playEffect){
             String effect = "sounds/losing.mp3";
             Media m = new Media(Paths.get(effect).toUri().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(m);
-            mediaPlayer.play();
+            endPlayer = new MediaPlayer(m);
+            endPlayer.setVolume(0.3);
+            endPlayer.play();
         }
         username = Main.usernameEnter;
         String variant = switch (n) {
@@ -133,6 +138,11 @@ public class EndGame {
         retryButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                endPlayer.stop();
+                if (Setting.playMusic){
+                    Main.mediaPlayer.setVolume(0.3);
+                    Main.mediaPlayer.play();
+                }
                 Main main = new Main();
                 Stage stage = main.getSTAGE();
                 try {
@@ -153,12 +163,18 @@ public class EndGame {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
+                    endPlayer.stop();
+                    if (Setting.playMusic){
+                        Main.mediaPlayer.setVolume(0.3);
+                        Main.mediaPlayer.play();
+                    }
                     Parent root = null;
                     try {
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/index.fxml")));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+
                     primaryStage.setTitle("ZK 2048");
                     primaryStage.setScene(new Scene(root));
                     primaryStage.setResizable(false);

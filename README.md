@@ -35,7 +35,7 @@ COMP2042TayZe/javadocs
 <li> Level selection that consists of "Easy", "Normal", "Hard", "Extreme", "3072", and "Color" that comes with different target cell number to reach. While 3072 will randomly spawn 3 or 6 instead of 2 or 4. Color will spawn color instead of cells with numbers.</li>
 <li> Board selection that consists of "3x3, 4x4, 5x5, 6x6" which have different target cell's number to reach.  </li>
 <li> Help Button to show who to contact if met any problem.  </li>
-<li> Menu Bar that redirect user to 3rd party website (youtube) about how to play 2048.  </li>
+<li> Menu Bar that redirect user to 3rd party website about how to play 2048.  </li>
 <li> User will be prompt and asked wheter to continue the game or not if any of their cell reach targeted number accordingly to their board size and difficulty.  </li>
 <li> User are required to enter their username before starting the game (input will be validate), username are allowed to be duplicated.  </li>
 <li> Every buttons comes with hover effects to improve UX.  </li>
@@ -45,7 +45,7 @@ COMP2042TayZe/javadocs
 
 ### Improvements to exisitng scenes.
 <ul>
-<li> New Buttons added to EndGameScene and NewGameScene with respective fucntion (EXIT, RESTART, NEW GAME).  </li>
+<li> New Buttons added to EndGameScene and WinGameScene with respective fucntion (EXIT, RESTART, NEW GAME).  </li>
 <li> GameScene will show user's username and their score above their game board.  </li>
 <li> A home button added to game board to let user back to main menu during the game, prompt will show to double confirm.  </li>
 <li> Border Radius for every cells to improve UX.  </li>

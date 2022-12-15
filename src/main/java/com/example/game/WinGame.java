@@ -34,6 +34,7 @@ import static com.example.game.Main.mediaPlayer;
  * Allows user to restart, exit, or back to home.
  */
 public class WinGame {
+    MediaPlayer winPlayer;
     private static WinGame singleInstance = null;
     private String username;
 
@@ -59,12 +60,15 @@ public class WinGame {
      */
     public void winGameShow(Scene winGameScene, Group root, Stage primaryStage, long score, int n) throws IOException {
         winGameScene.getStylesheets().add(getClass().getResource("style/style.css").toExternalForm());
+        Main.mediaPlayer.pause();
         if (Setting.playEffect) {
             String effect = "sounds/cat.mp3";
             Media m = new Media(Paths.get(effect).toUri().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(m);
-            mediaPlayer.play();
+            winPlayer = new MediaPlayer(m);
+            winPlayer.setVolume(0.3);
+            winPlayer.play();
         }
+
         username = Main.usernameEnter;
         String variant = switch (n) {
             case 3 -> "3x3";
@@ -115,6 +119,7 @@ public class WinGame {
         root.getChildren().add(homeButton);
         homeButton.relocate(600, 700);
 
+
         //Actions of those buttons, "QUIT", "RESTART", "BACK TO HOME"
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -135,10 +140,14 @@ public class WinGame {
         retryButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                winPlayer.stop();
+                if (Setting.playMusic){
+                    Main.mediaPlayer.setVolume(0.3);
+                    Main.mediaPlayer.play();
+                }
                 Main main = new Main();
                 Stage stage = main.getSTAGE();
                 try {
-                    mediaPlayer.stop();
                     main.startGame(actionEvent);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -155,13 +164,18 @@ public class WinGame {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK) {
+                    winPlayer.stop();
+                    if (Setting.playMusic){
+                        Main.mediaPlayer.setVolume(0.3);
+                        Main.mediaPlayer.play();
+                    }
                     Parent root = null;
                     try {
-                        mediaPlayer.stop();
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/index.fxml")));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+
                     primaryStage.setTitle("ZK 2048");
                     primaryStage.setScene(new Scene(root));
                     primaryStage.setResizable(false);
