@@ -29,6 +29,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 /**
+ * @author Ze Tay-modified
  * Main.java
  * The main file will be run the program have started.
  * Responsible for setting the required value for the game, such as Username, Number of tiles, level, and even background color of the game, window size and etc.

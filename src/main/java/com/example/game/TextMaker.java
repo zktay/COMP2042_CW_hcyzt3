@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 /**
+ * @author Ze Tay-modified
  * TextMaker.java
  * To control how text are showed in respective scene, including the color and the font size
  */

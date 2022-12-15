@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 
 /**
+ * @author Ze Tay
  * controller.java
  * responsible for passing cells to destination, receive user input and process it accordingly
  */
@@ -25,7 +26,7 @@ public class controller extends spawn{
     MediaPlayer effectPlayer;
     Boolean forceWin = false;
     boolean notContinuing = false;
-    long score = 0;
+    long score;
 
 
     /**

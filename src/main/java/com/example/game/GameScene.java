@@ -23,6 +23,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
+ * @author Ze Tay-modified
  * GameScene.java
  * The controller class for the whole functions in the board during a game
  * Includes moves, add, spawns, sketching the boards tiles, when the cell reach the number to win, user's score, checking user lose or not, etc.

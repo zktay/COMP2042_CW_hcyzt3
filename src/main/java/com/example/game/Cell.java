@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
+ * @author Ze Tay-modified
  *  Cell.java
  *  To set the size, number, and the color of the cells.
  *

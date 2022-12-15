@@ -31,6 +31,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
+ *  @author Ze Tay
  *  leaderboard.java
  *  Responsible for the whole score button's page from the index page.
  *  Will be showing top 3 of each board and also top players accordingly to searched result and filters.

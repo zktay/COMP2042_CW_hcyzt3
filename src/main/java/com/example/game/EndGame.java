@@ -28,6 +28,7 @@ import java.util.Optional;
 import static com.example.game.Main.mediaPlayer;
 
 /**
+ * @author Ze Tay-modified
  *  EndGame.java
  *  To set the endGame scene including music if the user lost the game.
  *  Allows user to restart, exit, or back to home.

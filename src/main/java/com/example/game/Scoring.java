@@ -1,6 +1,7 @@
 package com.example.game;
 
 /**
+ * @author Ze Tay
  * Scoring.java
  * Setting Scoring object to keep value passed from leaderboard.
  * Every object contains, username, score, variant, difficulty, and result.

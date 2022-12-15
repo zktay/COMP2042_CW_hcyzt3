@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 /**
+ * @author Ze Tay
  * Setting.java
  * To control the setting page.
  * Allow user to choose the background color of the game, level of the game, size of the board, background music, audio effects.

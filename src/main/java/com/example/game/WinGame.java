@@ -29,6 +29,7 @@ import java.util.Optional;
 import static com.example.game.Main.mediaPlayer;
 
 /**
+ * @author Ze Tay
  * WinGame.java
  * To sketch the winGame scene of the 2048 game when the user reached the targeted value of the cell.
  * Allows user to restart, exit, or back to home.
