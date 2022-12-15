@@ -73,3 +73,4 @@ fdsa, 1304, 4x4, Normal, LOSE
 富士达, 756, 4x4, Normal, LOSE
 fdsa, 404, 4x4, Easy, LOSE
 fdsa, 1052, 4x4, Normal, LOSE
+fdsa, 3776, 4x4, Normal, LOSE
