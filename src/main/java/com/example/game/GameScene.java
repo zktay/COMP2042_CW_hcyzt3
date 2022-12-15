@@ -41,12 +41,10 @@ public class GameScene extends controller{
      * @param primaryStage
      * @param endGameScene Pass scene to endGame.java
      * @param endGameRoot
-     * @param winGameScene Pass scene to winGame.java
-     * @param wingameRoot
      *
      */
 
-    void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot, Scene winGameScene, Group wingameRoot) {
+    void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         gameScene.getStylesheets().add(getClass().getResource("style/style.css").toExternalForm());
         this.root = root;
         for (int i = 0; i < n; i++) {
@@ -168,9 +166,9 @@ public class GameScene extends controller{
                         }
 
                         if (notContinuing || forceWin){
-                            primaryStage.setScene(winGameScene);
+                            primaryStage.setScene(endGameScene);
                             try {
-                                WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);
+                                EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, n, "WIN");
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                             }
@@ -185,9 +183,9 @@ public class GameScene extends controller{
                             if (GameScene.this.canNotMove()) {
                                 //Pass to winGameScene if the user wins the game
                                 if (win){
-                                    primaryStage.setScene(winGameScene);
+                                    primaryStage.setScene(endGameScene);
                                     try {
-                                        WinGame.getInstance().winGameShow(winGameScene, wingameRoot, primaryStage, score, n);
+                                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, n, "WIN");
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
@@ -195,7 +193,7 @@ public class GameScene extends controller{
                                 }else {
                                     primaryStage.setScene(endGameScene);
                                     try {
-                                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, n);
+                                        EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score, n, "LOSE");
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }

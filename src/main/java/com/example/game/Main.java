@@ -91,22 +91,6 @@ public class Main extends Application implements Initializable {
         return STAGE;
     }
 
-    public Scene getWinScene() {
-        return winScene;
-    }
-
-    public void setWinScene(Scene winSceneParam) {
-        winScene = winSceneParam;
-    }
-
-    public Group getWinRoot() {
-        return winRoot;
-    }
-
-    public void setWinRoot(Group winRootParam) {
-        winRoot = winRootParam;
-    }
-
     //Initial startup to load the index page of the game.
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -150,8 +134,10 @@ public class Main extends Application implements Initializable {
             Stage stage = getSTAGE();
             Group endgameRoot = new Group();
             Group wingameRoot = new Group();
-            Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(194, 70, 65));
-            Scene winGameScene = new Scene(wingameRoot, WIDTH, HEIGHT, Color.rgb(52, 165, 111));
+            //Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(194, 70, 65));
+            //Scene winGameScene = new Scene(wingameRoot, WIDTH, HEIGHT, Color.rgb(52, 165, 111));
+            Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT);
+
 
             //Whole window*
             Group gameRoot = new Group();
@@ -160,10 +146,8 @@ public class Main extends Application implements Initializable {
 
             setGameScene(gameScene);
             stage.setScene(gameScene);
-            setWinScene(winGameScene);
-            setWinRoot(winRoot);
             GameScene game = new GameScene();
-            game.game(gameScene, gameRoot, stage, endGameScene, endgameRoot, winGameScene, wingameRoot);
+            game.game(gameScene, gameRoot, stage, endGameScene, endgameRoot);
             stage.setTitle("ZK 2048");
             stage.setResizable(false);
             stage.show();

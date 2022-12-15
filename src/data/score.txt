@@ -102,3 +102,14 @@ fdsa, 308, 4x4, Normal, LOSE
 fdsa, 876, 4x4, Normal, LOSE
 ljhgvfc, 904, 4x4, Normal, LOSE
 ljhgvfc, 356, 4x4, Normal, LOSE
+Testing Refactor, 124, 3x3, Easy, LOSE
+TestingRefac, 8, 4x4, Normal, WIN
+Testing123, 12, 4x4, Normal, WIN
+Testing123, 412, 4x4, Normal, WIN
+fdas, 16, 4x4, Normal, WIN
+fdsa, 12, 4x4, Normal, WIN
+fdsa, 2284, 4x4, Easy, LOSE
+fdsa, 272, 4x4, Easy, LOSE
+fdas, 60, 3x3, Normal, LOSE
+refw, 8, 4x4, Normal, WIN
+refw, 1156, 4x4, Normal, WIN

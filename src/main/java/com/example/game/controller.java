@@ -286,7 +286,7 @@ public class controller extends spawn{
                     if (Setting.levelSelected.equals("Easy") && winValue >= 1024) {
                         win = true;
                         break;
-                    } else if (Setting.levelSelected.equals("Normal") && winValue >= 2048) {
+                    } else if (Setting.levelSelected.equals("Normal") && winValue >= 8) {
                         win = true;
                         break;
                     } else if (Setting.levelSelected.equals("Hard") && winValue >= 4096) {

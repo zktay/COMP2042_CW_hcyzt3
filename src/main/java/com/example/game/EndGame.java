@@ -30,7 +30,7 @@ import static com.example.game.Main.mediaPlayer;
 /**
  * @author Ze Tay-modified
  *  EndGame.java
- *  To set the endGame scene including music if the user lost the game.
+ *  To set the endGame scene including music if the user win/lose the game.
  *  Allows user to restart, exit, or back to home.
  *
  */
@@ -38,7 +38,7 @@ public class EndGame {
     MediaPlayer endPlayer;
     private static EndGame singleInstance = null;
     private String username;
-    private String score;
+
     EndGame(){
 
     }
@@ -59,11 +59,22 @@ public class EndGame {
      *
      */
 
-    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n) throws IOException {
+    public void endGameShow(Scene endGameScene, Group root, Stage primaryStage,long score, int n, String result) throws IOException {
+        //Setting musics, bg color, and text accordingly to the result.
+        String effect = null;
+        Text text = new Text();
+        if (result.equals("WIN")){
+            endGameScene.setFill(Color.rgb(52, 165, 111));
+            effect = "sounds/cat.mp3";
+            text = new Text("YOU WON!");
+        }else if (result.equals("LOSE")){
+            endGameScene.setFill(Color.rgb(194, 70, 65));
+            effect = "sounds/losing.mp3";
+            text = new Text("GAME OVER");
+        }
         endGameScene.getStylesheets().add(getClass().getResource("style/style.css").toExternalForm());
         Main.mediaPlayer.pause();
         if (Setting.playEffect){
-            String effect = "sounds/losing.mp3";
             Media m = new Media(Paths.get(effect).toUri().toString());
             endPlayer = new MediaPlayer(m);
             endPlayer.setVolume(0.3);
@@ -80,10 +91,9 @@ public class EndGame {
 
         File file = new File("data/score.txt");
         BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-        bw.write(username + ", " + score + ", " + variant + ", " + Setting.levelSelected +", LOSE" + "\n");
+        bw.write(username + ", " + score + ", " + variant + ", " + Setting.levelSelected +", " + result + "\n");
         bw.close();
 
-        Text text = new Text("GAME OVER");
         text.relocate(240,250);
         text.setFont(Font.font(80));
         root.getChildren().add(text);
