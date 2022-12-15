@@ -18,4 +18,5 @@ public class TextMakerTest {
         t.changeTwoText(first, second);
         assertEquals("SECOND", first.getText());
     }
+
 }

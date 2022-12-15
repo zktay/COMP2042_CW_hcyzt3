@@ -29,7 +29,7 @@ import java.util.Optional;
  */
 public class GameScene extends controller{
 
-    static double getLENGTH() {
+    public static double getLENGTH() {
         return LENGTH;
     }
 

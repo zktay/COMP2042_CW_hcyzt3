@@ -33,7 +33,7 @@ public class controller extends spawn{
      * @param number n value to be pass in
      *
      */
-    static void setN(int number) {
+    public static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     }

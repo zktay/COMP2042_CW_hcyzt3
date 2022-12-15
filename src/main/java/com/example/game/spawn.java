@@ -14,7 +14,7 @@ import static com.example.game.controller.n;
  * Responsible for spawning cells, and detecting have empty cells or not to determine user win or lost the game
  */
 public class spawn {
-    Cell[][] cells = new Cell[n][n];
+    public Cell[][] cells = new Cell[n][n];
     private int[][] oldCells = new int[n][n];
     private int[][] newCells = new int[n][n];
     private TextMaker textMaker = TextMaker.getSingleInstance();
@@ -91,7 +91,7 @@ public class spawn {
 
     /**
      * Checks the board whether contains empty cells to determine the game need to be end or not.
-     * @return boolean
+     * @return integer
      *
      */
     int  haveEmptyCell() {
