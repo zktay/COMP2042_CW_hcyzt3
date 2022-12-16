@@ -15,14 +15,14 @@ https://github.com/zktay/COMP2042_CW_hcyzt3.git
 [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) or [Eclipse](https://www.eclipse.org/downloads/)
 ### 3. Download JavaJDK and JavaFx (JavaFx already provided in the source file)
 [Java JDK 19](https://www.oracle.com/java/technologies/javase/jdk19-archive-downloads.html)
-or
+and
 [Java SDK 19](https://gluonhq.com/products/javafx/) 
 ### 4. Running the program
 Open project in on of the IDE above and locate and run the Main.java.
 
 ## Where your Javadoc documentation is stored (the path to the directory).
 ```
-COMP2042TayZe/javadocs
+COMP2042TayZe/javadoc
 ```
 
 
