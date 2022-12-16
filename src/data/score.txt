@@ -41,3 +41,4 @@ DemoColorheheha, 220, 3x3, Color, LOSE
 Demo123456, 164, 3x3, Easy, LOSE
 DEMO3072, 342, 3x3, 3072, LOSE
 DEMOCOLOR, 192, 3x3, Color, LOSE
+efw, 424, 3x3, Extreme, LOSE
