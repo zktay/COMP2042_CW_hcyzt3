@@ -48,9 +48,6 @@ public class Main extends Application implements Initializable {
     @FXML
     public TextField usernameField;
     private Stage stage;
-    private Scene scene;
-    private Scene winScene;
-    private Group winRoot;
     private Parent root;
     private Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
