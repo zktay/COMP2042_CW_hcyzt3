@@ -1,0 +1,46 @@
+.button, .choice-box{
+    -fx-border-color:#f9f6f2;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 8px;
+    -fx-border-width: 2px;
+    /*-fx-color:#8f7a66;*/
+    -fx-color:#f9f6f2;
+    /*-fx-background-color:transparent;*/
+    -fx-text-fill:black;
+}
+
+.color-picker{
+    -fx-border-color:#f9f6f2;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-border-width: 2px;
+    /*-fx-color:#8f7a66;*/
+    -fx-color:#f9f6f2;
+    /*-fx-background-color:transparent;*/
+    -fx-text-fill:black;
+}
+
+
+.button:hover, .color-picker:hover, .choice-box:hover, .check-box:hover {
+    -fx-background-color: #A9A9A9;
+    /*-fx-scale-y: 1.1;*/
+    -fx-cursor:hand;
+    -fx-background-radius: 8px;
+}
+
+/*
+.button:pressed {
+    -fx-scale-y: 0.9;
+    -fx-scale-x: 0.9;
+}*/
+
+ .check-box{
+    -fx-border-color:#f9f6f2;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 8px;
+    -fx-border-width: 2px;
+    /*-fx-color:#8f7a66;*/
+    -fx-color:#f9f6f2;
+    -fx-background-color:#f0f0e8;
+    -fx-text-fill:black;
+}

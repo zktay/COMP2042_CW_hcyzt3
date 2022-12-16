@@ -52,11 +52,6 @@ COMP2042TayZe/javadocs
 <li> Reallocate the game board, Title, Username and Score to the middle of the screen to improve the UX.  </li>
 </ul>
 
-## A list of features that are implemented and are not working properly.
-<ul>
-<li>None</li>
-</ul>
-
 ## A list of features, if any, that are not implemented with an explanation of why they were not implemented.
 
 ### Time Limit function that limit the user to reach certain cell's value under time given.
