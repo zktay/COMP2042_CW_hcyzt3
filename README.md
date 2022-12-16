@@ -1,7 +1,7 @@
 # Software Maintenence Nottingham COMP2042
 <ul>
-<li>Title: Software Maintenance Assignment  </li>
-<li>Module: COMP2042 coursework</li>
+<li>Title: Software Maintenance Coursework</li>
+<li>Module: COMP2042</li>
 <li>Name: Tay Ze Kang  </li>
 <li>Student ID: 20511540  </li>
 </ul>
@@ -22,7 +22,7 @@ Open project in on of the IDE above and locate and run the Main.java.
 
 ## Where your Javadoc documentation is stored (the path to the directory).
 ```
-COMP2042TayZe/javadoc
+COMP2042TayZeKang/javadoc
 ```
 
 
